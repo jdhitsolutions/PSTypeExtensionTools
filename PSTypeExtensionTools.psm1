@@ -124,4 +124,4 @@ Write-Verbose "Ending: $($MyInvocation.Mycommand)"
 
 } #end Export
 
-Export-ModuleMember -Function Export-MyTypeExtension,Import-MyTypeExtensions
+Export-ModuleMember -Function 'Export-MyTypeExtension','Import-MyTypeExtension'

@@ -1,5 +1,8 @@
 Changelog for PSTypeExtensionTools
 
+v0.0.2
+added a manifest
+
 v0.0.1
 Initial module
 
