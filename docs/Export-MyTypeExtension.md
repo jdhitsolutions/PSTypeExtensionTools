@@ -81,9 +81,10 @@ Accept wildcard characters: False
 
 ## OUTPUTS
 
-### none
+### None
 
 ## NOTES
+Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 [Import-PSTypeExtension]()

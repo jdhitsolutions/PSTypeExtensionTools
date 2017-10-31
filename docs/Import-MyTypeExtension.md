@@ -54,6 +54,7 @@ Accept wildcard characters: False
 ### None
 
 ## NOTES
+Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 [Export-MyTypeExtension]()
