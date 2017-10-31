@@ -104,7 +104,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>none</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -113,7 +113,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -138,7 +138,7 @@
       <command:verb>Import</command:verb>
       <command:noun>MyTypeExtension</command:noun>
       <maml:description>
-        <maml:para>Import type extension data.</maml:para>
+        <maml:para>Import type extension data from a JSON file.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -159,6 +159,28 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -173,6 +195,30 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -197,7 +243,7 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -206,6 +252,17 @@
         <dev:code>PS C:\&gt; Import-MyTypeExtension c:\scripts\measure-types.json</dev:code>
         <dev:remarks>
           <maml:para>Import type extensions from the json file.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2</maml:title>
+        <dev:code>PS C:\&gt; Import-MyTypeExtension -Path S:\fileinfo-types.json -whatif
+What if: Performing the operation "Adding AliasProperty Size" on target "System.IO.FileInfo".
+What if: Performing the operation "Adding AliasProperty Modified" on target "System.IO.FileInfo".
+What if: Performing the operation "Adding AliasProperty Created" on target "System.IO.FileInfo".
+What if: Performing the operation "Adding ScriptProperty SizeKB" on target "System.IO.FileInfo".</dev:code>
+        <dev:remarks>
+          <maml:para>Testing the impact of importing type extensions.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

@@ -1,5 +1,10 @@
 Changelog for PSTypeExtensionTools
 
+v0.0.3
+added ShouldSupportProcess for Import-MyTypeExtension (Issue #1)
+updated help
+updated manifest
+
 v0.0.2
 added a manifest
 

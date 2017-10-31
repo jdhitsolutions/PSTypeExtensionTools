@@ -1,7 +1,7 @@
 #requires -version 5.0
 
 Function Import-MyTypeExtension {
-[cmdletbinding()]
+[cmdletbinding(SupportsShouldProcess)]
 Param(
 [Parameter(Position=0,Mandatory,HelpMessage= "The path to a json file with type extension information")]
 [ValidateScript({
@@ -36,9 +36,6 @@ foreach ($item in $in.Definitions) {
     Write-Verbose "Creating an alias property for $($item.ReferencedMemberName)"
     $params.MemberName = $item.Name
     $params.Value = $item.ReferencedMemberName
-    
-    Update-TypeData @params
-    
  } 
  else {
     Write-Verbose "Creating a script property"
@@ -51,11 +48,15 @@ foreach ($item in $in.Definitions) {
     }
     else {
        Write-Verbose "Using a SET scriptblock" 
-       $params.Value = [scriptblock]::Create($item.Get)
+       $params.Value = [scriptblock]::Create($item.Set)
     }
-
-    Update-TypeData @params
  } #else scriptproperty
+
+    #add a custom -WhatIf message
+    if ($PSCmdlet.ShouldProcess($Params.typename,"Adding $($params.membertype) $($params.MemberName)")) {
+        #implement the change
+        Update-TypeData @params
+    }
 }
 
 Write-Verbose "Ending: $($MyInvocation.Mycommand)"
@@ -85,7 +86,7 @@ If ($typedata) {
     #join members into a regex pattern
     $pattern = $members.foreach({"^($_)$"}) -join "|"
     Write-Verbose "Filtering where members match $pattern"
-    $mymembers = $typedata.members.GetEnumerator() | where {$_.key -match $pattern}
+    $mymembers = $typedata.members.GetEnumerator() | where-object {$_.key -match $pattern}
 
     if ($mymembers.count -eq 0) {
         Write-Warning "Failed to find members that match $pattern"
@@ -98,13 +99,13 @@ If ($typedata) {
     foreach ($m  in $mymembers) {
          Write-Verbose "Processing $($m.key)"
          $definitions+=$m.value | 
-         Select Name,ReferencedMemberName,
+         Select-object Name,ReferencedMemberName,
          @{Name="Get";Expression={$_.GetScriptBlock.ToString()}},
          @{Name="Set";Expression={$_.SetScriptBlock.ToString()}}
     }
 
     #show members that weren't found
-    $notfound = $members | where { -Not $mymembers.GetEnumerator().key.contains($_)}
+    $notfound = $members | where-object { -Not $mymembers.GetEnumerator().key.contains($_)}
     if ($notfound) {
         Write-Warning "Failed to find type extension: $($notfound -join ',')"
     }
