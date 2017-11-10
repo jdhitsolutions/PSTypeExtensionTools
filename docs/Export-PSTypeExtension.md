@@ -5,33 +5,40 @@ online version:
 schema: 2.0.0
 ---
 
-# Export-MyTypeExtension
+# Export-PSTypeExtension
 
 ## SYNOPSIS
-Export type information to a JSON file
+Export type extensions to a json or xml file.
 
 ## SYNTAX
 
 ```
-Export-MyTypeExtension [-Typename] <String> -Members <String[]> -Path <String> [<CommonParameters>]
+Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]> -Path <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Use this command to export selected members from a type extension to a JSON file. It is assumed you will be importing the settings using Import-MyTypeExtension. This command doesn't write anything to the pipeline.
+Export custom type information to a json file to make it easier to recreate them in another PowerShell session.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Export-myTypeExtension -typename Microsoft.PowerShell.Commands.GenericMeasureInfo -Members SumKB,SumMB,SumGB -Path c:\scripts\measure-types.json
+PS C:\> Export-PSTypeExtension -TypeName system.string -Path c:\work\mystringtypes.json -MemberName Size,IsIPAddress
 ```
 
-It is assumed that at some point you added custom type extensions to the GenericMeasureInfo type. These definitions will be exported to a json file.
+Export selected type extensions for System.String to a json file.
+
+### Example 2
+```
+PS C:\> Get-PSTypeExtension system.string -all | Export-PSTypeExtension -path c:\work\stringtypes.xml
+```
+
+Get all type extensions for System.String and export to an xml file.
 
 ## PARAMETERS
 
-### -Members
-Enter a comma separated list of member names. You will get a warning for any members not found but other members will be exported.
+### -MemberName
+The type extension name.
 
 ```yaml
 Type: String[]
@@ -41,12 +48,12 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
 ### -Path
-The path for your json file with exported type extension information.
+The name of the exported file. The extension must be .xml or .json.
 
 ```yaml
 Type: String
@@ -60,8 +67,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Typename
-Enter a type name like System.String
+### -TypeName
+The type name to export like System.IO.FileInfo.
 
 ```yaml
 Type: String
@@ -71,7 +78,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -80,7 +87,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.Object
 
 ## OUTPUTS
 
@@ -92,3 +99,4 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 ## RELATED LINKS
 
 [Import-PSTypeExtension]()
+[Get-PSTypeExtension]()

@@ -2,7 +2,7 @@
 Module Name: PSTypeExtensionTools
 Module Guid: f509035e-cb36-4d2f-b2c8-f4a60fb06d56
 Download Help Link: {{Please enter FwLink manually}}
-Help Version: 0.2
+Help Version: 1.0.0.0
 Locale: en-US
 ---
 
@@ -11,9 +11,18 @@ Locale: en-US
 A set of PowerShell tools for working with type extensions.
 
 ## PSTypeExtensionTools Cmdlets
-### [Export-MyTypeExtension](Export-MyTypeExtension.md)
-Export type information to a JSON file
+### [Add-PSTypeExtension](Add-PSTypeExtension.md)
+Add a new type extension such as an Alias or ScriptProperty.
 
-### [Import-MyTypeExtension](Import-MyTypeExtension.md)
-Import type extension data from a JSON file.
+### [Export-PSTypeExtension](Export-PSTypeExtension.md)
+Export type extensions to a json file.
+
+### [Get-PSType](Get-PSType.md)
+Get the type name of an object.
+
+### [Get-PSTypeExtension](Get-PSTypeExtension.md)
+Get type extensions for a given type.
+
+### [Import-PSTypeExtension](Import-PSTypeExtension.md)
+Import type extension definitions from a json file.
 

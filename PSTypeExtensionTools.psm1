@@ -1,7 +1,7 @@
 #requires -version 5.0
 
 
-Function Get-MyTypeExtension {
+Function Get-PSTypeExtension {
     [cmdletbinding(DefaultParameterSetName = "members")]
     Param(
         [Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of type like System.IO.FileInfo",
@@ -114,7 +114,7 @@ Function Get-MyTypeExtension {
         Write-Verbose "Ending: $($MyInvocation.Mycommand)"
     }
 
-} #end Get-MyTypeExtension
+} #end Get-PSTypeExtension
 
 Function Get-PSType {
     [cmdletbinding()]
@@ -138,22 +138,17 @@ Function Get-PSType {
     }
 } #end Get-PSType
 
-Function Export-MyTypeExtension {
-[cmdletbinding(DefaultParameterSetName="name")]
+Function Export-PSTypeExtension {
+[cmdletbinding()]
 Param(
-    [Parameter(Position = 0, Mandatory,
-    HelpMessage = "The type name to export like System.IO.FileInfo",
-    ParameterSetName = "name")]
+    [Parameter(Position = 0, Mandatory, HelpMessage = "The type name to export like System.IO.FileInfo",
+    ValueFromPipelineByPropertyName)]
     [ValidateNotNullOrEmpty()]
     [string]$TypeName,
-    [Parameter(Mandatory,HelpMessage="The type extension name", 
-    ParameterSetName = "name")]
+    [Parameter(Mandatory,HelpMessage="The type extension name", ValueFromPipelineByPropertyName)]
     [ValidateNotNullOrEmpty()]
     [string[]]$MemberName,
-    [Parameter(ParameterSetName="input",ValueFromPipeline)]
-    #It is assumed the inputobject comes from Get-MyTypeExtension
-    [object]$InputObject,
-    [Parameter(Mandatory,HelpMessage = "The name of the exported file. The extension must be .xml or .json")]
+    [Parameter(Mandatory,HelpMessage = "The name of the export file. The extension must be .xml or .json")]
     [ValidatePattern("\.(xml|json)$")]
     [string]$Path
 )
@@ -162,18 +157,12 @@ Begin {
     $data = @()
 }
 Process {
-    if ($PSCmdlet.ParameterSetName -eq 'input') {
-        Write-Verbose "Using input for type $($inputobject.Typename)"
-        $data+=$inputobject
-    }
-    else {
         Write-Verbose "Processing type: $TypeName"
-        $data+= Get-MyTypeExtension -TypeName $Typename -Members $MemberName 
-    }
+        $data+= Get-PSTypeExtension -TypeName $Typename -Members $MemberName 
 }
 End {
     Write-Verbose "Exporting data to $path"
-    if ($path -match "xml$") {
+    if ($path -match "\.xml$") {
         $data | Export-Clixml -path $path
     }
     else {
@@ -182,9 +171,9 @@ End {
     Write-Verbose "Ending: $($MyInvocation.Mycommand)"
 }
 
-} #end Export-MyTypeExtension
+} #end Export-PSTypeExtension
 
-Function Import-MyTypeExtension {
+Function Import-PSTypeExtension {
     [CmdletBinding(SupportsShouldProcess)]
     Param(
     [Parameter(Mandatory,HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
@@ -222,12 +211,14 @@ Function Import-MyTypeExtension {
     } #foreach
 
     Write-Verbose "Ending: $($myInvocation.mycommand)"
-} #end Import-MyTypeExtension
+} #end Import-PSTypeExtension
 
-Function Add-MyTypeExtension {
+Function Add-PSTypeExtension {
     [cmdletbinding(SupportsShouldProcess)]
     Param(
-        [Parameter(Position = 0, Mandatory, HelpMessage= "Enter the name of a type like system.io.fileinfo")]
+        [Parameter(Position = 0, Mandatory, 
+        ValueFromPipeline,
+        HelpMessage= "Enter the name of a type like system.io.fileinfo")]
         [string]$TypeName,
         [Parameter(Mandatory,HelpMessage="The member type")]
         [ValidateSet("AliasProperty","Noteproperty","ScriptProperty","ScriptMethod")]
@@ -242,12 +233,13 @@ Function Add-MyTypeExtension {
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
-        #force overwrite of existing extensions
-        $PSBoundParameters.Add("Force",$True)
+
     } #begin
 
     Process {
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to  $TypeName "
+        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $TypeName"
+        #force overwrite of existing extensions
+        $PSBoundParameters.Add("Force",$True)
         Update-TypeData @PSBoundParameters
     } #process
 
@@ -259,6 +251,7 @@ Function Add-MyTypeExtension {
 } #close Add-MyTypeExtension
 
 
+Set-Alias -name Set-PSTypeExtension -value Add-PSTypeExtension
 
-Export-ModuleMember -Function 'Get-MyTypeExtension', 'Get-PSType',
-'Import-MyTypeExtension','Export-MyTypeExtension','Add-MyTypeExtension'
+Export-ModuleMember -Alias 'Set-PSTypeExtension' -Function 'Get-PSTypeExtension', 'Get-PSType',
+'Import-PSTypeExtension','Export-PSTypeExtension','Add-PSTypeExtension'

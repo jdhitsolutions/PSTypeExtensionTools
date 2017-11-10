@@ -5,42 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Import-MyTypeExtension
+# Import-PSTypeExtension
 
 ## SYNOPSIS
-Import type extension data from a JSON file.
+Import type extension definitions
 
 ## SYNTAX
 
 ```
-Import-MyTypeExtension [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Import-PSTypeExtension [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Use this command to import type extension setting data from a json file presumably created with Export-MyTypeExtension. The settings will be created in the current PowerShell session, overwriting any existing entries with the same name.
+Use this command to import extended type definitions from a json or xml file that was created with Export-PSTypeExtension.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Import-MyTypeExtension c:\scripts\measure-types.json
+PS C:\> Import-PSTypeExtension -Path C:\work\stringtypes.json
 ```
 
-Import type extensions from the json file.
+Import definitions from a json file.
 
-### Example 2
-```
-PS C:\> Import-MyTypeExtension -Path S:\fileinfo-types.json -whatif
-What if: Performing the operation "Adding AliasProperty Size" on target "System.IO.FileInfo".
-What if: Performing the operation "Adding AliasProperty Modified" on target "System.IO.FileInfo".
-What if: Performing the operation "Adding AliasProperty Created" on target "System.IO.FileInfo".
-What if: Performing the operation "Adding ScriptProperty SizeKB" on target "System.IO.FileInfo".
-```
-Testing the impact of importing type extensions.
 ## PARAMETERS
 
 ### -Path
-The path to a json file with type extension information.
+The name of the imported file. The extension must be .xml or .json.
 
 ```yaml
 Type: String
@@ -100,4 +91,4 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 
 ## RELATED LINKS
 
-[Export-MyTypeExtension]()
+[Export-PSTypeExtension]()
