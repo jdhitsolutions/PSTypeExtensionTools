@@ -1,9 +1,9 @@
 # Changelog for PSTypeExtensionTools
 
 ## v0.2.0
-renamed commands for consistency with module name
-updated help documentation
-Added Set-PSTypeExtension as an alias to Add-PSTypeExtension
+- renamed commands for consistency with module name
+- updated help documentation
+- Added Set-PSTypeExtension as an alias to Add-PSTypeExtension
 
 ## v0.1.0
 - major changes to functions and design
