@@ -68,7 +68,7 @@ Import-PSTypeExtension -Path C:\work\int32-types.json
 Add a new type extension such as an Alias or ScriptProperty.
 
 ### [Export-PSTypeExtension](.\docs\Export-PSTypeExtension.md)
-Export type extensions to a json file.
+Export type extensions to a json or xml file.
 
 ### [Get-PSType](.\docs\Get-PSType.md)
 Get the type name of an object.
@@ -77,5 +77,6 @@ Get the type name of an object.
 Get type extensions for a given type.
 
 ### [Import-PSTypeExtension](.\docs\Import-PSTypeExtension.md)
-Import type extension definitions from a json file.
+Import type extension definitions from a json file or xml.
+
 *last updated 10 November 2017*
