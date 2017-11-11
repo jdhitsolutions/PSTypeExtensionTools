@@ -1,5 +1,9 @@
 # Changelog for PSTypeExtensionTools
 
+##v0.3.0
+fixed bug in Get-PSTypeExtension that was writing a blank object to the pipeline. (Issue #3)
+Added support for WhatIf to Export-PSTypeExtension
+documentation update
 ## v0.2.0
 - renamed commands for consistency with module name
 - updated help documentation

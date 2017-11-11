@@ -104,7 +104,6 @@ Function Get-PSTypeExtension {
             
             } #foreach
         
-            Write-Output $obj
         }
         else {
             Write-Warning "Failed to find type $Typename or no extensions are defined."
@@ -139,7 +138,7 @@ Function Get-PSType {
 } #end Get-PSType
 
 Function Export-PSTypeExtension {
-[cmdletbinding()]
+[cmdletbinding(SupportsShouldProcess)]
 Param(
     [Parameter(Position = 0, Mandatory, HelpMessage = "The type name to export like System.IO.FileInfo",
     ValueFromPipelineByPropertyName)]
@@ -158,7 +157,10 @@ Begin {
 }
 Process {
         Write-Verbose "Processing type: $TypeName"
-        $data+= Get-PSTypeExtension -TypeName $Typename -Members $MemberName 
+        foreach ($member in $membername) {
+            $data+= Get-PSTypeExtension -TypeName $Typename -Members $Member
+        }
+        Write-Verbose "Exit Process"
 }
 End {
     Write-Verbose "Exporting data to $path"

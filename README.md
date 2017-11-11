@@ -79,4 +79,4 @@ Get type extensions for a given type.
 ### [Import-PSTypeExtension](.\docs\Import-PSTypeExtension.md)
 Import type extension definitions from a json file or xml.
 
-*last updated 10 November 2017*
+*last updated 11 November 2017*
