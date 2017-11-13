@@ -1,18 +1,26 @@
-#requires -version 5.0
+#requires -version 5.1
 
 
 Function Get-PSTypeExtension {
-    [cmdletbinding(DefaultParameterSetName = "members")]
+    [cmdletbinding(DefaultParameterSetName = "All")]
     Param(
         [Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of type like System.IO.FileInfo",
             ValueFromPipelineByPropertyName,ValueFromPipeline)]
         [ValidateNotNullorEmpty()]
+        [ValidateScript({
+            if ($_ -as [type]) {
+                $True
+            }
+            Else {
+                Throw "$_ does not appear to be a valid type."
+            }
+        })]
         [string]$TypeName,
         [Parameter(Mandatory, HelpMessage = "Enter a comma separated list of member names", ParameterSetName = "members")]
         [ValidateNotNullorEmpty()]
         [string[]]$Members,
         [Parameter(ParameterSetName = "all")]
-        [switch]$All
+        [switch]$All = $True
     )
     
     Begin {
@@ -106,7 +114,7 @@ Function Get-PSTypeExtension {
         
         }
         else {
-            Write-Warning "Failed to find type $Typename or no extensions are defined."
+            Write-Warning "Failed to find any type extensions for [$Typename]."
         }
     }
     End {  

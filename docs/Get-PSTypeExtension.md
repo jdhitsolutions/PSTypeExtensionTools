@@ -12,7 +12,12 @@ Get selected type extensions.
 
 ## SYNTAX
 
-### members (Default)
+### All (Default)
+```
+Get-PSTypeExtension [-TypeName] <String> [<CommonParameters>]
+```
+
+### members
 ```
 Get-PSTypeExtension [-TypeName] <String> -Members <String[]> [<CommonParameters>]
 ```
@@ -29,7 +34,7 @@ Use this command to list defined type extensions. You can either select individu
 
 ### Example 1
 ```
-PS C:\> Get-PSTypeExtension system.string -all
+PS C:\> Get-PSTypeExtension system.string
 
 MemberType    MemberName  Value                                               TypeName
 ----------    ----------  -----                                               --------

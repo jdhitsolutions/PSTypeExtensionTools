@@ -660,7 +660,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
     <command:examples>
       <command:example>
         <maml:title>Example 1</maml:title>
-        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -all
+        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string
 
 MemberType    MemberName  Value                                               TypeName
 ----------    ----------  -----                                               --------
