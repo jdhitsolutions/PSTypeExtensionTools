@@ -1,0 +1,20 @@
+[
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "SumKB",
+        "Value":  "[math]::Round($this.sum/1kb,4)",
+        "TypeName":  "Microsoft.PowerShell.Commands.GenericMeasureInfo"
+    },
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "SumMB",
+        "Value":  "[math]::Round($this.sum/1mb,4)",
+        "TypeName":  "Microsoft.PowerShell.Commands.GenericMeasureInfo"
+    },
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "SumGB",
+        "Value":  "[math]::Round($this.sum/1gb,4)",
+        "TypeName":  "Microsoft.PowerShell.Commands.GenericMeasureInfo"
+    }
+]

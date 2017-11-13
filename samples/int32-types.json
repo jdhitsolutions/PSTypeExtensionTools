@@ -1,0 +1,32 @@
+[
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "SquareRoot",
+        "Value":  " [math]::Sqrt($this)",
+        "TypeName":  "System.Int32"
+    },
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "Squared",
+        "Value":  " $this*$this",
+        "TypeName":  "System.Int32"
+    },
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "Cubed",
+        "Value":  " [math]::Pow($this,3)",
+        "TypeName":  "System.Int32"
+    },
+    {
+        "MemberType":  "ScriptProperty",
+        "MemberName":  "Value",
+        "Value":  " $this",
+        "TypeName":  "System.Int32"
+    },
+    {
+        "MemberType":  "ScriptMethod",
+        "MemberName":  "GetPercent",
+        "Value":  "Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)",
+        "TypeName":  "System.Int32"
+    }
+]
