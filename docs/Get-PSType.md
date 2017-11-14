@@ -31,12 +31,14 @@ Pipe an object and get it's type.
 
 ### Example 2
 ```
-PS C:\>"apple" | Get-PSType | Get-PSTypeExtension -all
+PS C:\>"apple" | Get-PSType | Get-PSTypeExtension
 
-MemberType    MemberName  Value                                               TypeName
-----------    ----------  -----                                               --------
-AliasProperty Size        Length                                              System.String
-ScriptMethod  IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$" System.String
+  TypeName: System.String
+
+Name        Type           Value
+----        ----           -----
+Size        AliasProperty  Length
+IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
 ```
 
 Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to see all defined types.
@@ -58,7 +60,7 @@ WIN10      9/28/2017 9:32:21 AM  43.00:48:23.1610914
 Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825
 ```
 
-Get the type for a Hyper-V Virtual Machine and add a new script property.
+Get the type for a Hyper-V Virtual Machine and add a new script property which can then be used in a PowerShell expression.
 
 ## PARAMETERS
 

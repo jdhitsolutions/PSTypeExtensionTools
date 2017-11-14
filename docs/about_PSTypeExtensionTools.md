@@ -17,14 +17,11 @@ could run a PowerShell command like this:
       Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot `
       -Value { [math]::Sqrt($this)}
 
-
 Use $this to reference the object instead of $_.  Now you can get the new property.
-
 
       PS C:\> $x = 123
       PS C:\> $x.SquareRoot
       11.0905365064094
-
 
 Once you know the type name you can add other type extensions.
 
@@ -32,7 +29,6 @@ Once you know the type name you can add other type extensions.
       Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptProperty -MemberName Cubed -value { [math]::Pow($this,3)}
       Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptProperty -MemberName Value -value { $this}
       Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptMethod -MemberName GetPercent -value {Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)}
-
 
 Here's how it might look:
 
@@ -52,25 +48,31 @@ Here's how it might look:
 
 To see what has been defined you can use Get-PSTypeExtension. You can choose to see all extensions or selected ones by member name.
 
-      PS C:\> Get-PSTypeExtension system.int32 -all
+      PS C:\> Get-PSTypeExtension system.int32
 
-      MemberType     MemberName Value                                               TypeName    
-      ----------     ---------- -----                                               --------    
-      ScriptProperty SquareRoot  [math]::Sqrt($this)                                System.Int32
-      ScriptProperty Squared     $this*$this                                        System.Int32
-      ScriptProperty Cubed       [math]::Pow($this,3)                               System.Int32
-      ScriptProperty Value       $this                                              System.Int32
-      ScriptMethod   GetPercent Param([int32]$Total,[int32]$Round=2) [math]::Ro...  System.Int32
+      TypeName: System.Int32
+
+      Name       Type           Value
+      ----       ----           -----
+      SquareRoot ScriptProperty  [math]::Sqrt($this)
+      Squared    ScriptProperty  $this*$this
+      Cubed      ScriptProperty  [math]::Pow($this,3)
+      Value      ScriptProperty  $this
+      GetPercent ScriptMethod   Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)
 
 If you always want these extensions you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a json or xml file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
 
-      Get-PSTypeExtension system.int32 -all | 
+      PS C:\> Get-PSTypeExtension system.int32 -all | 
       Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 
 In your PowerShell profile script you can then re-import the type extension definitions.
 
       Import-PSTypeExtension -Path C:\work\int32-types.json
 
+You can also import a directory of type extensions with a single command.
+
+        dir c:\scripts\mytypes | Import-PSTypeExtension
+    
 A number of sample files with type extensions can be found in this modules Samples folder or in the GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.
 
 # NOTE

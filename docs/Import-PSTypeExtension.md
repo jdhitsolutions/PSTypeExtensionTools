@@ -28,6 +28,13 @@ PS C:\> Import-PSTypeExtension -Path C:\work\stringtypes.json
 
 Import definitions from a json file.
 
+### Example 2
+```
+PS C:\> dir c:\scripts\mytypes | Import-PSTypeExtension
+```
+
+Import definitions from files in C:\Scripts\MyTypes. Presumably these are xml or json files created with Export-PSTypeExtension.
+
 ## PARAMETERS
 
 ### -Path
@@ -41,7 +48,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

@@ -31,7 +31,7 @@ Export selected type extensions for System.String to a json file.
 
 ### Example 2
 ```
-PS C:\> Get-PSTypeExtension system.string -all | Export-PSTypeExtension -path c:\work\stringtypes.xml
+PS C:\> Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work\stringtypes.xml
 ```
 
 Get all type extensions for System.String and export to an xml file.

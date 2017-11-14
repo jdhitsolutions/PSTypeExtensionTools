@@ -390,7 +390,7 @@ True</dev:code>
       </command:example>
       <command:example>
         <maml:title>Example 2</maml:title>
-        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -all | Export-PSTypeExtension -path c:\work\stringtypes.xml</dev:code>
+        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work\stringtypes.xml</dev:code>
         <dev:remarks>
           <maml:para>Get all type extensions for System.String and export to an xml file.</maml:para>
         </dev:remarks>
@@ -486,12 +486,14 @@ System.Int32</dev:code>
       </command:example>
       <command:example>
         <maml:title>Example 2</maml:title>
-        <dev:code>PS C:\&gt;"apple" | Get-PSType | Get-PSTypeExtension -all
+        <dev:code>PS C:\&gt;"apple" | Get-PSType | Get-PSTypeExtension
 
-MemberType    MemberName  Value                                               TypeName
-----------    ----------  -----                                               --------
-AliasProperty Size        Length                                              System.String
-ScriptMethod  IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$" System.String</dev:code>
+  TypeName: System.String
+
+Name        Type           Value
+----        ----           -----
+Size        AliasProperty  Length
+IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"</dev:code>
         <dev:remarks>
           <maml:para>Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to see all defined types.</maml:para>
         </dev:remarks>
@@ -512,7 +514,7 @@ SRV3       9/28/2017 9:32:11 AM  43.00:48:33.4681374
 WIN10      9/28/2017 9:32:21 AM  43.00:48:23.1610914
 Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <dev:remarks>
-          <maml:para>Get the type for a Hyper-V Virtual Machine and add a new script property.</maml:para>
+          <maml:para>Get the type for a Hyper-V Virtual Machine and add a new script property which can then be used in a PowerShell expression.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -537,7 +539,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to list defined type extensions. You can either select individual ones or all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.</maml:para>
+      <maml:para>Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -555,32 +557,6 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>All</maml:name>
-          <maml:Description>
-            <maml:para>Get all defined type extensions</maml:para>
-          </maml:Description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-      <command:syntaxItem>
-        <maml:name>Get-PSTypeExtension</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
-          <maml:name>TypeName</maml:name>
-          <maml:Description>
-            <maml:para>Enter the name of type like System.IO.FileInfo</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Members</maml:name>
           <maml:Description>
             <maml:para>Enter a comma separated list of member names</maml:para>
@@ -596,18 +572,6 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
     </command:syntax>
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>All</maml:name>
-        <maml:Description>
-          <maml:para>Get all defined type extensions</maml:para>
-        </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Members</maml:name>
         <maml:Description>
           <maml:para>Enter a comma separated list of member names</maml:para>
@@ -662,10 +626,15 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <maml:title>Example 1</maml:title>
         <dev:code>PS C:\&gt; Get-PSTypeExtension system.string
 
-MemberType    MemberName  Value                                               TypeName
-----------    ----------  -----                                               --------
-AliasProperty Size        Length                                              System.String
-ScriptMethod  IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$" System.String</dev:code>
+   TypeName: System.String
+
+Name        Type           Value
+----        ----           -----
+Size        AliasProperty  Length
+IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
+Reverse     ScriptMethod   for ($i=$this.length;$i -ge 0;$i--) {...
+IsEmail     ScriptProperty  $this -match '^\S+@([\w-]+)\.(com|edu|org|net)$'
+Randomize   ScriptMethod   ($this.ToCharArray() | get-random -Count $this.length) -join ""</dev:code>
         <dev:remarks>
           <maml:para>Get all type extensions for System.String.</maml:para>
         </dev:remarks>
@@ -674,11 +643,41 @@ ScriptMethod  IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$" Sy
         <maml:title>Example 2</maml:title>
         <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -members size
 
-MemberType    MemberName  Value                                               TypeName
-----------    ----------  -----                                               --------
-AliasProperty Size        Length                                              System.String</dev:code>
+   TypeName: System.String
+
+Name Type          Value
+---- ----          -----
+Size AliasProperty Length</dev:code>
         <dev:remarks>
           <maml:para>Get the Size type extension for System.String.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3</maml:title>
+        <dev:code>PS C:\&gt; get-process | get-pstype | Get-PSTypeExtension
+
+
+   TypeName: System.Diagnostics.Process
+
+Name           Type           Value
+----           ----           -----
+Name           AliasProperty  ProcessName
+SI             AliasProperty  SessionId
+Handles        AliasProperty  Handlecount
+VM             AliasProperty  VirtualMemorySize64
+WS             AliasProperty  WorkingSet64
+PM             AliasProperty  PagedMemorySize64
+NPM            AliasProperty  NonpagedSystemMemorySize64
+Path           ScriptProperty $this.Mainmodule.FileName
+Company        ScriptProperty $this.Mainmodule.FileVersionInfo.CompanyName
+CPU            ScriptProperty $this.TotalProcessorTime.TotalSeconds
+FileVersion    ScriptProperty $this.Mainmodule.FileVersionInfo.FileVersion
+ProductVersion ScriptProperty $this.Mainmodule.FileVersionInfo.ProductVersion
+Description    ScriptProperty $this.Mainmodule.FileVersionInfo.FileDescription
+Product        ScriptProperty $this.Mainmodule.FileVersionInfo.ProductName
+__NounName     Noteproperty   Process</dev:code>
+        <dev:remarks>
+          <maml:para>Discover type extensions for a given type of object.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -704,7 +703,7 @@ AliasProperty Size        Length                                              Sy
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Import-PSTypeExtension</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>Path</maml:name>
           <maml:Description>
             <maml:para>The name of the imported file. The extension must be .xml or .json.</maml:para>
@@ -741,7 +740,7 @@ AliasProperty Size        Length                                              Sy
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Path</maml:name>
         <maml:Description>
           <maml:para>The name of the imported file. The extension must be .xml or .json.</maml:para>
@@ -809,6 +808,13 @@ AliasProperty Size        Length                                              Sy
         <dev:code>PS C:\&gt; Import-PSTypeExtension -Path C:\work\stringtypes.json</dev:code>
         <dev:remarks>
           <maml:para>Import definitions from a json file.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2</maml:title>
+        <dev:code>PS C:\&gt; dir c:\scripts\mytypes | Import-PSTypeExtension</dev:code>
+        <dev:remarks>
+          <maml:para>Import definitions from files in C:\Scripts\MyTypes. Presumably these are xml or json files created with Export-PSTypeExtension.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

@@ -1,7 +1,16 @@
 # Changelog for PSTypeExtensionTools
 
+## v0.5.0
+- Modified Get-PSType to better reflect type names. (Issue #7)
+- added additional sample files.
+- modified Get-PSTypeExtension to include PSTypeExtension as a typename
+- added format ps1xml (Issue #8)
+- revised parameter validation for Get-PSTypeExtension (Issue #10)
+- revised Import-PSTypeExtension to accept pipelined input for filenames (Issue #9)
+- updated documentation
+
 ## v0.4.0
-- Modified Get-PSTypeExtension so -All is the default (Issue #6)=
+- Modified Get-PSTypeExtension so -All is the default (Issue #6)
 - Modified Get-PSTypeExtension to validate typename
 - Updated help documentation to include an About file
 - Reverted Changelog to a text file
@@ -11,6 +20,7 @@
 - fixed bug in Get-PSTypeExtension that was writing a blank object to the pipeline. (Issue #3)
 - Added support for WhatIf to Export-PSTypeExtension (Issue #2)
 - documentation update
+
 ## v0.2.0
 - renamed commands for consistency with module name
 - updated help documentation

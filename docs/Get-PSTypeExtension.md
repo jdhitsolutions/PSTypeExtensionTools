@@ -12,23 +12,12 @@ Get selected type extensions.
 
 ## SYNTAX
 
-### All (Default)
 ```
-Get-PSTypeExtension [-TypeName] <String> [<CommonParameters>]
-```
-
-### members
-```
-Get-PSTypeExtension [-TypeName] <String> -Members <String[]> [<CommonParameters>]
-```
-
-### all
-```
-Get-PSTypeExtension [-TypeName] <String> [-All] [<CommonParameters>]
+Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Use this command to list defined type extensions. You can either select individual ones or all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.
+Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.
 
 ## EXAMPLES
 
@@ -36,10 +25,15 @@ Use this command to list defined type extensions. You can either select individu
 ```
 PS C:\> Get-PSTypeExtension system.string
 
-MemberType    MemberName  Value                                               TypeName
-----------    ----------  -----                                               --------
-AliasProperty Size        Length                                              System.String
-ScriptMethod  IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$" System.String
+   TypeName: System.String
+
+Name        Type           Value
+----        ----           -----
+Size        AliasProperty  Length
+IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
+Reverse     ScriptMethod   for ($i=$this.length;$i -ge 0;$i--) {...
+IsEmail     ScriptProperty  $this -match '^\S+@([\w-]+)\.(com|edu|org|net)$'
+Randomize   ScriptMethod   ($this.ToCharArray() | get-random -Count $this.length) -join ""
 ```
 
 Get all type extensions for System.String.
@@ -48,39 +42,54 @@ Get all type extensions for System.String.
 ```
 PS C:\> Get-PSTypeExtension system.string -members size
 
-MemberType    MemberName  Value                                               TypeName
-----------    ----------  -----                                               --------
-AliasProperty Size        Length                                              System.String
+   TypeName: System.String
+
+Name Type          Value
+---- ----          -----
+Size AliasProperty Length
 ```
 
 Get the Size type extension for System.String.
 
-## PARAMETERS
-
-### -All
-Get all defined type extensions
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
+### Example 3
 ```
+PS C:\> get-process | get-pstype | Get-PSTypeExtension
+
+
+   TypeName: System.Diagnostics.Process
+
+Name           Type           Value
+----           ----           -----
+Name           AliasProperty  ProcessName
+SI             AliasProperty  SessionId
+Handles        AliasProperty  Handlecount
+VM             AliasProperty  VirtualMemorySize64
+WS             AliasProperty  WorkingSet64
+PM             AliasProperty  PagedMemorySize64
+NPM            AliasProperty  NonpagedSystemMemorySize64
+Path           ScriptProperty $this.Mainmodule.FileName
+Company        ScriptProperty $this.Mainmodule.FileVersionInfo.CompanyName
+CPU            ScriptProperty $this.TotalProcessorTime.TotalSeconds
+FileVersion    ScriptProperty $this.Mainmodule.FileVersionInfo.FileVersion
+ProductVersion ScriptProperty $this.Mainmodule.FileVersionInfo.ProductVersion
+Description    ScriptProperty $this.Mainmodule.FileVersionInfo.FileDescription
+Product        ScriptProperty $this.Mainmodule.FileVersionInfo.ProductName
+__NounName     Noteproperty   Process
+```
+
+Discover type extensions for a given type of object.
+
+## PARAMETERS
 
 ### -Members
 Enter a comma separated list of member names
 
 ```yaml
 Type: String[]
-Parameter Sets: members
+Parameter Sets: (All)
 Aliases: 
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

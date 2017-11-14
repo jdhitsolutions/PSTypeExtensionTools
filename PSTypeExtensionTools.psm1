@@ -2,25 +2,27 @@
 
 
 Function Get-PSTypeExtension {
-    [cmdletbinding(DefaultParameterSetName = "All")]
+    [cmdletbinding()]
     Param(
         [Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of type like System.IO.FileInfo",
             ValueFromPipelineByPropertyName,ValueFromPipeline)]
         [ValidateNotNullorEmpty()]
         [ValidateScript({
-            if ($_ -as [type]) {
+            #check if typename can be found with Get-TypeData
+            if ((get-typedata).typename -contains "$_") {
                 $True
             }
-            Else {
+            elseif ($_ -as [type]) {
+                #test if string resolves as a typename
+                $True
+            }
+            else {
                 Throw "$_ does not appear to be a valid type."
             }
         })]
         [string]$TypeName,
-        [Parameter(Mandatory, HelpMessage = "Enter a comma separated list of member names", ParameterSetName = "members")]
-        [ValidateNotNullorEmpty()]
-        [string[]]$Members,
-        [Parameter(ParameterSetName = "all")]
-        [switch]$All = $True
+        [Parameter(HelpMessage = "Enter a comma separated list of member names", ParameterSetName = "members")]
+        [string[]]$Members
     )
     
     Begin {
@@ -31,7 +33,7 @@ Function Get-PSTypeExtension {
     
         if ($typedata) {
     
-            if ($all) {
+            if (-Not $Members) {
                 Write-Verbose "Getting all member names"
                 $Members = $typedata.members.keys
     
@@ -42,7 +44,7 @@ Function Get-PSTypeExtension {
                     $member = $typedata.members[$name]
                     $datatype = $member.gettype().name
         
-                    write-verbose "Processing type $datatype"
+                    Write-Verbose "Processing type $datatype"
                     Switch ($datatype) {
                         "AliasPropertyData" {                
                             $def = [pscustomobject]@{
@@ -92,7 +94,7 @@ Function Get-PSTypeExtension {
                             }
                         } #codeproperty
                         Default {
-                            Write-Warning "Cannot process $datatype type"
+                            Write-Warning "Cannot process $datatype type for $($typedata.typename)."
                             $def = [pscustomobject]@{
                                 MemberType = $datatype
                                 MemberName = $member.name
@@ -101,9 +103,12 @@ Function Get-PSTypeExtension {
                         }
                     }
             
-                    #$obj.Definitions+=$def
                     $def | Add-Member -MemberType NoteProperty -Name TypeName -Value $typedata.typename
-                    $def
+                    #insert a typename
+                    $def.psobject.typenames.insert(0,'PSTypeExtension')
+                    #write the definition to the pipeline
+                    Write-Output $def
+
                 }
                 Catch {
                     Write-Warning "Could not find an extension member called $name"
@@ -136,7 +141,7 @@ Function Get-PSType {
     }
     Process {
         #get the type of each pipelined object
-        $data+= $Inputobject.GetType().Fullname
+        $data+= ($Inputobject | Get-Member | select-object -first 1).typename
     }
     End {
         #write unique values to the pipeline
@@ -186,13 +191,16 @@ End {
 Function Import-PSTypeExtension {
     [CmdletBinding(SupportsShouldProcess)]
     Param(
-    [Parameter(Mandatory,HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
+    [Parameter(Mandatory,
+    ValueFromPipeline,
+    HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
     [ValidatePattern("\.(xml|json)$")]
-    [ValidateScript({Test-Path $_})]
+    [ValidateScript({Test-Path $(Convert-Path $_)})]
     [string]$Path
     )
 
     Write-Verbose "Starting: $($myInvocation.mycommand)"
+    Write-Verbose "Importing file $(Convert-path $Path)"
     if ($path -match "\.xml$") {
         #xml format seems to add an extra entry
         $import = Import-clixml -Path $path | Where MemberType    
@@ -264,4 +272,4 @@ Function Add-PSTypeExtension {
 Set-Alias -name Set-PSTypeExtension -value Add-PSTypeExtension
 
 Export-ModuleMember -Alias 'Set-PSTypeExtension' -Function 'Get-PSTypeExtension', 'Get-PSType',
-'Import-PSTypeExtension','Export-PSTypeExtension','Add-PSTypeExtension'
+'Import-PSTypeExtension','Export-PSTypeExtension','Add-PSTypeExtension' 
