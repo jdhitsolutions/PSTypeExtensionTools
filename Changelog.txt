@@ -1,5 +1,9 @@
 # Changelog for PSTypeExtensionTools
 
+## v0.5.1
+- fixed bug in the CimInstance json sample
+- fixed link bug in README.md file
+
 ## v0.5.0
 - Modified Get-PSType to better reflect type names. (Issue #7)
 - added additional sample files.
