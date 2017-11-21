@@ -65,7 +65,7 @@ In your PowerShell profile script you can then re-import the type extension defi
 ```
 Import-PSTypeExtension -Path C:\work\int32-types.json
 ```
-You can find a number of type extension exports in the [Samples](.\samples) folder.
+You can find a number of type extension exports in the [Samples](./samples) folder.
 
 ## PSTypeExtensionTools Cmdlets
 ### [Add-PSTypeExtension](.\docs\Add-PSTypeExtension.md)
@@ -85,4 +85,4 @@ Import type extension definitions from a json file or xml.
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 
-*last updated 14 November 2017*
+*last updated 21 November 2017*
