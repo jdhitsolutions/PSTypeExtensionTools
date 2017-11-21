@@ -16,41 +16,5 @@
         "MemberName":  "PctFree",
         "Value":  "[math]::round(($this.freespace/$this.size)*100,2)",
         "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    },
-    {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "SizeGB",
-        "Value":  "$this.size/1gb -as [int]",
-        "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    },
-    {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "FreeGB",
-        "Value":  "[math]::round($this.freespace/1gb,4)",
-        "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    },
-    {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "PctFree",
-        "Value":  "[math]::round(($this.freespace/$this.size)*100,2)",
-        "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    },
-    {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "SizeGB",
-        "Value":  "$this.size/1gb -as [int]",
-        "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    },
-    {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "FreeGB",
-        "Value":  "[math]::round($this.freespace/1gb,4)",
-        "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    },
-    {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "PctFree",
-        "Value":  "[math]::round(($this.freespace/$this.size)*100,2)",
-        "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    }
+    }    
 ]
