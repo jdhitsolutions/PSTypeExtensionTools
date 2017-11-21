@@ -3,7 +3,7 @@
 This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871).
 
 ## Release
-The current release is [v0.5.0-beta](https://github.com/jdhitsolutions/PSTypeExtensionTools/releases/tag/v0.5.0-beta).
+The current release is [v0.5.1-beta](https://github.com/jdhitsolutions/PSTypeExtensionTools/releases/tag/v0.5.1-beta).
 
 ## Example
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module you could run a PowerShell command like this:
