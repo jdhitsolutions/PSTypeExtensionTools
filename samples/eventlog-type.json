@@ -1,0 +1,6 @@
+{
+    "MemberType":  "ScriptProperty",
+    "MemberName":  "Computername",
+    "Value":  "if ($this.machinename -eq \u0027.\u0027) {$env:computername} else {$this.machinename}",
+    "TypeName":  "System.Diagnostics.EventLog"
+}
