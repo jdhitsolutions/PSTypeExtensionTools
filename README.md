@@ -10,7 +10,7 @@ You can also install from the PowerShell Gallery:
 ```
 Install-Module PSTypeExtensionTools
 ```
-## Example
+## Why you want to use this
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module you could run a PowerShell command like this:
 ```
 PS C:\> 123 | Get-PSType | 
@@ -70,6 +70,10 @@ In your PowerShell profile script you can then re-import the type extension defi
 ```
 Import-PSTypeExtension -Path C:\work\int32-types.json
 ```
+## Create ps1xml files
+The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import  into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting and hoping for the best.
+
+## I want to try
 You can find a number of type extension exports in the [Samples](./samples) folder.
 
 ## PSTypeExtensionTools Cmdlets
@@ -89,5 +93,11 @@ Get type extensions for a given type.
 Import type extension definitions from a json file or xml.
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
+
+There is also an about topic you can read:
+
+```
+help about_pstypeextensiontools
+```
 
 *last updated 15 December 2017*
