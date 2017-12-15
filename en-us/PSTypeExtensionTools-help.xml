@@ -18,7 +18,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
           <maml:Description>
-            <maml:para>Enter the name of a type like system.io.fileinfo</maml:para>
+            <maml:para>Enter the name of a type like system.io.fileinfo.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -30,7 +30,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>MemberName</maml:name>
           <maml:Description>
-            <maml:para>The name of your type extension</maml:para>
+            <maml:para>The name of your type extension.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -60,7 +60,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Value</maml:name>
           <maml:Description>
-            <maml:para>The value for your type extension. Remember to enclose scriptblocks in {} and use $this</maml:para>
+            <maml:para>The value for your type extension. Remember to enclose scriptblocks in {} and use $this.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
           <dev:type>
@@ -97,7 +97,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>MemberName</maml:name>
         <maml:Description>
-          <maml:para>The name of your type extension</maml:para>
+          <maml:para>The name of your type extension.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -121,7 +121,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
         <maml:Description>
-          <maml:para>Enter the name of a type like system.io.fileinfo</maml:para>
+          <maml:para>Enter the name of a type like system.io.fileinfo.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -133,7 +133,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Value</maml:name>
         <maml:Description>
-          <maml:para>The value for your type extension. Remember to enclose scriptblocks in {} and use $this</maml:para>
+          <maml:para>The value for your type extension. Remember to enclose scriptblocks in {} and use $this.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
         <dev:type>
@@ -194,14 +194,14 @@
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>Example 1</maml:title>
+        <maml:title>EXAMPLE 1</maml:title>
         <dev:code>PS C:\&gt; Add-PSTypeExtension -TypeName system.string -MemberType AliasProperty -MemberName Size -Value Length</dev:code>
         <dev:remarks>
           <maml:para>Define an alias property called Size for the Length property of the String type.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 2</maml:title>
+        <maml:title>EXAMPLE 2</maml:title>
         <dev:code>PS C:\&gt; Add-PSTypeExtension -TypeName system.string -MemberType ScriptMethod -MemberName IsIPAddress -value {$this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"}
 PS C:\&gt; $s = "10.4.7.10"
 PS C:\&gt; $s.IsIPAddress()
@@ -224,16 +224,16 @@ True</dev:code>
       <command:verb>Export</command:verb>
       <command:noun>PSTypeExtension</command:noun>
       <maml:description>
-        <maml:para>Export type extensions to a json or xml file.</maml:para>
+        <maml:para>Export type extensions to a file.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Export custom type information to a json file to make it easier to recreate them in another PowerShell session.</maml:para>
+      <maml:para>This command can be used in 2 ways. First, you can export custom type information to a json or xml file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Export-PSTypeExtension</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
           <maml:Description>
             <maml:para>The type name to export like System.IO.FileInfo.</maml:para>
@@ -245,7 +245,7 @@ True</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>MemberName</maml:name>
           <maml:Description>
             <maml:para>The type extension name.</maml:para>
@@ -260,7 +260,7 @@ True</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Path</maml:name>
           <maml:Description>
-            <maml:para>The name of the exported file. The extension must be .xml or .json.</maml:para>
+            <maml:para>The name of the exported file. The extension must be .xml, .ps1xml or .json.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -292,9 +292,58 @@ True</dev:code>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Export-PSTypeExtension</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:Description>
+            <maml:para>The name of the exported file. The extension must be .xml, .ps1xml or .json.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+          <maml:name>InputObject</maml:name>
+          <maml:Description>
+            <maml:para>This is typically the output of Get-PSSTypeExtension.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>MemberName</maml:name>
         <maml:Description>
           <maml:para>The type extension name.</maml:para>
@@ -309,7 +358,7 @@ True</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Path</maml:name>
         <maml:Description>
-          <maml:para>The name of the exported file. The extension must be .xml or .json.</maml:para>
+          <maml:para>The name of the exported file. The extension must be .xml, .ps1xml or .json.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -318,7 +367,7 @@ True</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
         <maml:Description>
           <maml:para>The type name to export like System.IO.FileInfo.</maml:para>
@@ -354,6 +403,18 @@ True</dev:code>
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <maml:name>InputObject</maml:name>
+        <maml:Description>
+          <maml:para>This is typically the output of Get-PSSTypeExtension.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -382,17 +443,24 @@ True</dev:code>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>Example 1</maml:title>
+        <maml:title>EXAMPLE 1</maml:title>
         <dev:code>PS C:\&gt; Export-PSTypeExtension -TypeName system.string -Path c:\work\mystringtypes.json -MemberName Size,IsIPAddress</dev:code>
         <dev:remarks>
           <maml:para>Export selected type extensions for System.String to a json file.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 2</maml:title>
+        <maml:title>EXAMPLE 2</maml:title>
         <dev:code>PS C:\&gt; Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work\stringtypes.xml</dev:code>
         <dev:remarks>
           <maml:para>Get all type extensions for System.String and export to an xml file.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>EXAMPLE 3</maml:title>
+        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -members "IsIpAddress","Size","Randomize" | Export-PSTypeExtension -path c:\work\mystring.type.ps1xml</dev:code>
+        <dev:remarks>
+          <maml:para>Export the selected members to a properly formatted ps1xml file.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -477,7 +545,7 @@ True</dev:code>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>Example 1</maml:title>
+        <maml:title>EXAMPLE 1</maml:title>
         <dev:code>PS C:\&gt;123 | Get-PSType
 System.Int32</dev:code>
         <dev:remarks>
@@ -485,7 +553,7 @@ System.Int32</dev:code>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 2</maml:title>
+        <maml:title>EXAMPLE 2</maml:title>
         <dev:code>PS C:\&gt;"apple" | Get-PSType | Get-PSTypeExtension
 
   TypeName: System.String
@@ -499,7 +567,7 @@ IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"</
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 3</maml:title>
+        <maml:title>EXAMPLE 3</maml:title>
         <dev:code>PS C:\&gt; get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime} 
 PS C:\&gt; get-vm | sort VMAge -descending | select Name,Creationtime,VMAge 
 
@@ -527,6 +595,10 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <maml:linkText>Add-PSTypeExtension</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-TypeData</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
@@ -547,7 +619,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
           <maml:Description>
-            <maml:para>Enter the name of type like System.IO.FileInfo</maml:para>
+            <maml:para>Enter the name of type like System.IO.FileInfo.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -559,7 +631,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Members</maml:name>
           <maml:Description>
-            <maml:para>Enter a comma separated list of member names</maml:para>
+            <maml:para>Enter a comma separated list of member names.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -574,7 +646,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Members</maml:name>
         <maml:Description>
-          <maml:para>Enter a comma separated list of member names</maml:para>
+          <maml:para>Enter a comma separated list of member names.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
@@ -586,7 +658,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
         <maml:Description>
-          <maml:para>Enter the name of type like System.IO.FileInfo</maml:para>
+          <maml:para>Enter the name of type like System.IO.FileInfo.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -623,7 +695,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>Example 1</maml:title>
+        <maml:title>EXAMPLE 1</maml:title>
         <dev:code>PS C:\&gt; Get-PSTypeExtension system.string
 
    TypeName: System.String
@@ -640,7 +712,7 @@ Randomize   ScriptMethod   ($this.ToCharArray() | get-random -Count $this.length
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 2</maml:title>
+        <maml:title>EXAMPLE 2</maml:title>
         <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -members size
 
    TypeName: System.String
@@ -653,7 +725,7 @@ Size AliasProperty Length</dev:code>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 3</maml:title>
+        <maml:title>EXAMPLE 3</maml:title>
         <dev:code>PS C:\&gt; get-process | get-pstype | Get-PSTypeExtension
 
 
@@ -804,14 +876,14 @@ __NounName     Noteproperty   Process</dev:code>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>Example 1</maml:title>
+        <maml:title>EXAMPLE 1</maml:title>
         <dev:code>PS C:\&gt; Import-PSTypeExtension -Path C:\work\stringtypes.json</dev:code>
         <dev:remarks>
           <maml:para>Import definitions from a json file.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>Example 2</maml:title>
+        <maml:title>EXAMPLE 2</maml:title>
         <dev:code>PS C:\&gt; dir c:\scripts\mytypes | Import-PSTypeExtension</dev:code>
         <dev:remarks>
           <maml:para>Import definitions from files in C:\Scripts\MyTypes. Presumably these are xml or json files created with Export-PSTypeExtension.</maml:para>
@@ -821,6 +893,10 @@ __NounName     Noteproperty   Process</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Export-PSTypeExtension</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Update-TypeData</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

@@ -96,4 +96,7 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 ## RELATED LINKS
 
 [Get-PSTypeExtension]()
+
 [Add-PSTypeExtension]()
+
+[Get-TypeData]()

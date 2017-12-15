@@ -3,7 +3,7 @@
 This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871).
 
 ## Release
-The current release is [v0.5.1-beta](https://github.com/jdhitsolutions/PSTypeExtensionTools/releases/tag/v0.5.1-beta).
+The current release is [v1.0.0](https://github.com/jdhitsolutions/PSTypeExtensionTools/releases/tag/v1.0.0).
 
 ## Example
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module you could run a PowerShell command like this:
@@ -72,7 +72,7 @@ You can find a number of type extension exports in the [Samples](./samples) fold
 Add a new type extension such as an Alias or ScriptProperty.
 
 ### [Export-PSTypeExtension](./docs/Export-PSTypeExtension.md)
-Export type extensions to a json or xml file.
+Export type extensions to a json, xml or ps1xml file.
 
 ### [Get-PSType](./docs/Get-PSType.md)
 Get the type name of an object.
@@ -85,4 +85,4 @@ Import type extension definitions from a json file or xml.
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 
-*last updated 21 November 2017*
+*last updated 15 December 2017*

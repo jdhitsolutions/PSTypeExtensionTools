@@ -2,7 +2,7 @@
     {
         "MemberType":  "ScriptProperty",
         "MemberName":  "SizeGB",
-        "Value":  "$this.size/1gb -as [int]",
+        "Value":  "$this.size/1gb -as [int32]",
         "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
     },
     {

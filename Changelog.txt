@@ -1,5 +1,11 @@
 # Changelog for PSTypeExtensionTools
 
+## v1.0.0
+- Modified Export-PSTypeExtension to export to a ps1xml file (Issue #11)
+- release to the PowerShell Gallery
+- Updated documentation
+- Updated samples
+
 ## v0.5.1
 - fixed bug in the CimInstance json sample
 - fixed link bug in README.md file

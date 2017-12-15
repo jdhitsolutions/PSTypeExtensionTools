@@ -8,17 +8,28 @@ schema: 2.0.0
 # Export-PSTypeExtension
 
 ## SYNOPSIS
-Export type extensions to a json or xml file.
+Export type extensions to a file.
 
 ## SYNTAX
 
+### Object (Default)
+```
+Export-PSTypeExtension -Path <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Name
 ```
 Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]> -Path <String> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
+### object
+```
+Export-PSTypeExtension -Path <String> [-InputObject <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
 ## DESCRIPTION
-Export custom type information to a json file to make it easier to recreate them in another PowerShell session.
+This command can be used in 2 ways. First, you can export custom type information to a json or xml file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.
 
 ## EXAMPLES
 
@@ -36,6 +47,12 @@ PS C:\> Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work
 
 Get all type extensions for System.String and export to an xml file.
 
+### EXAMPLE 3
+```
+PS C:\> Get-PSTypeExtension system.string -members "IsIpAddress","Size","Randomize" | Export-PSTypeExtension -path c:\work\mystring.type.ps1xml
+```
+
+Export the selected members to a properly formatted ps1xml file.
 ## PARAMETERS
 
 ### -MemberName
@@ -43,18 +60,18 @@ The type extension name.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Name
 Aliases: 
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Path
-The name of the exported file. The extension must be .xml or .json.
+The name of the exported file. The extension must be .xml, .ps1xml or .json.
 
 ```yaml
 Type: String
@@ -73,13 +90,13 @@ The type name to export like System.IO.FileInfo.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Name
 Aliases: 
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -110,6 +127,21 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+This is typically the output of Get-PSSTypeExtension.
+
+```yaml
+Type: Object
+Parameter Sets: object
+Aliases: 
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

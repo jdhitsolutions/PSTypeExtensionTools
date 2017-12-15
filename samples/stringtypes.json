@@ -20,13 +20,19 @@
     {
         "MemberType":  "ScriptProperty",
         "MemberName":  "IsEmail",
-        "Value":  " $this -match \u0027^\\S+@([\\w-]+)\\.(com|edu|org|net)$\u0027",
+        "Value":  "$this -match \u0027^\\S+@([\\w-]+)\\.(com|edu|org|net)$\u0027",
         "TypeName":  "System.String"
     },
     {
         "MemberType":  "ScriptMethod",
         "MemberName":  "Randomize",
         "Value":  "($this.ToCharArray() | get-random -Count $this.length) -join \"\"",
+        "TypeName":  "System.String"
+    },
+    {
+        "MemberType":  "ScriptMethod",
+        "MemberName":  "Reverse",
+        "Value":  "($this.ToCharArray())[-1..-$this.length] -join \"\"",
         "TypeName":  "System.String"
     }
 ]
