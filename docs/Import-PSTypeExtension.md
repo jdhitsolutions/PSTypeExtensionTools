@@ -21,14 +21,14 @@ Use this command to import extended type definitions from a json or xml file tha
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
 PS C:\> Import-PSTypeExtension -Path C:\work\stringtypes.json
 ```
 
 Import definitions from a json file.
 
-### Example 2
+### EXAMPLE 2
 ```
 PS C:\> dir c:\scripts\mytypes | Import-PSTypeExtension
 ```

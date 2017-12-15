@@ -21,7 +21,7 @@ Use this command to list defined type extensions. You can either select individu
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
 PS C:\> Get-PSTypeExtension system.string
 
@@ -38,7 +38,7 @@ Randomize   ScriptMethod   ($this.ToCharArray() | get-random -Count $this.length
 
 Get all type extensions for System.String.
 
-### Example 2
+### EXAMPLE 2
 ```
 PS C:\> Get-PSTypeExtension system.string -members size
 
@@ -51,7 +51,7 @@ Size AliasProperty Length
 
 Get the Size type extension for System.String.
 
-### Example 3
+### EXAMPLE 3
 ```
 PS C:\> get-process | get-pstype | Get-PSTypeExtension
 
@@ -82,7 +82,7 @@ Discover type extensions for a given type of object.
 ## PARAMETERS
 
 ### -Members
-Enter a comma separated list of member names
+Enter a comma separated list of member names.
 
 ```yaml
 Type: String[]
@@ -97,7 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -TypeName
-Enter the name of type like System.IO.FileInfo
+Enter the name of type like System.IO.FileInfo.
 
 ```yaml
 Type: String

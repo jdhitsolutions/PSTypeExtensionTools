@@ -68,19 +68,19 @@ Import-PSTypeExtension -Path C:\work\int32-types.json
 You can find a number of type extension exports in the [Samples](./samples) folder.
 
 ## PSTypeExtensionTools Cmdlets
-### [Add-PSTypeExtension](.\docs\Add-PSTypeExtension.md)
+### [Add-PSTypeExtension](./docs/Add-PSTypeExtension.md)
 Add a new type extension such as an Alias or ScriptProperty.
 
-### [Export-PSTypeExtension](.\docs\Export-PSTypeExtension.md)
+### [Export-PSTypeExtension](./docs/Export-PSTypeExtension.md)
 Export type extensions to a json or xml file.
 
-### [Get-PSType](.\docs\Get-PSType.md)
+### [Get-PSType](./docs/Get-PSType.md)
 Get the type name of an object.
 
-### [Get-PSTypeExtension](.\docs\Get-PSTypeExtension.md)
+### [Get-PSTypeExtension](./docs/Get-PSTypeExtension.md)
 Get type extensions for a given type.
 
-### [Import-PSTypeExtension](.\docs\Import-PSTypeExtension.md)
+### [Import-PSTypeExtension](./docs/Import-PSTypeExtension.md)
 Import type extension definitions from a json file or xml.
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions

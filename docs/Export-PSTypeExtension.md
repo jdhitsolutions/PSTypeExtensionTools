@@ -22,14 +22,14 @@ Export custom type information to a json file to make it easier to recreate them
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
 PS C:\> Export-PSTypeExtension -TypeName system.string -Path c:\work\mystringtypes.json -MemberName Size,IsIPAddress
 ```
 
 Export selected type extensions for System.String to a json file.
 
-### Example 2
+### EXAMPLE 2
 ```
 PS C:\> Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work\stringtypes.xml
 ```
@@ -130,4 +130,5 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 ## RELATED LINKS
 
 [Import-PSTypeExtension]()
+
 [Get-PSTypeExtension]()

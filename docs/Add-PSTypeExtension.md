@@ -22,14 +22,14 @@ Use this command to easily define a new type extension for a given object type. 
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
 PS C:\> Add-PSTypeExtension -TypeName system.string -MemberType AliasProperty -MemberName Size -Value Length
 ```
 
 Define an alias property called Size for the Length property of the String type.
 
-### Example 2
+### EXAMPLE 2
 ```
 PS C:\> Add-PSTypeExtension -TypeName system.string -MemberType ScriptMethod -MemberName IsIPAddress -value {$this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"}
 PS C:\> $s = "10.4.7.10"
@@ -42,7 +42,7 @@ Define an script property called IsIPAddress which will return True if the strin
 ## PARAMETERS
 
 ### -MemberName
-The name of your type extension
+The name of your type extension.
 
 ```yaml
 Type: String
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -TypeName
-Enter the name of a type like system.io.fileinfo
+Enter the name of a type like system.io.fileinfo.
 
 ```yaml
 Type: String
@@ -88,8 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-The value for your type extension.
-Remember to enclose scriptblocks in {} and use $this
+The value for your type extension. Remember to enclose scriptblocks in {} and use $this.
 
 ```yaml
 Type: Object

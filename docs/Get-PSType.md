@@ -21,7 +21,7 @@ This command is designed to easily get the type name of a given object. You can 
 
 ## EXAMPLES
 
-### Example 1
+### EXAMPLE 1
 ```
 PS C:\>123 | Get-PSType
 System.Int32
@@ -29,7 +29,7 @@ System.Int32
 
 Pipe an object and get it's type.
 
-### Example 2
+### EXAMPLE 2
 ```
 PS C:\>"apple" | Get-PSType | Get-PSTypeExtension
 
@@ -43,7 +43,7 @@ IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
 
 Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to see all defined types.
 
-### Example 3
+### EXAMPLE 3
 ```
 PS C:\> get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime} 
 PS C:\> get-vm | sort VMAge -descending | select Name,Creationtime,VMAge 
