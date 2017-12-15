@@ -5,6 +5,11 @@ This PowerShell module contains commands that make it easier to work with type e
 ## Release
 The current release is [v1.0.0](https://github.com/jdhitsolutions/PSTypeExtensionTools/releases/tag/v1.0.0).
 
+You can also install from the PowerShell Gallery:
+
+```
+Install-Module PSTypeExtensionTools
+```
 ## Example
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module you could run a PowerShell command like this:
 ```
