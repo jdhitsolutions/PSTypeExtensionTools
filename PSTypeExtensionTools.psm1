@@ -4,21 +4,21 @@ Function Get-PSTypeExtension {
     [cmdletbinding()]
     Param(
         [Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of type like System.IO.FileInfo",
-            ValueFromPipelineByPropertyName,ValueFromPipeline)]
+            ValueFromPipelineByPropertyName, ValueFromPipeline)]
         [ValidateNotNullorEmpty()]
-        [ValidateScript({
-            #check if typename can be found with Get-TypeData
-            if ((get-typedata).typename -contains "$_") {
-                $True
-            }
-            elseif ($_ -as [type]) {
-                #test if string resolves as a typename
-                $True
-            }
-            else {
-                Throw "$_ does not appear to be a valid type."
-            }
-        })]
+        [ValidateScript( {
+                #check if typename can be found with Get-TypeData
+                if ((get-typedata).typename -contains "$_") {
+                    $True
+                }
+                elseif ($_ -as [type]) {
+                    #test if string resolves as a typename
+                    $True
+                }
+                else {
+                    Throw "$_ does not appear to be a valid type."
+                }
+            })]
         [string]$TypeName,
         [Parameter(HelpMessage = "Enter a comma separated list of member names", ParameterSetName = "members")]
         [string[]]$Members
@@ -26,7 +26,7 @@ Function Get-PSTypeExtension {
     
     Begin {
         Write-Verbose "Starting: $($MyInvocation.Mycommand)"
-        $typedata=@()
+        $typedata = @()
     } #begin
     Process {
         Write-Verbose "Analyzing $typename"
@@ -110,7 +110,7 @@ Function Get-PSTypeExtension {
             
                     $def | Add-Member -MemberType NoteProperty -Name TypeName -Value $typedata.typename
                     #insert a typename
-                    $def.psobject.typenames.insert(0,'PSTypeExtension')
+                    $def.psobject.typenames.insert(0, 'PSTypeExtension')
                     #write the definition to the pipeline
                     Write-Output $def
 
@@ -134,8 +134,8 @@ Function Get-PSTypeExtension {
 Function Get-PSType {
     [cmdletbinding()]
     Param(
-    [Parameter(Position = 0,Mandatory,ValueFromPipeline)]
-    [object]$Inputobject
+        [Parameter(Position = 0, Mandatory, ValueFromPipeline)]
+        [object]$Inputobject
     )
 
     Begin {
@@ -144,7 +144,7 @@ Function Get-PSType {
     }
     Process {
         #get the type of each pipelined object
-        $data+= ($Inputobject | Get-Member | select-object -first 1).typename
+        $data += ($Inputobject | Get-Member | select-object -first 1).typename
     }
     End {
         #write unique values to the pipeline
@@ -268,45 +268,45 @@ $(Get-Date)
 Function Import-PSTypeExtension {
     [CmdletBinding(SupportsShouldProcess)]
     Param(
-    [Parameter(Mandatory,
-    ValueFromPipeline,
-    HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
-    [ValidatePattern("\.(xml|json)$")]
-    [ValidateScript({Test-Path $(Convert-Path $_)})]
-    [string]$Path
+        [Parameter(Mandatory,
+            ValueFromPipeline,
+            HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
+        [ValidatePattern("\.(xml|json)$")]
+        [ValidateScript( {Test-Path $(Convert-Path $_)})]
+        [string]$Path
     )
 
     Begin {
-    Write-Verbose "Starting: $($myInvocation.mycommand)"
+        Write-Verbose "Starting: $($myInvocation.mycommand)"
     }
     Process {
-    Write-Verbose "Importing file $(Convert-path $Path)"
-    if ($path -match "\.xml$") {
-        #xml format seems to add an extra entry
-        $import = Import-clixml -Path $path | Where-Object MemberType    
-    }
-    else {
-        $import = Get-Content -path $path | ConvertFrom-Json
-    }
-
-    foreach ($item in $import) {
-        Write-Verbose "Processing $($item.MemberType) : $($item.MemberName)"
-        if ($item.MemberType -match "^Code") {
-            Write-Warning "Skipping Code related member"
-        }
-        if ($item.MemberType -match "^Script") {
-            Write-Verbose "Creating scriptblock from value"
-            $value = [scriptblock]::create($item.value)
+        Write-Verbose "Importing file $(Convert-path $Path)"
+        if ($path -match "\.xml$") {
+            #xml format seems to add an extra entry
+            $import = Import-clixml -Path $path | Where-Object MemberType    
         }
         else {
-            $value = $item.Value
+            $import = Get-Content -path $path | ConvertFrom-Json
         }
-        #add a custom -WhatIf message
-        if ($PSCmdlet.ShouldProcess($Item.typename, "Adding $($item.membertype) $($item.MemberName)")) {
-            #implement the change
-            Update-TypeData -TypeName $item.Typename -MemberType $item.MemberType -MemberName $item.MemberName -value $value -force
-        }
-    } #foreach
+
+        foreach ($item in $import) {
+            Write-Verbose "Processing $($item.MemberType) : $($item.MemberName)"
+            if ($item.MemberType -match "^Code") {
+                Write-Warning "Skipping Code related member"
+            }
+            if ($item.MemberType -match "^Script") {
+                Write-Verbose "Creating scriptblock from value"
+                $value = [scriptblock]::create($item.value)
+            }
+            else {
+                $value = $item.Value
+            }
+            #add a custom -WhatIf message
+            if ($PSCmdlet.ShouldProcess($Item.typename, "Adding $($item.membertype) $($item.MemberName)")) {
+                #implement the change
+                Update-TypeData -TypeName $item.Typename -MemberType $item.MemberType -MemberName $item.MemberName -value $value -force
+            }
+        } #foreach
     }
     End {
         Write-Verbose "Ending: $($myInvocation.mycommand)"
@@ -316,18 +316,20 @@ Function Import-PSTypeExtension {
 
 Function Add-PSTypeExtension {
     [cmdletbinding(SupportsShouldProcess)]
+    [Alias('Set-PSTypeExtension')]
+
     Param(
         [Parameter(Position = 0, Mandatory, 
-        ValueFromPipeline,
-        HelpMessage= "Enter the name of a type like system.io.fileinfo")]
+            ValueFromPipeline,
+            HelpMessage = "Enter the name of a type like system.io.fileinfo")]
         [string]$TypeName,
-        [Parameter(Mandatory,HelpMessage="The member type")]
-        [ValidateSet("AliasProperty","Noteproperty","ScriptProperty","ScriptMethod")]
+        [Parameter(Mandatory, HelpMessage = "The member type")]
+        [ValidateSet("AliasProperty", "Noteproperty", "ScriptProperty", "ScriptMethod")]
         [string]$MemberType,
-        [Parameter(Mandatory,HelpMessage="The name of your type extension")]
+        [Parameter(Mandatory, HelpMessage = "The name of your type extension")]
         [ValidateNotNullOrEmpty()]
         [string]$MemberName,
-        [Parameter(Mandatory,HelpMessage="The value for your type extension. Remember to enclose scriptblocks in {} and use `$this")]
+        [Parameter(Mandatory, HelpMessage = "The value for your type extension. Remember to enclose scriptblocks in {} and use `$this")]
         [ValidateNotNullOrEmpty()]
         [Object]$Value
 
@@ -340,7 +342,7 @@ Function Add-PSTypeExtension {
     Process {
         Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $TypeName"
         #force overwrite of existing extensions
-        $PSBoundParameters.Add("Force",$True)
+        $PSBoundParameters.Add("Force", $True)
         Update-TypeData @PSBoundParameters
     } #process
 
@@ -351,8 +353,3 @@ Function Add-PSTypeExtension {
 
 } #close Add-MyTypeExtension
 
-
-Set-Alias -name Set-PSTypeExtension -value Add-PSTypeExtension
-
-Export-ModuleMember -Alias 'Set-PSTypeExtension' -Function 'Get-PSTypeExtension', 'Get-PSType',
-'Import-PSTypeExtension','Export-PSTypeExtension','Add-PSTypeExtension' 

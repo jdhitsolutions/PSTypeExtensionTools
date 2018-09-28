@@ -8,28 +8,32 @@ schema: 2.0.0
 # Import-PSTypeExtension
 
 ## SYNOPSIS
+
 Import type extension definitions
 
 ## SYNTAX
 
-```
+```yaml
 Import-PSTypeExtension [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Use this command to import extended type definitions from a json or xml file that was created with Export-PSTypeExtension.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+
+```powershell
 PS C:\> Import-PSTypeExtension -Path C:\work\stringtypes.json
 ```
 
 Import definitions from a json file.
 
 ### EXAMPLE 2
-```
+
+```powershell
 PS C:\> dir c:\scripts\mytypes | Import-PSTypeExtension
 ```
 
@@ -38,12 +42,13 @@ Import definitions from files in C:\Scripts\MyTypes. Presumably these are xml or
 ## PARAMETERS
 
 ### -Path
+
 The name of the imported file. The extension must be .xml or .json.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -53,6 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -68,6 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs. The cmdlet is not run.
 
 ```yaml
@@ -83,6 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -94,6 +102,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ## NOTES
+
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS

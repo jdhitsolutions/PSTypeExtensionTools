@@ -8,29 +8,33 @@ schema: 2.0.0
 # Add-PSTypeExtension
 
 ## SYNOPSIS
+
 Add a new type extension
 
 ## SYNTAX
 
-```
+```powershell
 Add-PSTypeExtension [-TypeName] <String> -MemberType <String> -MemberName <String> -Value <Object> [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten so you can also use this as a "Set" command.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+
+```powershell
 PS C:\> Add-PSTypeExtension -TypeName system.string -MemberType AliasProperty -MemberName Size -Value Length
 ```
 
 Define an alias property called Size for the Length property of the String type.
 
 ### EXAMPLE 2
-```
+
+```powershell
 PS C:\> Add-PSTypeExtension -TypeName system.string -MemberType ScriptMethod -MemberName IsIPAddress -value {$this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"}
 PS C:\> $s = "10.4.7.10"
 PS C:\> $s.IsIPAddress()
@@ -42,6 +46,7 @@ Define an script property called IsIPAddress which will return True if the strin
 ## PARAMETERS
 
 ### -MemberName
+
 The name of your type extension.
 
 ```yaml
@@ -57,6 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -MemberType
+
 The member type. You cannot use this command to define CodeMethods or CodeProperties.
 
 ```yaml
@@ -73,12 +79,13 @@ Accept wildcard characters: False
 ```
 
 ### -TypeName
+
 Enter the name of a type like system.io.fileinfo.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -88,6 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
+
 The value for your type extension. Remember to enclose scriptblocks in {} and use $this.
 
 ```yaml
@@ -103,6 +111,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -118,8 +127,8 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
@@ -134,6 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -145,6 +155,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ## NOTES
+
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS

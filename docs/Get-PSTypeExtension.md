@@ -8,21 +8,24 @@ schema: 2.0.0
 # Get-PSTypeExtension
 
 ## SYNOPSIS
+
 Get selected type extensions.
 
 ## SYNTAX
 
-```
+```yaml
 Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+
+```powershell
 PS C:\> Get-PSTypeExtension system.string
 
    TypeName: System.String
@@ -39,7 +42,8 @@ Randomize   ScriptMethod   ($this.ToCharArray() | get-random -Count $this.length
 Get all type extensions for System.String.
 
 ### EXAMPLE 2
-```
+
+```powershell
 PS C:\> Get-PSTypeExtension system.string -members size
 
    TypeName: System.String
@@ -52,7 +56,8 @@ Size AliasProperty Length
 Get the Size type extension for System.String.
 
 ### EXAMPLE 3
-```
+
+```powershell
 PS C:\> get-process | get-pstype | Get-PSTypeExtension
 
 
@@ -82,12 +87,13 @@ Discover type extensions for a given type of object.
 ## PARAMETERS
 
 ### -Members
+
 Enter a comma separated list of member names.
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -97,12 +103,13 @@ Accept wildcard characters: False
 ```
 
 ### -TypeName
+
 Enter the name of type like System.IO.FileInfo.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -112,6 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -123,6 +131,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Object
 
 ## NOTES
+
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS

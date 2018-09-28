@@ -8,21 +8,24 @@ schema: 2.0.0
 # Get-PSType
 
 ## SYNOPSIS
+
 Get the type name for a given object
 
 ## SYNTAX
 
-```
+```yaml
 Get-PSType [-Inputobject] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 This command is designed to easily get the type name of a given object. You can either pipe an object to it or specify it as a parameter value. Use this command to make it easier to define a type extension when you may not know the type name or you don't want to bother typing it.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+
+```powershell
 PS C:\>123 | Get-PSType
 System.Int32
 ```
@@ -30,7 +33,8 @@ System.Int32
 Pipe an object and get it's type.
 
 ### EXAMPLE 2
-```
+
+```powershell
 PS C:\>"apple" | Get-PSType | Get-PSTypeExtension
 
   TypeName: System.String
@@ -44,7 +48,8 @@ IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
 Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to see all defined types.
 
 ### EXAMPLE 3
-```
+
+```powershell
 PS C:\> get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime} 
 PS C:\> get-vm | sort VMAge -descending | select Name,Creationtime,VMAge 
 
@@ -65,12 +70,13 @@ Get the type for a Hyper-V Virtual Machine and add a new script property which c
 ## PARAMETERS
 
 ### -Inputobject
+
 Any object from PowerShell.
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -80,6 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -91,6 +98,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.String
 
 ## NOTES
+
 Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS

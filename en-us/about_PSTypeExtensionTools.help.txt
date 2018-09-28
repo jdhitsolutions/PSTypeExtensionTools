@@ -4,7 +4,7 @@
 SHORT DESCRIPTION
     This PowerShell module contains commands that make it easier to work with
     type extensions. Many of these commands are wrappers for built-in tools like
-     Get-TypeData or Update-TypeData. The commands in this module simplfy the 
+     Get-TypeData or Update-TypeData. The commands in this module simplify the 
     process of finding, creating, exporting and importing type extensions.
 
 LONG DESCRIPTION
@@ -81,7 +81,8 @@ LONG DESCRIPTION
 
 
     A number of sample files with type extensions can be found in this modules
-    Samples folder or in the GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.
+    Samples folder or in the GitHub repository at 
+    https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.
     The Export-PSTypeExtension command will also export extensions to a properly
     formatted .ps1xml file. This can be useful when building type extension
     files for a module where you want to use the traditional ps1xml form. You
@@ -97,6 +98,7 @@ TROUBLESHOOTING NOTE
     Don't try to append or manually update an export file. If you have changes
     simply re-run the export command and generate the file anew. Remember to use
     $this to reference the object and NOT $_.
+
     Remember to enclose scriptblocks in {}.
 
 SEE ALSO
@@ -110,5 +112,6 @@ SEE ALSO
     http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 
 KEYWORDS
-    typedata typeextension
+    typedata 
+    typeextension
 
