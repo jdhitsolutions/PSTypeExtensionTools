@@ -1,10 +1,10 @@
-﻿# PSTypeExtensionTools
+# PSTypeExtensionTools
 ## about_PSTypeExtensionTools
 
 # SHORT DESCRIPTION
 This PowerShell module contains commands that make it easier to work with type
 extensions. Many of these commands are wrappers for built-in tools like 
-Get-TypeData or Update-TypeData. The commands in this module simplfy the 
+`Get-TypeData` or `Update-TypeData`. The commands in this module simplify the 
 process of finding, creating, exporting and importing type extensions.
 
 # LONG DESCRIPTION
@@ -45,7 +45,7 @@ PS C:\> $x.GetPercent(100)
 PS C:\> $x.GetPercent(110,4)
 34.5455
 ```
-To see what has been defined you can use Get-PSTypeExtension. You can choose to see all extensions or selected ones by member name.
+To see what has been defined you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name.
 ```
 PS C:\> Get-PSTypeExtension system.int32
 
@@ -57,8 +57,8 @@ SquareRoot ScriptProperty  [math]::Sqrt($this)
 Squared    ScriptProperty  $this*$this
 Cubed      ScriptProperty  [math]::Pow($this,3)
 Value      ScriptProperty  $this
-GetPercent ScriptMethod   Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)
-```
+GetPercent ScriptMethod    Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)
+``` 
 If you always want these extensions you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a json or xml file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
 ```
 PS C:\> Get-PSTypeExtension system.int32 -all | 
@@ -88,17 +88,17 @@ Remember to use $this to reference the object and NOT $_.
 Remember to enclose scriptblocks in {}.
 
 # SEE ALSO
-Add-PSTypeExtension
+[Add-PSTypeExtension](./Add-PSTypeExtension.md)
 
-Export-PSTypeExtension
+[Export-PSTypeExtension](./Export-PSTypeExtension.md)
 
-Get-PSType
+[Get-PSType](./Get-PSType.md)
 
-Get-PSTypeExtension
+[Get-PSTypeExtension](./Get-PSTypeExtension.md)
 
-Import-PSTypeExtension
+[Import-PSTypeExtension](./Import-PSTypeExtension.md)
 
-Update-TypeData
+[Update-TypeData](./Update-TypeData.md)
 
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
@@ -106,3 +106,4 @@ This project was first described at http://jdhitsolutions.com/blog/powershell/57
 # KEYWORDS
 typedata
 typeextension
+]

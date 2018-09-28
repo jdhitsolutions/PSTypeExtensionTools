@@ -1,5 +1,10 @@
 # Changelog for PSTypeExtensionTools
 
+## v1.1.0
+- Fixed Import-PSTypeExtension bug piping in json/xml files (Issue #13)
+- Updated About help documentation
+- Modified pipeline processing in Get-PSTypeExtension (Issue #12)
+
 ## v1.0.0
 - Modified Export-PSTypeExtension to export to a ps1xml file (Issue #11)
 - release to the PowerShell Gallery
