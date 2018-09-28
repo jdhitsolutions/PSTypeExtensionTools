@@ -1,0 +1,6 @@
+{
+    "MemberType":  "ScriptMethod",
+    "MemberName":  "ConvertCulture",
+    "Value":  "Param ([string]$culture)\r\n\r\n\"{0:$([cultureinfo]::GetCultureInfo(\"$culture\").DateTimeFormat.fulldatetimepattern)}\" -f $this",
+    "TypeName":  "System.DateTime"
+}

@@ -26,10 +26,16 @@ Function Get-PSTypeExtension {
     
     Begin {
         Write-Verbose "Starting: $($MyInvocation.Mycommand)"
-    }
+        $typedata=@()
+    } #begin
     Process {
-        $typedata = Get-TypeData -TypeName $typename
+        Write-Verbose "Analyzing $typename"
+        $typedata += Get-TypeData -TypeName $typename
     
+        
+    } #process
+    End {  
+        $typedata = $typedata | Select-Object -Unique
         if ($typedata) {
     
             if (-Not $Members) {
@@ -120,8 +126,6 @@ Function Get-PSTypeExtension {
         else {
             Write-Warning "Failed to find any type extensions for [$Typename]."
         }
-    }
-    End {  
         Write-Verbose "Ending: $($MyInvocation.Mycommand)"
     }
 
@@ -272,7 +276,10 @@ Function Import-PSTypeExtension {
     [string]$Path
     )
 
+    Begin {
     Write-Verbose "Starting: $($myInvocation.mycommand)"
+    }
+    Process {
     Write-Verbose "Importing file $(Convert-path $Path)"
     if ($path -match "\.xml$") {
         #xml format seems to add an extra entry
@@ -300,8 +307,11 @@ Function Import-PSTypeExtension {
             Update-TypeData -TypeName $item.Typename -MemberType $item.MemberType -MemberName $item.MemberName -value $value -force
         }
     } #foreach
-
-    Write-Verbose "Ending: $($myInvocation.mycommand)"
+    }
+    End {
+        Write-Verbose "Ending: $($myInvocation.mycommand)"
+    }
+    
 } #end Import-PSTypeExtension
 
 Function Add-PSTypeExtension {
