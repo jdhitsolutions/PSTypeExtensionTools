@@ -75,8 +75,7 @@ GetPercent ScriptMethod    Param([int32]$Total,[int32]$Round=2) [math]::Round(($
 If you always want these extensions you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a json or xml file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
 
 ```powershell
-PS C:\> Get-PSTypeExtension system.int32 -all | 
-Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
+PS C:\> Get-PSTypeExtension system.int32 -all | Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 ```
 
 In your PowerShell profile script you can then re-import the type extension definitions.
@@ -91,7 +90,14 @@ You can also import a directory of type extensions with a single command.
 dir c:\scripts\mytypes | Import-PSTypeExtension
 ```
 
-A number of sample files with type extensions can be found in this modules Samples folder or in the GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.
+A number of sample files with type extensions can be found in this modules Samples folder or in the GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.  When you have imported the module you can
+access the samples folder using the $PSTypeSamples variable.
+
+```powershell
+Import-PSTypeExtension $PSTypeSamples\measure-extensions.json
+```
+
+### Creating ps1xml Files
 
 The Export-PSTypeExtension command will also export extensions to a properly formatted .ps1xml file. This can be useful when building type extension files for a module where you want to use the traditional ps1xml form. You can also import these types of files with Update-TypeData with the -AppendPath or -PrependPath parameters.
 

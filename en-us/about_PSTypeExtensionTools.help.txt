@@ -1,5 +1,5 @@
 ﻿TOPIC
-    about_pstypeextensiontools
+    about_PSTypeExtensionTools
 
 SHORT DESCRIPTION
     This PowerShell module contains commands that make it easier to work with
@@ -79,10 +79,17 @@ LONG DESCRIPTION
 
     dir c:\scripts\mytypes | Import-PSTypeExtension
 
-
     A number of sample files with type extensions can be found in this modules
     Samples folder or in the GitHub repository at 
     https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.
+
+    When you have imported the module you can access the samples folder using the 
+    $PSTypeSamples variable.
+
+    Import-PSTypeExtension $PSTypeSamples\measure-extensions.json
+
+    Creating ps1xml Files
+    ---------------------
     The Export-PSTypeExtension command will also export extensions to a properly
     formatted .ps1xml file. This can be useful when building type extension
     files for a module where you want to use the traditional ps1xml form. You
@@ -108,6 +115,7 @@ SEE ALSO
     Get-PSTypeExtension
     Import-PSTypeExtension
     Update-TypeData
+    
     This project was first described at
     http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 

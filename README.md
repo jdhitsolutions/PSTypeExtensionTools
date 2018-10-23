@@ -3,9 +3,8 @@
 This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871).
 
 ## Release
-The current release is [v1.2.0](https://github.com/jdhitsolutions/PSTypeExtensionTools/releases/tag/v1.2.0).
 
-You can also install from the PowerShell Gallery:
+You can the current release from the PowerShell Gallery:
 
 ```powershell
 Install-Module PSTypeExtensionTools
@@ -16,8 +15,7 @@ Install-Module PSTypeExtensionTools
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module you could run a PowerShell command like this:
 
 ```powershell
-PS C:\> 123 | Get-PSType | 
-Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot -Value { [math]::Sqrt($this)}
+PS C:\> 123 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot -Value { [math]::Sqrt($this)}
 ```
 
 Use `$this` to reference the object instead of `$_`.  Now you can get the new property.
@@ -75,8 +73,7 @@ GetPercent ScriptMethod   Param([int32]$Total,[int32]$Round=2) [math]::Round(($t
 If you always want these extensions you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a json or xml file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
 
 ```powershell
-PS C:\> Get-PSTypeExtension system.int32  | 
-Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
+PS C:\> Get-PSTypeExtension system.int32 | Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 ```
 
 In your PowerShell profile script you can then re-import the type extension definitions.
@@ -89,7 +86,7 @@ Import-PSTypeExtension -Path C:\work\int32-types.json
 
 The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import  into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting and hoping for the best.
 
-## I want to try
+## I Want to Try
 
 You can find a number of type extension exports in the [Samples](./samples) folder.
 
@@ -123,4 +120,4 @@ There is also an about topic you can read:
 help about_pstypeextensiontools
 ```
 
-*last updated 28 September 2018*
+*last updated 23 October 2018*

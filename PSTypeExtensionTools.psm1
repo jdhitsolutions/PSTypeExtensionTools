@@ -353,3 +353,8 @@ Function Add-PSTypeExtension {
 
 } #close Add-MyTypeExtension
 
+#Export the Samples folder location as a variable
+
+$PSTypeSamples = "$PSScriptRoot\samples"
+
+Export-ModuleMember -Variable PSTypeSamples -function 'Get-PSTypeExtension', 'Get-PSType','Import-PSTypeExtension','Export-PSTypeExtension','Add-PSTypeExtension' -Alias 'Set-PSTypeExtension'
