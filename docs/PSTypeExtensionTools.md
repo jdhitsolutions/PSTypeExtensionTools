@@ -33,4 +33,3 @@ Get type extensions for a given type.
 ### [Import-PSTypeExtension](Import-PSTypeExtension.md)
 
 Import type extension definitions from a json or XML file.
-

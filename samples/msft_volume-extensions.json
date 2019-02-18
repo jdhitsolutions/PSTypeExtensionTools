@@ -1,0 +1,32 @@
+[
+  {
+    "MemberType": "ScriptProperty",
+    "MemberName": "PercentFree",
+    "Value": "($this.sizeremaining/$this.size)*100 -as [int]",
+    "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
+  },
+  {
+    "MemberType": "ScriptProperty",
+    "MemberName": "SizeGB",
+    "Value": "($this.size/1GB) -as [int]",
+    "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
+  },
+  {
+    "MemberType": "ScriptProperty",
+    "MemberName": "FreeGB",
+    "Value": "($this.sizeremaining/1GB)",
+    "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
+  },
+  {
+    "MemberType": "AliasProperty",
+    "MemberName": "Name",
+    "Value": "DriveLetter",
+    "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
+  },
+  {
+    "MemberType": "ScriptProperty",
+    "MemberName": "Computername",
+    "Value": "$this.pscomputername.toUpper()",
+    "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
+  }
+]

@@ -1,5 +1,12 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.4.0
+
++ Modified manifest to require PowerShell 5.1
++ Modified manifest to support both Desktop and Core PSEditions
++ Updates to some of the sample files
++ Updated `README.md`
+
 ## v1.3.0
 
 + file cleanup for the PowerShell Gallery

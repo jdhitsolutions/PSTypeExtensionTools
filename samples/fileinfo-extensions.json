@@ -1,32 +1,43 @@
-[
-    {
-        "MemberType":  "AliasProperty",
-        "MemberName":  "Size",
-        "Value":  "Length",
-        "TypeName":  "System.IO.FileInfo"
+[{
+        "MemberType": "AliasProperty",
+        "MemberName": "Size",
+        "Value": "Length",
+        "TypeName": "System.IO.FileInfo"
     },
     {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "SizeKB",
-        "Value":  "[math]::Round($this.length/1KB,2)",
-        "TypeName":  "System.IO.FileInfo"
+        "MemberType": "ScriptProperty",
+        "MemberName": "SizeKB",
+        "Value": "[math]::Round($this.length/1KB,2)",
+        "TypeName": "System.IO.FileInfo"
     },
     {
-        "MemberType":  "ScriptProperty",
-        "MemberName":  "SizeMB",
-        "Value":  "[math]::Round($this.length/1MB,2)",
-        "TypeName":  "System.IO.FileInfo"
+        "MemberType": "ScriptProperty",
+        "MemberName": "SizeMB",
+        "Value": "[math]::Round($this.length/1MB,2)",
+        "TypeName": "System.IO.FileInfo"
     },
     {
-        "MemberType":  "AliasProperty",
-        "MemberName":  "Modified",
-        "Value":  "LastWriteTime",
-        "TypeName":  "System.IO.FileInfo"
+        "MemberType": "ScriptProperty",
+        "MemberName": "SizeGB",
+        "Value": "[math]::Round($this.length/1GB,2)",
+        "TypeName": "System.IO.FileInfo"
+    },
+      {
+          "MemberType": "ScriptProperty",
+          "MemberName": "Age",
+          "Value": "'{0:dd\\.hh\\:mm\\:ss}' -f ((Get-Date) - $this.LastWriteTime)",
+          "TypeName": "System.IO.FileInfo"
+      },
+    {
+        "MemberType": "AliasProperty",
+        "MemberName": "Modified",
+        "Value": "LastWriteTime",
+        "TypeName": "System.IO.FileInfo"
     },
     {
-        "MemberType":  "AliasProperty",
-        "MemberName":  "Created",
-        "Value":  "CreationTime",
-        "TypeName":  "System.IO.FileInfo"
+        "MemberType": "AliasProperty",
+        "MemberName": "Created",
+        "Value": "CreationTime",
+        "TypeName": "System.IO.FileInfo"
     }
 ]

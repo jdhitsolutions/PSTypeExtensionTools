@@ -57,7 +57,7 @@ PS C:\> $x.GetPercent(110,4)
 To see what has been defined you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name.
 
 ```powershell
-PS C:\> Get-PSTypeExtension system.int32 
+PS C:\> Get-PSTypeExtension system.int32
 
    TypeName: System.Int32
 
@@ -86,31 +86,73 @@ Import-PSTypeExtension -Path C:\work\int32-types.json
 
 The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import  into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting and hoping for the best.
 
-## I Want to Try
-
-You can find a number of type extension exports in the [Samples](./samples) folder.
 
 ## PSTypeExtensionTools Cmdlets
 
-### [Add-PSTypeExtension](./docs/Add-PSTypeExtension.md)
+### [Add-PSTypeExtension](/docs/Add-PSTypeExtension.md)
 
 Add a new type extension such as an Alias or ScriptProperty.
 
-### [Export-PSTypeExtension](./docs/Export-PSTypeExtension.md)
+### [Export-PSTypeExtension](/docs/Export-PSTypeExtension.md)
 
 Export type extensions to a json, xml or ps1xml file.
 
-### [Get-PSType](./docs/Get-PSType.md)
+### [Get-PSType](/docs/Get-PSType.md)
 
 Get the type name of an object.
 
-### [Get-PSTypeExtension](./docs/Get-PSTypeExtension.md)
+### [Get-PSTypeExtension](/docs/Get-PSTypeExtension.md)
 
 Get type extensions for a given type.
 
-### [Import-PSTypeExtension](./docs/Import-PSTypeExtension.md)
+### [Import-PSTypeExtension](/docs/Import-PSTypeExtension.md)
 
 Import type extension definitions from a json file or xml.
+
+## I Want to Try
+
+You can find a number of type extension exports in the [Samples](./samples) folder. The location will be saved to a global variable, $PSTypeSamples. This makes it a bit easier to import.
+
+```powershell
+PS C:\> dir $PSTypeSamples
+
+
+    Directory: C:\scripts\PSTypeExtensionTools\samples
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       12/15/2017   2:25 PM            766 cimlogicaldisk-extensions.json
+-a----        9/28/2018   9:48 AM            265 datetime-extensions.json
+-a----       12/15/2017   5:09 PM            232 eventlog-type.json
+-a----        2/18/2019   1:18 PM           1266 fileinfo-extensions.json
+-a----       11/13/2017   8:37 AM            901 int32-types.json
+-a----        11/1/2017   6:18 PM            653 measure-extensions.json
+-a----       11/13/2017   8:49 AM            890 process-types.xml
+-a----       12/15/2017   6:09 PM            628 README.md
+-a----       12/15/2017   2:09 PM           1246 stringtypes.json
+-a----        11/9/2017  12:08 PM           3024 vm-extensions.json
+
+PS C:\> Import-PSTypeExtension $PSTypeSamples\measure-extensions.json -Verbose
+VERBOSE: Starting: Import-PSTypeExtension
+VERBOSE: Importing file C:\scripts\PSTypeExtensionTools\samples\measure-extensions.json
+VERBOSE: Processing ScriptProperty : SumKB
+VERBOSE: Creating scriptblock from value
+VERBOSE: Performing the operation "Adding ScriptProperty SumKB" on target "Microsoft.PowerShell.Commands.GenericMeasureInfo".
+VERBOSE: Processing ScriptProperty : SumMB
+VERBOSE: Creating scriptblock from value
+VERBOSE: Performing the operation "Adding ScriptProperty SumMB" on target "Microsoft.PowerShell.Commands.GenericMeasureInfo".
+VERBOSE: Processing ScriptProperty : SumGB
+VERBOSE: Creating scriptblock from value
+VERBOSE: Performing the operation "Adding ScriptProperty SumGB" on target "Microsoft.PowerShell.Commands.GenericMeasureInfo".
+VERBOSE: Ending: Import-PSTypeExtension
+
+PS C:\> dir D:\VMDisks\ -file -Recurse | measure length -sum | select Count,SumGB
+
+Count   SumGB
+-----   -----
+    4 50.2031
+```
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 
@@ -120,4 +162,4 @@ There is also an about topic you can read:
 help about_pstypeextensiontools
 ```
 
-*last updated 23 October 2018*
+*last updated 18 February 2019*
