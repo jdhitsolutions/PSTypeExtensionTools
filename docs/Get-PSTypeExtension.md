@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: 
+online version: http://bit.ly/30FkW2t
 schema: 2.0.0
 ---
 

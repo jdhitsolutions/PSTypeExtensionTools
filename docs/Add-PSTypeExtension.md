@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: 
+online version: http://bit.ly/30FkoJX
 schema: 2.0.0
 ---
 
@@ -13,9 +13,9 @@ Add a new type extension
 
 ## SYNTAX
 
-```powershell
-Add-PSTypeExtension [-TypeName] <String> -MemberType <String> -MemberName <String> -Value <Object> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+```yaml
+Add-PSTypeExtension [-TypeName] <String> -MemberType <String> -MemberName <String> -Value <Object>
+ [-IncludeDeserialized] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,6 +43,14 @@ True
 
 Define an script property called IsIPAddress which will return True if the string matches the pattern for an IP address.
 
+### EXAMPLE 3
+
+```powershell
+PS C:\ Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized
+```
+
+Create an alias called Size using the Length property on file objects. This expression will also create if for the deserialized version of the type so that you can use it with remoting results.
+
 ## PARAMETERS
 
 ### -MemberName
@@ -52,7 +60,7 @@ The name of your type extension.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases: Name
 
 Required: True
 Position: Named
@@ -68,8 +76,8 @@ The member type. You cannot use this command to define CodeMethods or CodeProper
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: AliasProperty, Noteproperty, ScriptProperty, ScriptMethod
+Aliases: Type
+Accepted values: AliasProperty, NoteProperty, ScriptProperty, ScriptMethod
 
 Required: True
 Position: Named
@@ -80,7 +88,7 @@ Accept wildcard characters: False
 
 ### -TypeName
 
-Enter the name of a type like system.io.fileinfo.
+Enter the name of a type like System.IO.FileInfo.
 
 ```yaml
 Type: String
@@ -101,7 +109,7 @@ The value for your type extension. Remember to enclose scriptblocks in {} and us
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -142,9 +150,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IncludeDeserialized
+
+Create the extension in the deserialized version of the specified type along with the specified type.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

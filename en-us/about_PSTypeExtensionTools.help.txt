@@ -4,15 +4,15 @@
 SHORT DESCRIPTION
     This PowerShell module contains commands that make it easier to work with
     type extensions. Many of these commands are wrappers for built-in tools like
-     Get-TypeData or Update-TypeData. The commands in this module simplify the 
+     Get-TypeData or Update-TypeData. The commands in this module simplify the
     process of finding, creating, exporting and importing type extensions.
 
 LONG DESCRIPTION
-    Let's say you want to update a number object, but you have no idea what the 
-    type name is. Once you have read help for the commands in this module you 
+    Let's say you want to update a number object, but you have no idea what the
+    type name is. Once you have read help for the commands in this module you
     could run a PowerShell command like this:
 
-    PS C:\> 123 | Get-PSType | 
+    PS C:\> 123 | Get-PSType |
     Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot `
     -Value { [math]::Sqrt($this)}
 
@@ -34,11 +34,11 @@ LONG DESCRIPTION
 
     PS C:\> $x = 38
     PS C:\> $x | select *
-    
+
           SquareRoot Squared Cubed Value
           ---------- ------- ----- -----
     6.16441400296898    1444 54872    38
-    
+
     PS C:\> $x.GetPercent(50)
     76
     PS C:\> $x.GetPercent(100)
@@ -50,9 +50,9 @@ LONG DESCRIPTION
     to see all extensions or selected ones by member name.
 
     PS C:\> Get-PSTypeExtension system.int32
-    
+
     TypeName: System.Int32
-    
+
     Name       Type           Value
     ----       ----           -----
     SquareRoot ScriptProperty  [math]::Sqrt($this)
@@ -67,7 +67,7 @@ LONG DESCRIPTION
     helpful if you are extending a type that already has type extensions from
     PowerShell.
 
-    PS C:\> Get-PSTypeExtension system.int32 -all | 
+    PS C:\> Get-PSTypeExtension system.int32 -all |
     Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 
     In your PowerShell profile script you can then re-import the type extension
@@ -80,10 +80,10 @@ LONG DESCRIPTION
     dir c:\scripts\mytypes | Import-PSTypeExtension
 
     A number of sample files with type extensions can be found in this modules
-    Samples folder or in the GitHub repository at 
+    Samples folder or in the GitHub repository at
     https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.
 
-    When you have imported the module you can access the samples folder using the 
+    When you have imported the module you can access the samples folder using the
     $PSTypeSamples variable.
 
     Import-PSTypeExtension $PSTypeSamples\measure-extensions.json
@@ -115,11 +115,10 @@ SEE ALSO
     Get-PSTypeExtension
     Import-PSTypeExtension
     Update-TypeData
-    
+
     This project was first described at
     http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 
 KEYWORDS
-    typedata 
+    typedata
     typeextension
-

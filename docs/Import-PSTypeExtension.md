@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: 
+online version: http://bit.ly/30GCsUp
 schema: 2.0.0
 ---
 
@@ -37,7 +37,7 @@ Import definitions from a json file.
 PS C:\> dir c:\scripts\mytypes | Import-PSTypeExtension
 ```
 
-Import definitions from files in C:\Scripts\MyTypes. Presumably these are xml or json files created with Export-PSTypeExtension.
+Import definitions from files in C:\Scripts\MyTypes. Presumably, these are xml or json files created with Export-PSTypeExtension.
 
 ## PARAMETERS
 
@@ -48,12 +48,12 @@ The name of the imported file. The extension must be .xml or .json.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: fullname
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -110,3 +110,5 @@ Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell
 [Export-PSTypeExtension]()
 
 [Update-TypeData]()
+
+[Get-PSTypeExtension]()

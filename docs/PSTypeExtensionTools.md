@@ -1,7 +1,7 @@
 ---
 Module Name: PSTypeExtensionTools
 Module Guid: f509035e-cb36-4d2f-b2c8-f4a60fb06d56
-Download Help Link: {{Please enter FwLink manually}}
+Download Help Link: 
 Help Version: 1.0.0.0
 Locale: en-US
 ---

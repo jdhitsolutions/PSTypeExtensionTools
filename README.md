@@ -2,7 +2,6 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSTypeExtensionTools.png?style=for-the-badge&logo=powershell&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSTypeExtensionTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/)
 
-
 This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871).
 
 ## Release
@@ -162,7 +161,7 @@ This project was first described at http://jdhitsolutions.com/blog/powershell/57
 There is also an about topic you can read:
 
 ```powershell
-help about_pstypeextensiontools
+help about_PSTypeExtensionTools
 ```
 
-*last updated 18 February 2019*
+Last Updated 2019-09-21 06:15:09Z UTC

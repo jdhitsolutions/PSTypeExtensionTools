@@ -237,7 +237,7 @@ $(Get-Date)
                     }
                 }
                 $memberdef.InnerText = $extension.value
-                $membertype.AppendChild($memberdef)| out-null
+                $membertype.AppendChild($memberdef) | out-null
                 $member.AppendChild($membertype) | out-null
 
             } #foreach
@@ -269,9 +269,11 @@ Function Import-PSTypeExtension {
     Param(
         [Parameter(Mandatory,
             ValueFromPipeline,
+            ValueFromPipelineByPropertyName,
             HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
         [ValidatePattern("\.(xml|json)$")]
-        [ValidateScript( {Test-Path $(Convert-Path $_)})]
+        [ValidateScript( { Test-Path $(Convert-Path $_) })]
+        [alias("fullname")]
         [string]$Path
     )
 
@@ -318,19 +320,25 @@ Function Add-PSTypeExtension {
     [Alias('Set-PSTypeExtension')]
 
     Param(
-        [Parameter(Position = 0, Mandatory,
+        [Parameter(
+            Position = 0,
+            Mandatory,
             ValueFromPipeline,
             HelpMessage = "Enter the name of a type like system.io.fileinfo")]
         [string]$TypeName,
         [Parameter(Mandatory, HelpMessage = "The member type")]
         [ValidateSet("AliasProperty", "Noteproperty", "ScriptProperty", "ScriptMethod")]
+        [alias("Type")]
         [string]$MemberType,
         [Parameter(Mandatory, HelpMessage = "The name of your type extension")]
         [ValidateNotNullOrEmpty()]
+        [alias("Name")]
         [string]$MemberName,
         [Parameter(Mandatory, HelpMessage = "The value for your type extension. Remember to enclose scriptblocks in {} and use `$this")]
         [ValidateNotNullOrEmpty()]
-        [Object]$Value
+        [Object]$Value,
+        [Parameter(HelpMessage = "Create the extension in the deserialized version of the specified type including the original type.")]
+        [switch]$IncludeDeserialized
 
     )
     Begin {
@@ -339,9 +347,16 @@ Function Add-PSTypeExtension {
     } #begin
 
     Process {
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $TypeName"
         #force overwrite of existing extensions
         $PSBoundParameters.Add("Force", $True)
+        if ($PSBoundParameters.ContainsKey("IncludeDeserialized")) {
+            [void]$PSBoundParameters.Remove("IncludeDeserialized")
+            $PSBoundParameters.Typename = "deserialized.$Typename"
+            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $($psboundparameters.TypeName)"
+            Update-TypeData @PSBoundParameters
+            $PSBoundParameters.Typename = $Typename
+        }
+        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $($psboundparameters.TypeName)"
         Update-TypeData @PSBoundParameters
     } #process
 
@@ -353,7 +368,6 @@ Function Add-PSTypeExtension {
 } #close Add-MyTypeExtension
 
 #Export the Samples folder location as a variable
+$PSTypeSamples = Join-path $PSScriptRoot -ChildPath samples
+Export-ModuleMember -Variable PSTypeSamples
 
-$PSTypeSamples = "$PSScriptRoot\samples"
-
-Export-ModuleMember -Variable PSTypeSamples -function 'Get-PSTypeExtension', 'Get-PSType','Import-PSTypeExtension','Export-PSTypeExtension','Add-PSTypeExtension' -Alias 'Set-PSTypeExtension'

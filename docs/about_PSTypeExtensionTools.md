@@ -16,7 +16,7 @@ type name is. Once you have read help for the commands in this module you
 could run a PowerShell command like this:
 
 ```powershell
-PS C:\> 123 | Get-PSType | 
+PS C:\> 123 | Get-PSType |
 Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot `
 -Value { [math]::Sqrt($this)}
 ```
@@ -70,7 +70,7 @@ Squared    ScriptProperty  $this*$this
 Cubed      ScriptProperty  [math]::Pow($this,3)
 Value      ScriptProperty  $this
 GetPercent ScriptMethod    Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)
-``` 
+```
 
 If you always want these extensions you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a json or xml file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
 

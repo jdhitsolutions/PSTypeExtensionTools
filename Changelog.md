@@ -1,5 +1,16 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.5.0
+
++ Added new parameter, `-IncludeDeserialized`, on `Add-PSTypeExtension` (Issue #14)
++ Modified `Import-PSTypeExtension` to allow piping files into the command.
++ Added alias `Type` to `-MemberType` parameter of `Add-PSTypeExtension`
++ Added alias `Name` to `-MemberName` parameter of `Add-PSTypeExtension`
++ Added online help links
++ Updated some of the sample json files to include deserialized type versions
++ Updated help documentation
++ Updated `README.md`
+
 ## v1.4.0
 
 + Modified manifest to require PowerShell 5.1
