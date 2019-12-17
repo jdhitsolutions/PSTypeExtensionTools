@@ -2,7 +2,7 @@
 
 ## v1.5.0
 
-+ Added new parameter, `-IncludeDeserialized`, on `Add-PSTypeExtension` (Issue #14)
++ Added new parameter, `-IncludeDeserialized`, on `Add-PSTypeExtension` ([Issue #14](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/14))
 + Modified `Import-PSTypeExtension` to allow piping files into the command.
 + Added alias `Type` to `-MemberType` parameter of `Add-PSTypeExtension`
 + Added alias `Name` to `-MemberName` parameter of `Add-PSTypeExtension`
@@ -22,7 +22,7 @@
 
 + file cleanup for the PowerShell Gallery
 + Exported Samples folder as a variable to make it easier to import
-+ updated About documentation
++ updated `About` documentation
 
 ## v1.2.0
 
@@ -33,13 +33,13 @@
 
 ## v1.1.0
 
-+ Fixed `Import-PSTypeExtension` bug piping in json/xml files (Issue #13)
++ Fixed `Import-PSTypeExtension` bug piping in json/xml files ([Issue #13](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/13))
 + Updated About help documentation
-+ Modified pipeline processing in `Get-PSTypeExtension` (Issue #12)
++ Modified pipeline processing in `Get-PSTypeExtension` ([Issue #12](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/12))
 
 ## v1.0.0
 
-+ Modified `Export+PSTypeExtension` to export to a ps1xml file (Issue #11)
++ Modified `Export+PSTypeExtension` to export to a ps1xml file ([Issue #11](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/11))
 + release to the PowerShell Gallery
 + Updated documentation
 + Updated samples
@@ -51,17 +51,17 @@
 
 ## v0.5.0
 
-+ Modified `Get-PSType` to better reflect type names. (Issue #7)
++ Modified `Get-PSType` to better reflect type names. ([Issue #7](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/7))
 + added additional sample files.
 + modified `Get-PSTypeExtension` to include PSTypeExtension as a typename
 + added format ps1xml (Issue #8)
-+ revised parameter validation for `Get+PSTypeExtension` (Issue #10)
-+ revised `Import-PSTypeExtension` to accept pipelined input for filenames (Issue #9)
++ revised parameter validation for `Get-PSTypeExtension` ([Issue #10](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/10))
++ revised `Import-PSTypeExtension` to accept pipelined input for filenames ([Issue #9](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/9))
 + updated documentation
 
 ## v0.4.0
 
-+ Modified `Get-PSTypeExtension` so +All is the default (Issue #6)
++ Modified `Get-PSTypeExtension` so +All is the default ([Issue #6](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/6))
 + Modified `Get-PSTypeExtension` to validate typename
 + Updated help documentation to include an About file
 + Reverted Changelog to a text file
@@ -69,8 +69,8 @@
 
 ## v0.3.0
 
-+ fixed bug in `Get-PSTypeExtension` that was writing a blank object to the pipeline. (Issue #3)
-+ Added support for WhatIf to `Export-PSTypeExtension` (Issue #2)
++ fixed bug in `Get-PSTypeExtension` that was writing a blank object to the pipeline. ([Issue #3](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/3))
++ Added support for WhatIf to `Export-PSTypeExtension` ([Issue #2](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/2))
 + documentation update
 
 ## v0.2.0
@@ -88,11 +88,11 @@
 
 ## v0.0.4
 
-+ Updated to handle other member type (Issue #2)
++ Updated to handle other member type ([Issue #2](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/2))
 
 ## v0.0.3
 
-+ added ShouldSupportProcess for `Import-MyTypeExtension` (Issue #1)
++ added ShouldSupportProcess for `Import-MyTypeExtension` ([Issue #1](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/1)
 + updated help
 + updated manifest
 
