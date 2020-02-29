@@ -1,5 +1,11 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.5.1
+
++ Fixed error in properly exporting aliases.
++ Updated license file.
++ Very minor help corrections.
+
 ## v1.5.0
 
 + Added new parameter, `-IncludeDeserialized`, on `Add-PSTypeExtension` ([Issue #14](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/14))
@@ -39,7 +45,7 @@
 
 ## v1.0.0
 
-+ Modified `Export+PSTypeExtension` to export to a ps1xml file ([Issue #11](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/11))
++ Modified `Export-PSTypeExtension` to export to a ps1xml file ([Issue #11](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/11))
 + release to the PowerShell Gallery
 + Updated documentation
 + Updated samples

@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Get the type name for a given object
+Get the type name for a given object.
 
 ## SYNTAX
 
@@ -50,8 +50,8 @@ Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to
 ### EXAMPLE 3
 
 ```powershell
-PS C:\> get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime} 
-PS C:\> get-vm | sort VMAge -descending | select Name,Creationtime,VMAge 
+PS C:\> get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime}
+PS C:\> get-vm | sort VMAge -descending | select Name,Creationtime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----

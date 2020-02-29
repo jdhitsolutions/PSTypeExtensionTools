@@ -369,5 +369,5 @@ Function Add-PSTypeExtension {
 
 #Export the Samples folder location as a variable
 $PSTypeSamples = Join-path $PSScriptRoot -ChildPath samples
-Export-ModuleMember -Variable PSTypeSamples
+Export-ModuleMember -Variable PSTypeSamples -Alias 'Set-PSTypeExtension'
 

@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Import type extension definitions
+Import type extension definitions.
 
 ## SYNTAX
 

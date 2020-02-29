@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Add a new type extension
+Add a new type extension.
 
 ## SYNTAX
 

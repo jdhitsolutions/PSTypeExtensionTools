@@ -6,7 +6,7 @@
       <command:verb>Add</command:verb>
       <command:noun>PSTypeExtension</command:noun>
       <maml:description>
-        <maml:para>Add a new type extension</maml:para>
+        <maml:para>Add a new type extension.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -519,7 +519,7 @@ True</dev:code>
       <command:verb>Get</command:verb>
       <command:noun>PSType</command:noun>
       <maml:description>
-        <maml:para>Get the type name for a given object</maml:para>
+        <maml:para>Get the type name for a given object.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -606,8 +606,8 @@ IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"</
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime} 
-PS C:\&gt; get-vm | sort VMAge -descending | select Name,Creationtime,VMAge 
+        <dev:code>PS C:\&gt; get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime}
+PS C:\&gt; get-vm | sort VMAge -descending | select Name,Creationtime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
@@ -812,7 +812,7 @@ __NounName     Noteproperty   Process</dev:code>
       <command:verb>Import</command:verb>
       <command:noun>PSTypeExtension</command:noun>
       <maml:description>
-        <maml:para>Import type extension definitions</maml:para>
+        <maml:para>Import type extension definitions.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
