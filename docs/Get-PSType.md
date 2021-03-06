@@ -30,7 +30,7 @@ PS C:\>123 | Get-PSType
 System.Int32
 ```
 
-Pipe an object and get it's type.
+Pipe an object and get its type.
 
 ### EXAMPLE 2
 
@@ -55,17 +55,17 @@ PS C:\> get-vm | sort VMAge -descending | select Name,Creationtime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
-UbuntuDesk 8/7/2017 1:53:47 PM   94.20:26:57.4237225
-CentOS     8/7/2017 3:43:50 PM   94.18:36:54.3394091
-DOM1       9/28/2017 9:31:34 AM  43.00:49:10.4396803
-SRV1       9/28/2017 9:31:50 AM  43.00:48:54.3284313
-SRV2       9/28/2017 9:32:01 AM  43.00:48:43.2135084
-SRV3       9/28/2017 9:32:11 AM  43.00:48:33.4681374
-WIN10      9/28/2017 9:32:21 AM  43.00:48:23.1610914
-Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825
+UbuntuDesk 8/7/2020 1:53:47 PM   94.20:26:57.4237225
+CentOS     8/7/2020 3:43:50 PM   94.18:36:54.3394091
+DOM1       9/28/2020 9:31:34 AM  43.00:49:10.4396803
+SRV1       9/28/2020 9:31:50 AM  43.00:48:54.3284313
+SRV2       9/28/2020 9:32:01 AM  43.00:48:43.2135084
+SRV3       9/28/2020 9:32:11 AM  43.00:48:33.4681374
+WIN10      9/28/2020 9:32:21 AM  43.00:48:23.1610914
+Win10Ent   10/16/2020 9:30:46 AM 25.00:49:58.1206825
 ```
 
-Get the type for a Hyper-V Virtual Machine and add a new script property which can then be used in a PowerShell expression.
+Get the type for a Hyper-V Virtual Machine and add a new ScriptProperty, which can then be used in a PowerShell expression.
 
 ## PARAMETERS
 
@@ -99,7 +99,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

@@ -19,7 +19,7 @@ Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [<CommonParameter
 
 ## DESCRIPTION
 
-Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.
+Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData, except that it makes it easier to see the extension value.
 
 ## EXAMPLES
 
@@ -88,7 +88,7 @@ Discover type extensions for a given type of object.
 
 ### -Members
 
-Enter a comma separated list of member names.
+Enter a comma-separated list of member names.
 
 ```yaml
 Type: String[]
@@ -132,7 +132,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

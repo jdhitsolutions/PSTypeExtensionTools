@@ -1,8 +1,17 @@
 # Change Log for PSTypeExtensionTools
 
+## TODO
+
++ `Export-PSTypeExtension` to allow appending to a file and to be able to store different types in the same file.([Issue #16](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/16))
+
+## v1.6.0
+
++ Re-organized module structure.
++ Added `New-PSPropertySet` ([Issue #15](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/15))
+
 ## v1.5.1
 
-+ Fixed error in properly exporting aliases.
++ Fixed error in exporting aliases.
 + Updated license file.
 + Very minor help corrections.
 
@@ -12,26 +21,22 @@
 + Modified `Import-PSTypeExtension` to allow piping files into the command.
 + Added alias `Type` to `-MemberType` parameter of `Add-PSTypeExtension`
 + Added alias `Name` to `-MemberName` parameter of `Add-PSTypeExtension`
-+ Added online help links
-+ Updated some of the sample json files to include deserialized type versions
-+ Updated help documentation
-+ Updated `README.md`
++ Added online help links.
++ Updated some of the sample JSON files to include deserialized type versions.
++ Updated help documentation.
++ Updated `README.md`.
 
 ## v1.4.0
 
-+ Modified manifest to require PowerShell 5.1
-+ Modified manifest to support both Desktop and Core PSEditions
-+ Updates to some of the sample files
-+ Updated `README.md`
++ Modified manifest to require PowerShell 5.1.
++ Modified manifest to support both Desktop and Core PSEditions.
++ Updates to some of the sample files.
++ Updated `README.md`.
 
 ## v1.3.0
 
-+ file cleanup for the PowerShell Gallery
-+ Exported Samples folder as a variable to make it easier to import
-+ updated `About` documentation
-
-## v1.2.0
-
++ File cleanup for the PowerShell Gallery.
++ Exported Samples folder as a variable to make it easier to import.
 + code cleanup
 + markdown cleanup
 + help cleanup
@@ -81,7 +86,7 @@
 
 ## v0.2.0
 
-+ renamed commands for consistency with module name
++ renamed commands to be consistent with the module name
 + updated help documentation
 + Added `Set-PSTypeExtension` as an alias to `Add-PSTypeExtension`
 

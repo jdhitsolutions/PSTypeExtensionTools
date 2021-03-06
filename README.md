@@ -2,11 +2,11 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSTypeExtensionTools.png?style=for-the-badge&logo=powershell&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSTypeExtensionTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/)
 
-This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871).
+This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871). This module should work in Windows PowerShell and PowerShell 7.x.
 
 ## Release
 
-You can the current release from the PowerShell Gallery:
+You can install the current release from the PowerShell Gallery:
 
 ```powershell
 Install-Module PSTypeExtensionTools
@@ -14,7 +14,7 @@ Install-Module PSTypeExtensionTools
 
 ## Why You Want to Use This
 
-Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module you could run a PowerShell command like this:
+Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module, you could run a PowerShell command like this:
 
 ```powershell
 PS C:\> 123 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot -Value { [math]::Sqrt($this)}
@@ -28,7 +28,7 @@ PS C:\> $x.SquareRoot
 11.0905365064094
 ```
 
-Once you know the type name you can add other type extensions.
+Once you know the type name, you can add other type extensions.
 
 ```powershell
 PS C:\> Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptProperty -MemberName Squared -value { $this*$this}
@@ -56,7 +56,7 @@ PS C:\> $x.GetPercent(110,4)
 34.5455
 ```
 
-To see what has been defined you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name.
+To see what has been defined, you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name.
 
 ```powershell
 PS C:\> Get-PSTypeExtension system.int32
@@ -72,13 +72,13 @@ Value      ScriptProperty  $this
 GetPercent ScriptMethod   Param([int32]$Total,[int32]$Round=2) [math]::Round(($this/$total)*100,$round)
 ```
 
-If you always want these extensions you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a json or xml file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
+If you always want these extensions, you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a JSON or XML file. You can either export all members or selected ones, which is helpful if you are extending a type that already has type extensions from PowerShell.
 
 ```powershell
 PS C:\> Get-PSTypeExtension system.int32 | Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 ```
 
-In your PowerShell profile script you can then re-import the type extension definitions.
+In your PowerShell profile scrip,t you can then re-import the type extension definitions.
 
 ```powershell
 Import-PSTypeExtension -Path C:\work\int32-types.json
@@ -86,34 +86,37 @@ Import-PSTypeExtension -Path C:\work\int32-types.json
 
 ## Create ps1xml Files
 
-The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import  into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting and hoping for the best.
-
+The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting, and hoping for the best.
 
 ## PSTypeExtensionTools Cmdlets
 
-### [Add-PSTypeExtension](/docs/Add-PSTypeExtension.md)
+### [Add-PSTypeExtension](docs/Add-PSTypeExtension.md)
 
 Add a new type extension such as an Alias or ScriptProperty.
 
-### [Export-PSTypeExtension](/docs/Export-PSTypeExtension.md)
+### [Export-PSTypeExtension](docs/Export-PSTypeExtension.md)
 
 Export type extensions to a json, xml or ps1xml file.
 
-### [Get-PSType](/docs/Get-PSType.md)
+### [Get-PSType](docs/Get-PSType.md)
 
 Get the type name of an object.
 
-### [Get-PSTypeExtension](/docs/Get-PSTypeExtension.md)
+### [Get-PSTypeExtension](docs/Get-PSTypeExtension.md)
 
 Get type extensions for a given type.
 
-### [Import-PSTypeExtension](/docs/Import-PSTypeExtension.md)
+### [Import-PSTypeExtension](docs/Import-PSTypeExtension.md)
 
-Import type extension definitions from a json file or xml.
+Import type extension definitions from a JSON file or XML.
+
+### [New-PSPropertySet](docs/New-PSPropertySet.md)
+
+TBD
 
 ## I Want to Try
 
-You can find a number of type extension exports in the [Samples](./samples) folder. The location will be saved to a global variable, $PSTypeSamples. This makes it a bit easier to import.
+You can find a number of type extension exports in the [Samples](./samples) folder. The location will be saved to a global variable, `$PSTypeSamples`. This makes it a bit easier to import.
 
 ```powershell
 PS C:\> dir $PSTypeSamples
@@ -156,7 +159,7 @@ Count   SumGB
     4 50.2031
 ```
 
-This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
+This project was first described at <http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions>
 
 There is also an about topic you can read:
 

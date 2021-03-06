@@ -22,8 +22,8 @@ Export-PSTypeExtension -Path <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ### Name
 
 ```yaml
-Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]> -Path <String> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]>
+-Path <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### object
@@ -34,7 +34,7 @@ Export-PSTypeExtension -Path <String> [-InputObject <Object>] [-WhatIf] [-Confir
 
 ## DESCRIPTION
 
-This command can be used in 2 ways. First, you can export custom type information to a json or xml file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.
+This command can be used in 2 ways. First, you can export custom type information to a JSON or XML file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.
 
 ## EXAMPLES
 
@@ -44,7 +44,7 @@ This command can be used in 2 ways. First, you can export custom type informatio
 PS C:\> Export-PSTypeExtension -TypeName system.string -Path c:\work\mystringtypes.json -MemberName Size,IsIPAddress
 ```
 
-Export selected type extensions for System.String to a json file.
+Export selected type extensions for System.String to a JSON file.
 
 ### EXAMPLE 2
 
@@ -52,7 +52,7 @@ Export selected type extensions for System.String to a json file.
 PS C:\> Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work\stringtypes.xml
 ```
 
-Get all type extensions for System.String and export to an xml file.
+Get all type extensions for System.String and export to an XML file.
 
 ### EXAMPLE 3
 
@@ -151,7 +151,7 @@ This is typically the output of Get-PSSTypeExtension.
 ```yaml
 Type: Object
 Parameter Sets: object
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -174,7 +174,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

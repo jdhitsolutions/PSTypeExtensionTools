@@ -19,7 +19,7 @@ Import-PSTypeExtension [-Path] <String> [-WhatIf] [-Confirm] [<CommonParameters>
 
 ## DESCRIPTION
 
-Use this command to import extended type definitions from a json or xml file that was created with Export-PSTypeExtension.
+Use this command to import extended type definitions from a JSON or XML file that was created with Export-PSTypeExtension.
 
 ## EXAMPLES
 
@@ -29,7 +29,7 @@ Use this command to import extended type definitions from a json or xml file tha
 PS C:\> Import-PSTypeExtension -Path C:\work\stringtypes.json
 ```
 
-Import definitions from a json file.
+Import definitions from a JSON file.
 
 ### EXAMPLE 2
 
@@ -37,7 +37,7 @@ Import definitions from a json file.
 PS C:\> dir c:\scripts\mytypes | Import-PSTypeExtension
 ```
 
-Import definitions from files in C:\Scripts\MyTypes. Presumably, these are xml or json files created with Export-PSTypeExtension.
+Import definitions from files in C:\Scripts\MyTypes. Presumably, these are XML or JSON files created with Export-PSTypeExtension.
 
 ## PARAMETERS
 
@@ -103,7 +103,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell:
+ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 

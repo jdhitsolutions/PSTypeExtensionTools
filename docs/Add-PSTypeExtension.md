@@ -14,13 +14,12 @@ Add a new type extension.
 ## SYNTAX
 
 ```yaml
-Add-PSTypeExtension [-TypeName] <String> -MemberType <String> -MemberName <String> -Value <Object>
- [-IncludeDeserialized] [-WhatIf] [-Confirm] [<CommonParameters>]
+Add-PSTypeExtension [-TypeName] <String> -MemberType <String> -MemberName <String> -Value <Object> [-IncludeDeserialized] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten so you can also use this as a "Set" command.
+Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten, so you can also use this as a "Set" command.
 
 ## EXAMPLES
 
@@ -41,7 +40,7 @@ PS C:\> $s.IsIPAddress()
 True
 ```
 
-Define an script property called IsIPAddress which will return True if the string matches the pattern for an IP address.
+Define a script property called IsIPAddress which will return True if the string matches the pattern for an IP address.
 
 ### EXAMPLE 3
 
@@ -49,7 +48,7 @@ Define an script property called IsIPAddress which will return True if the strin
 PS C:\ Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized
 ```
 
-Create an alias called Size using the Length property on file objects. This expression will also create if for the deserialized version of the type so that you can use it with remoting results.
+Create an alias called Size using the Length property on file objects. This expression will also create it for the deserialized version of the type so that you can use it with remoting results.
 
 ## PARAMETERS
 
@@ -180,7 +179,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell:
+http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
