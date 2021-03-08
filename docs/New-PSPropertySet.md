@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version:
+online version: https://github.com/jdhitsolutions/PSTypeExtensionTools/blob/master/docs/New-PSPropertySet.md
 schema: 2.0.0
 ---
 
@@ -31,15 +31,15 @@ PowerShell has a concept of property sets. A property set allows you to referenc
 
 Use Update-TypeData to append the file. If you import your file more than once in the same session, you might see a warning about existing property names. Existing entries won't be overwritten.
 
-Property set updates are not persistant. You will need to import your ps1xml, ideally in your PowerShell profile script.
+Property set updates are not persistent. You will need to import your ps1xml, ideally in your PowerShell profile script.
 
 ## EXAMPLES
 
 ### Example 1
 
 ```powershell
-PS C:\> New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myfileinfo.type.ps1xml
-PS C:\> Update-TypeData C:\work\myfileinfo.type.ps1xml
+PS C:\> New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myfileinfo.types.ps1xml
+PS C:\> Update-TypeData C:\work\myfileinfo.types.ps1xml
 PS C:\> dir c:\work -file | select info
 
 FullName                     IsReadOnly CreationTime           LastWriteTime
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 
 ### -FilePath
 
-Enter the name of the .ps1xml file to create.
+Enter the name of the .ps1xml file to create. It must have a .ps1xml file extension and ideally should take the format <typename>.types.ps1xml.
 
 ```yaml
 Type: String
@@ -140,7 +140,7 @@ Accept wildcard characters: False
 
 ### -Properties
 
-Enter the existing property names or aliases to belong to this property set.
+Enter the existing property names or aliases to belong to this property set. If using aliases, they must be defined in your PowerShell session before you can use the custom property set.
 
 ```yaml
 Type: String[]
@@ -207,3 +207,5 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 ## RELATED LINKS
 
 [Update-TypeData]()
+
+[Add-PSTypeExtension](Add-PSTypeExtension.md)

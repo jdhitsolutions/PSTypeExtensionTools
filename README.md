@@ -84,15 +84,11 @@ In your PowerShell profile scrip,t you can then re-import the type extension def
 Import-PSTypeExtension -Path C:\work\int32-types.json
 ```
 
-## Create ps1xml Files
-
-The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting, and hoping for the best.
-
 ## PSTypeExtensionTools Cmdlets
 
 ### [Add-PSTypeExtension](docs/Add-PSTypeExtension.md)
 
-Add a new type extension such as an Alias or ScriptProperty.
+Add a new type extension such as an `Alias` or `ScriptProperty`.
 
 ### [Export-PSTypeExtension](docs/Export-PSTypeExtension.md)
 
@@ -112,7 +108,52 @@ Import type extension definitions from a JSON file or XML.
 
 ### [New-PSPropertySet](docs/New-PSPropertySet.md)
 
-TBD
+In addition to custom properties, PowerShell also has the idea of a _propertyset_. This allows you to reference a group of properties with a single name.
+
+Let's say you have loaded the sample fileinfo type extensions from this module.
+
+```powershell
+PS C:\> Import-PSTypeExtension -Path $PSTypeSamples\fileinfo-extensions.json
+```powershell
+
+You could write a command like this:
+
+```powershell
+dir c:\work -file | Select-Object Name,Size,LastWriteTime,Age
+```
+
+Or you could create a custom property set. These have to be defined in `ps1xml` files. The `New-PSPropertySet` simplifies this process.
+
+```powershell
+ New-PSPropertySet -Typename System.IO.FileInfo -Name FileAge -Properties Name,Size,LastWriteTime,Age -FilePath d:\temp\Fileinfo.types.ps1xml
+```
+
+I've included the file in the Samples folder.
+
+```powershell
+PS C:\> Update-TypeData $PSTypeSamples\fileinfo.types.ps1xml
+PS C:\> dir c:\work -file | Select-Object fileage
+
+Name                          Size    LastWriteTime            Age
+----                          ---- -  -----------              ---
+a.dat                            42   2/12/2021 5:36:55 PM     23.17:27:21
+a.txt                         14346   12/31/2020 9:10:15 AM    67.01:54:00
+a.xml                        171394   12/31/2020 12:15:44 PM   66.22:48:32
+aa.ps1                        28866   12/31/2020 9:13:16 AM    67.01:51:00
+aa.txt                        28866   12/31/2020 9:11:18 AM    67.01:52:58
+about.json                    16455   2/27/2021 10:11:03 AM    09.00:53:12
+about_ADReportingTools         1688   3/4/2021 7:37:01 PM      03.15:27:14
+b.csv                          1273   11/13/2020 12:11:35 PM   114.22:52:40
+...
+```
+
+If your property set is using custom properties, you need to load them into your PowerShell session before you can use the property set.
+
+## Create ps1xml Files
+
+The export command makes it easy to construct a ps1xml file. All you need to do is provide the type name and the extensions you want to export, and it will create a properly formatted ps1xml file that you can import into a session with `Update-TypeData` or distribute with a module. No more clunky XML copying, pasting, and hoping for the best.
+
+Well, there is one reason you still might need to do some copying and pasting. Technically, you can define all custom properties, including property sets, in a single .ps1xml file. However, I don't have a simple command to export everything for a single type to a single file. For now, you can create a `<typename>.types.ps1xml` file for your custom extensions. Then manually merge the `Members` section from your property set .ps1xml file. This is only necessary if you have custom extensions **and** one or more property sets defined for a given type.
 
 ## I Want to Try
 
@@ -167,4 +208,4 @@ There is also an about topic you can read:
 help about_PSTypeExtensionTools
 ```
 
-Last Updated 2019-09-21 06:15:09Z UTC
+Last Updated 2021-03-08 21:19:40Z

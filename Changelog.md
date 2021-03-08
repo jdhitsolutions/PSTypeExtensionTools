@@ -1,15 +1,14 @@
 # Change Log for PSTypeExtensionTools
 
-## TODO
-
-+ `Export-PSTypeExtension` to allow appending to a file and to be able to store different types in the same file.([Issue #16](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/16))
-
 ## v1.6.0
 
 + Re-organized module structure.
-+ Added `New-PSPropertySet` ([Issue #15](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/15))
++ Added command `New-PSPropertySet`to create a ps1xml file that defines a custom property set. ([Issue #15](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/15))
++ Modified `Get-PSTypeExtension` to hide `CodeProperty` values by defaults. ([Issue #17](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/1))
++ Modified `Get-PSTypeExtension` to display results sorted by member type and name.
 
 ## v1.5.1
+
 
 + Fixed error in exporting aliases.
 + Updated license file.

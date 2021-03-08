@@ -14,12 +14,14 @@ Get selected type extensions.
 ## SYNTAX
 
 ```yaml
-Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [<CommonParameters>]
+Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [-CodeProperty] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData, except that it makes it easier to see the extension value.
+
+By default, CodeProperty members are not displayed because they can't be exported.
 
 ## EXAMPLES
 
@@ -58,7 +60,7 @@ Get the Size type extension for System.String.
 ### EXAMPLE 3
 
 ```powershell
-PS C:\> get-process | get-pstype | Get-PSTypeExtension
+PS C:\> Get-Process | Get-PSType | Get-PSTypeExtension
 
 
    TypeName: System.Diagnostics.Process
@@ -84,6 +86,32 @@ __NounName     Noteproperty   Process
 
 Discover type extensions for a given type of object.
 
+### Example 4
+
+```powershell
+PS C:\>  Get-PSTypeExtension system.io.fileinfo  -CodeProperty |
+Select-Object membername,membertype
+
+MemberName          MemberType
+----------          ----------
+Size                AliasProperty
+Modified            AliasProperty
+Created             AliasProperty
+Mode                CodeProperty
+ModeWithoutHardLink CodeProperty
+Target              CodeProperty
+LinkType            CodeProperty
+NameString          CodeProperty
+LengthString        CodeProperty
+LastWriteTimeString CodeProperty
+VersionInfo         ScriptProperty
+BaseName            ScriptProperty
+SizeKB              ScriptProperty
+SizeMB              ScriptProperty
+```
+
+Display all extensions, including CodeProperty, and display the member name and type.
+
 ## PARAMETERS
 
 ### -Members
@@ -104,7 +132,7 @@ Accept wildcard characters: False
 
 ### -TypeName
 
-Enter the name of type like System.IO.FileInfo.
+Enter the name of a type like System.IO.FileInfo.
 
 ```yaml
 Type: String
@@ -118,9 +146,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -CodeProperty
+
+Show CodeProperty custom properties
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -128,7 +172,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSTypeExtension
 
 ## NOTES
 
@@ -136,5 +180,9 @@ Learn more about PowerShell:
 http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
+
+[Get-PSType](Get-PSType.md)
+
+[Export-PSTypeExtension](Export-PSTypeExtension.md)
 
 [Get-TypeData]()

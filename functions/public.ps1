@@ -1,6 +1,7 @@
 
 Function Get-PSTypeExtension {
     [cmdletbinding()]
+    [outputtype("PSTypeExtension")]
     Param(
         [Parameter(
             Position = 0,
@@ -28,7 +29,9 @@ Function Get-PSTypeExtension {
             HelpMessage = "Enter a comma separated list of member names",
             ParameterSetName = "members"
         )]
-        [string[]]$Members
+        [string[]]$Members,
+        [Parameter(HelpMessage = "Show CodeProperty custom properties")]
+        [switch]$CodeProperty
     )
 
     Begin {
@@ -42,8 +45,9 @@ Function Get-PSTypeExtension {
     } #process
     End {
         $typedata = $typedata | Select-Object -Unique
-        if ($typedata) {
 
+        if ($typedata) {
+            $out = [System.Collections.Generic.List[object]]::new()
             if (-Not $Members) {
                 Write-Verbose "Getting all member names"
                 $Members = $typedata.members.keys
@@ -59,6 +63,7 @@ Function Get-PSTypeExtension {
                     Switch ($datatype) {
                         "AliasPropertyData" {
                             $def = [pscustomobject]@{
+                                PSTypename = 'PSTypeExtension'
                                 MemberType = "AliasProperty"
                                 MemberName = $member.name
                                 Value      = $member.ReferencedMemberName
@@ -72,6 +77,7 @@ Function Get-PSTypeExtension {
                                 $code = $member.SetScriptBlock.ToString()
                             }
                             $def = [pscustomobject]@{
+                                PSTypename = 'PSTypeExtension'
                                 MemberType = "ScriptProperty"
                                 MemberName = $member.name
                                 Value      = $code
@@ -79,6 +85,7 @@ Function Get-PSTypeExtension {
                         } #scriptproperty
                         "ScriptMethodData" {
                             $def = [pscustomobject]@{
+                                PSTypename = 'PSTypeExtension'
                                 MemberType = "ScriptMethod"
                                 MemberName = $member.name
                                 Value      = $member.script.ToString().trim()
@@ -86,39 +93,45 @@ Function Get-PSTypeExtension {
                         } #scriptmethod
                         "NotePropertyData" {
                             $def = [pscustomobject]@{
+                                PSTypename = 'PSTypeExtension'
                                 MemberType = "Noteproperty"
                                 MemberName = $member.name
                                 Value      = $member.Value
                             }
                         } #noteproperty
                         "CodePropertyData" {
-                            if ($member.GetCodeReference) {
-                                $code = $member.GetCodeReference.ToString()
+                            #only show these if requested with -CodeProperty
+                            if ($CodeProperty) {
+                                if ($member.GetCodeReference) {
+                                    $code = $member.GetCodeReference.ToString()
+                                }
+                                else {
+                                    $code = $member.SetCodeReference.ToString()
+                                }
+                                $def = [pscustomobject]@{
+                                    PSTypename = 'PSTypeExtension'
+                                    MemberType = "CodeProperty"
+                                    MemberName = $member.name
+                                    Value      = $code
+                                }
                             }
                             else {
-                                $code = $member.SetCodeReference.ToString()
-                            }
-                            $def = [pscustomobject]@{
-                                MemberType = "CodeProperty"
-                                MemberName = $member.name
-                                Value      = $code
+                                $def = $False
                             }
                         } #codeproperty
                         Default {
                             Write-Warning "Cannot process $datatype type for $($typedata.typename)."
                             $def = [pscustomobject]@{
+                                PSTypename = 'PSTypeExtension'
                                 MemberType = $datatype
                                 MemberName = $member.name
                                 Value      = $member.Value
                             }
                         }
                     }
-
-                    $def | Add-Member -MemberType NoteProperty -Name TypeName -Value $typedata.typename
-                    #insert a typename
-                    $def.psobject.typenames.insert(0, 'PSTypeExtension')
-                    #write the definition to the pipeline
-                    Write-Output $def
+                    if ($def) {
+                        $out.Add($def)
+                    }
 
                 }
                 Catch {
@@ -127,7 +140,8 @@ Function Get-PSTypeExtension {
                 }
 
             } #foreach
-
+            #write sorted results
+            $out | Sort-Object -Property MemberType, Name
         }
         else {
             Write-Warning "Failed to find any type extensions for [$Typename]."
@@ -139,6 +153,7 @@ Function Get-PSTypeExtension {
 
 Function Get-PSType {
     [cmdletbinding()]
+    [outputtype("System.String")]
     Param(
         [Parameter(
             Position = 0,
@@ -187,101 +202,120 @@ Function Export-PSTypeExtension {
         )]
         [ValidatePattern("\.(xml|json|ps1xml)$")]
         [string]$Path,
+
         [Parameter(ParameterSetName = "object", ValueFromPipeline)]
         [object]$InputObject
     )
     Begin {
         Write-Verbose "Starting: $($MyInvocation.Mycommand)"
-        $data = @()
-    }
-    Process {
-        if ($Inputobject) {
-            Write-Verbose "Processing input type: $($InputObject.TypeName)"
-            $data += $Inputobject
+
+        $PathParent = Split-Path -Path $Path
+        if (Test-Path -Path $PathParent) {
+            $validPath = $true
         }
         else {
-            Write-Verbose "Processing type: $TypeName"
-            foreach ($member in $membername) {
-                $data += Get-PSTypeExtension -TypeName $Typename -Members $Member
-            }
+            Write-Warning "Can't find parent path $pathParent"
+            $validPath = $False
         }
+        #initialize a list of objects
+        $data = [System.Collections.Generic.list[object]]::new()
+        #@()
+    }
+    Process {
+        #test if parent path exists
+        If ($validPath) {
+            if ($Inputobject) {
+                Write-Verbose "Processing input type: $($InputObject.TypeName)"
+                $data.Add($InputObject)
+            }
+            else {
+                Write-Verbose "Processing type: $TypeName"
+                foreach ($member in $membername) {
+                    $typemember = Get-PSTypeExtension -TypeName $Typename -Members $Member
+                    $data.Add($typemember)
+                }
+            }
+        } #test path parent
     }
     End {
-        if ($Path -match "\.ps1xml$") {
-            Write-Verbose "Saving as PS1XML"
-            #create a placeholder file so that I can later convert the path
-            New-Item -Path $path -Force | Out-Null
-            [xml]$Doc = New-Object System.Xml.XmlDocument
+        if ($validPath) {
+            Write-Verbose "Exporting data to $path"
 
-            #create declaration
-            $dec = $Doc.CreateXmlDeclaration("1.0", "UTF-8", $null)
-            #append to document
-            $doc.AppendChild($dec) | Out-Null
+            if ($Path -match "\.ps1xml$") {
+                Write-Verbose "Saving as PS1XML"
+                #create a placeholder file so that I can later convert the path
+                New-Item -Path $path -Force | Out-Null
+                [xml]$Doc = New-Object System.Xml.XmlDocument
 
-            #create a comment and append it in one line
-            $text = @"
+                #create declaration
+                $dec = $Doc.CreateXmlDeclaration("1.0", "UTF-8", $null)
+                #append to document
+                $doc.AppendChild($dec) | Out-Null
+
+                #create a comment and append it in one line
+                $text = @"
 
 Custom type extensions generated by $($env:username)
 $(Get-Date)
 
 "@
-            $doc.AppendChild($doc.CreateComment($text)) | Out-Null
+                $doc.AppendChild($doc.CreateComment($text)) | Out-Null
 
-            #create root Node
-            $root = $doc.CreateNode("element", "Types", $null)
-            $main = $doc.CreateNode("element", "Type", $null)
-            $name = $doc.CreateElement("Name")
-            $name.innerText = $data[0].TypeName
-            $main.AppendChild($name) | Out-Null
-            $member = $doc.CreateNode("element", "Members", $null)
-            foreach ($extension in $data) {
-                Write-Verbose "Exporting $($extension.membername)"
-                $membertype = $doc.createNode("element", $extension.memberType, $null)
-                $membernameEL = $doc.CreateElement("Name")
+                #create root Node
+                $root = $doc.CreateNode("element", "Types", $null)
+                $main = $doc.CreateNode("element", "Type", $null)
+                $name = $doc.CreateElement("Name")
+                $name.innerText = $data[0].TypeName
+                $main.AppendChild($name) | Out-Null
+                $member = $doc.CreateNode("element", "Members", $null)
+                foreach ($extension in $data) {
+                    Write-Verbose "Exporting $($extension.membername)"
+                    $membertype = $doc.createNode("element", $extension.memberType, $null)
+                    $membernameEL = $doc.CreateElement("Name")
 
-                $membernameEL.innertext = $extension.memberName
-                $membertype.AppendChild($membernameEL) | Out-Null
+                    $membernameEL.innertext = $extension.memberName
+                    $membertype.AppendChild($membernameEL) | Out-Null
 
-                Switch ($extension.Membertype) {
-                    "ScriptMethod" {
-                        $memberdef = $doc.createelement("Script")
+                    Switch ($extension.Membertype) {
+                        "ScriptMethod" {
+                            $memberdef = $doc.createelement("Script")
+                        }
+                        "ScriptProperty" {
+                            $memberdef = $doc.createelement("GetScriptBlock")
+                        }
+                        "AliasProperty" {
+                            $memberdef = $doc.createelement("ReferencedMemberName")
+                        }
+                        "NoteProperty" {
+                            $memberdef = $doc.createelement("Value")
+                        }
+                        Default {
+                            Throw "Can't process a type of $($extension.MemberType)"
+                        }
                     }
-                    "ScriptProperty" {
-                        $memberdef = $doc.createelement("GetScriptBlock")
-                    }
-                    "AliasProperty" {
-                        $memberdef = $doc.createelement("ReferencedMemberName")
-                    }
-                    "NoteProperty" {
-                        $memberdef = $doc.createelement("Value")
-                    }
-                    Default {
-                        Throw "Can't process a type of $($extension.MemberType)"
-                    }
-                }
-                $memberdef.InnerText = $extension.value
-                $membertype.AppendChild($memberdef) | Out-Null
-                $member.AppendChild($membertype) | Out-Null
+                    $memberdef.InnerText = $extension.value
+                    $membertype.AppendChild($memberdef) | Out-Null
+                    $member.AppendChild($membertype) | Out-Null
 
-            } #foreach
-            $main.AppendChild($member) | Out-Null
-            $root.AppendChild($main) | Out-Null
-            $doc.AppendChild($root) | Out-Null
-            $out = Convert-Path $path
-            if ($PSCmdlet.ShouldProcess($out)) {
-                $doc.save($out)
-            } #end Whatif
+                } #foreach
+                $main.AppendChild($member) | Out-Null
+                $root.AppendChild($main) | Out-Null
+                $doc.AppendChild($root) | Out-Null
+                $out = Convert-Path $path
+                if ($PSCmdlet.ShouldProcess($out)) {
+                    $doc.save($out)
+                } #end Whatif
+            }
+            elseif ($path -match "\.xml$") {
+                Write-Verbose "Saving as XML"
+                $data | Export-Clixml -Path $path
+            }
+            else {
+                Write-Verbose "Saving as JSON"
+                $data | ConvertTo-Json | Set-Content -Path $Path
+            }
         }
-        elseif ($path -match "\.xml$") {
-            Write-Verbose "Saving as XML"
-            $data | Export-Clixml -Path $path
-        }
-        else {
-            Write-Verbose "Saving as JSON"
-            $data | ConvertTo-Json | Set-Content -Path $Path
-        }
 
-        Write-Verbose "Exporting data to $path"
         Write-Verbose "Ending: $($MyInvocation.Mycommand)"
     }
 

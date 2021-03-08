@@ -29,7 +29,7 @@ PS C:\> $x.SquareRoot
 11.0905365064094
 ```
 
-Once you know the type name you can add other type extensions.
+Once you know the type name, you can add other type extensions.
 
 ```powershell
 Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptProperty -MemberName Squared -value { $this*$this}
@@ -90,7 +90,7 @@ You can also import a directory of type extensions with a single command.
 dir c:\scripts\mytypes | Import-PSTypeExtension
 ```
 
-A number of sample files with type extensions can be found in this modules Samples folder or in the GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.  When you have imported the module you can access the samples folder using the $PSTypeSamples variable.
+A number of sample files with type extensions can be found in this module's Samples folder or GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.  When you have imported the module, you can access the samples folder using the `$PSTypeSamples` variable.
 
 ```powershell
 Import-PSTypeExtension $PSTypeSamples\measure-extensions.json

@@ -10,16 +10,16 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten so you can also use this as a "Set" command.</maml:para>
+      <maml:para>Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten, so you can also use this as a "Set" command.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-PSTypeExtension</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Enter the name of a type like System.IO.FileInfo.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -29,9 +29,9 @@
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Name">
           <maml:name>MemberName</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of your type extension.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -41,9 +41,9 @@
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Type">
           <maml:name>MemberType</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The member type. You cannot use this command to define CodeMethods or CodeProperties.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">AliasProperty</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">NoteProperty</command:parameterValue>
@@ -59,9 +59,9 @@
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Value</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The value for your type extension. Remember to enclose scriptblocks in {} and use $this.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
           <dev:type>
             <maml:name>Object</maml:name>
@@ -71,9 +71,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -82,9 +82,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -93,9 +93,9 @@
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>IncludeDeserialized</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Create the extension in the deserialized version of the specified type along with the specified type.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -107,9 +107,9 @@
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Name">
         <maml:name>MemberName</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The name of your type extension.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -119,9 +119,9 @@
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Type">
         <maml:name>MemberType</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The member type. You cannot use this command to define CodeMethods or CodeProperties.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -131,9 +131,9 @@
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Enter the name of a type like System.IO.FileInfo.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -143,9 +143,9 @@
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Value</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The value for your type extension. Remember to enclose scriptblocks in {} and use $this.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
         <dev:type>
           <maml:name>Object</maml:name>
@@ -155,9 +155,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -167,9 +167,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -179,9 +179,9 @@
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>IncludeDeserialized</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Create the extension in the deserialized version of the specified type along with the specified type.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -230,14 +230,14 @@ PS C:\&gt; $s = "10.4.7.10"
 PS C:\&gt; $s.IsIPAddress()
 True</dev:code>
         <dev:remarks>
-          <maml:para>Define an script property called IsIPAddress which will return True if the string matches the pattern for an IP address.</maml:para>
+          <maml:para>Define a script property called IsIPAddress which will return True if the string matches the pattern for an IP address.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
         <dev:code>PS C:\ Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized</dev:code>
         <dev:remarks>
-          <maml:para>Create an alias called Size using the Length property on file objects. This expression will also create if for the deserialized version of the type so that you can use it with remoting results.</maml:para>
+          <maml:para>Create an alias called Size using the Length property on file objects. This expression will also create it for the deserialized version of the type so that you can use it with remoting results.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -262,16 +262,16 @@ True</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>This command can be used in 2 ways. First, you can export custom type information to a json or xml file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.</maml:para>
+      <maml:para>This command can be used in 2 ways. First, you can export custom type information to a JSON or XML file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Export-PSTypeExtension</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The type name to export like System.IO.FileInfo.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -281,9 +281,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>MemberName</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The type extension name.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
             <maml:name>String[]</maml:name>
@@ -293,9 +293,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Path</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of the exported file. The extension must be .xml, .ps1xml or .json.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -305,9 +305,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -316,9 +316,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -330,9 +330,9 @@ True</dev:code>
         <maml:name>Export-PSTypeExtension</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Path</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of the exported file. The extension must be .xml, .ps1xml or .json.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -342,9 +342,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -353,9 +353,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -364,9 +364,9 @@ True</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
           <maml:name>InputObject</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>This is typically the output of Get-PSSTypeExtension.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
           <dev:type>
             <maml:name>Object</maml:name>
@@ -379,9 +379,9 @@ True</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>MemberName</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The type extension name.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
           <maml:name>String[]</maml:name>
@@ -391,9 +391,9 @@ True</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Path</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The name of the exported file. The extension must be .xml, .ps1xml or .json.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -403,9 +403,9 @@ True</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The type name to export like System.IO.FileInfo.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -415,9 +415,9 @@ True</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -427,9 +427,9 @@ True</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -439,9 +439,9 @@ True</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
         <maml:name>InputObject</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>This is typically the output of Get-PSSTypeExtension.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
         <dev:type>
           <maml:name>Object</maml:name>
@@ -480,14 +480,14 @@ True</dev:code>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Export-PSTypeExtension -TypeName system.string -Path c:\work\mystringtypes.json -MemberName Size,IsIPAddress</dev:code>
         <dev:remarks>
-          <maml:para>Export selected type extensions for System.String to a json file.</maml:para>
+          <maml:para>Export selected type extensions for System.String to a JSON file.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-PSTypeExtension system.string | Export-PSTypeExtension -path c:\work\stringtypes.xml</dev:code>
         <dev:remarks>
-          <maml:para>Get all type extensions for System.String and export to an xml file.</maml:para>
+          <maml:para>Get all type extensions for System.String and export to an XML file.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -530,9 +530,9 @@ True</dev:code>
         <maml:name>Get-PSType</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>Inputobject</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Any object from PowerShell.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
           <dev:type>
             <maml:name>Object</maml:name>
@@ -545,9 +545,9 @@ True</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Inputobject</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Any object from PowerShell.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
         <dev:type>
           <maml:name>Object</maml:name>
@@ -587,7 +587,7 @@ True</dev:code>
         <dev:code>PS C:\&gt;123 | Get-PSType
 System.Int32</dev:code>
         <dev:remarks>
-          <maml:para>Pipe an object and get it's type.</maml:para>
+          <maml:para>Pipe an object and get its type.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -611,16 +611,16 @@ PS C:\&gt; get-vm | sort VMAge -descending | select Name,Creationtime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
-UbuntuDesk 8/7/2017 1:53:47 PM   94.20:26:57.4237225
-CentOS     8/7/2017 3:43:50 PM   94.18:36:54.3394091
-DOM1       9/28/2017 9:31:34 AM  43.00:49:10.4396803
-SRV1       9/28/2017 9:31:50 AM  43.00:48:54.3284313
-SRV2       9/28/2017 9:32:01 AM  43.00:48:43.2135084
-SRV3       9/28/2017 9:32:11 AM  43.00:48:33.4681374
-WIN10      9/28/2017 9:32:21 AM  43.00:48:23.1610914
-Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
+UbuntuDesk 8/7/2020 1:53:47 PM   94.20:26:57.4237225
+CentOS     8/7/2020 3:43:50 PM   94.18:36:54.3394091
+DOM1       9/28/2020 9:31:34 AM  43.00:49:10.4396803
+SRV1       9/28/2020 9:31:50 AM  43.00:48:54.3284313
+SRV2       9/28/2020 9:32:01 AM  43.00:48:43.2135084
+SRV3       9/28/2020 9:32:11 AM  43.00:48:33.4681374
+WIN10      9/28/2020 9:32:21 AM  43.00:48:23.1610914
+Win10Ent   10/16/2020 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <dev:remarks>
-          <maml:para>Get the type for a Hyper-V Virtual Machine and add a new script property which can then be used in a PowerShell expression.</maml:para>
+          <maml:para>Get the type for a Hyper-V Virtual Machine and add a new ScriptProperty, which can then be used in a PowerShell expression.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -653,16 +653,17 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData except that it makes it easier to see the extension value.</maml:para>
+      <maml:para>Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData, except that it makes it easier to see the extension value.</maml:para>
+      <maml:para>By default, CodeProperty members are not displayed because they can't be exported.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-PSTypeExtension</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
-          <maml:Description>
-            <maml:para>Enter the name of type like System.IO.FileInfo.</maml:para>
-          </maml:Description>
+          <maml:description>
+            <maml:para>Enter the name of a type like System.IO.FileInfo.</maml:para>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -672,9 +673,9 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Members</maml:name>
-          <maml:Description>
-            <maml:para>Enter a comma separated list of member names.</maml:para>
-          </maml:Description>
+          <maml:description>
+            <maml:para>Enter a comma-separated list of member names.</maml:para>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
             <maml:name>String[]</maml:name>
@@ -682,14 +683,25 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CodeProperty</maml:name>
+          <maml:description>
+            <maml:para>Show CodeProperty custom properties</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Members</maml:name>
-        <maml:Description>
-          <maml:para>Enter a comma separated list of member names.</maml:para>
-        </maml:Description>
+        <maml:description>
+          <maml:para>Enter a comma-separated list of member names.</maml:para>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
           <maml:name>String[]</maml:name>
@@ -699,15 +711,27 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
-        <maml:Description>
-          <maml:para>Enter the name of type like System.IO.FileInfo.</maml:para>
-        </maml:Description>
+        <maml:description>
+          <maml:para>Enter the name of a type like System.IO.FileInfo.</maml:para>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CodeProperty</maml:name>
+        <maml:description>
+          <maml:para>Show CodeProperty custom properties</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -723,7 +747,7 @@ Win10Ent   10/16/2017 9:30:46 AM 25.00:49:58.1206825</dev:code>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <maml:name>PSTypeExtension</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -768,7 +792,7 @@ Size AliasProperty Length</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; get-process | get-pstype | Get-PSTypeExtension
+        <dev:code>PS C:\&gt; Get-Process | Get-PSType | Get-PSTypeExtension
 
 
    TypeName: System.Diagnostics.Process
@@ -794,11 +818,44 @@ __NounName     Noteproperty   Process</dev:code>
           <maml:para>Discover type extensions for a given type of object.</maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt;  Get-PSTypeExtension system.io.fileinfo  -CodeProperty |
+Select-Object membername,membertype
+
+MemberName          MemberType
+----------          ----------
+Size                AliasProperty
+Modified            AliasProperty
+Created             AliasProperty
+Mode                CodeProperty
+ModeWithoutHardLink CodeProperty
+Target              CodeProperty
+LinkType            CodeProperty
+NameString          CodeProperty
+LengthString        CodeProperty
+LastWriteTimeString CodeProperty
+VersionInfo         ScriptProperty
+BaseName            ScriptProperty
+SizeKB              ScriptProperty
+SizeMB              ScriptProperty</dev:code>
+        <dev:remarks>
+          <maml:para>Display all extensions, including CodeProperty, and display the member name and type.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
         <maml:uri>http://bit.ly/30FkW2t</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PSType</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Export-PSTypeExtension</maml:linkText>
+        <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-TypeData</maml:linkText>
@@ -816,16 +873,16 @@ __NounName     Noteproperty   Process</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to import extended type definitions from a json or xml file that was created with Export-PSTypeExtension.</maml:para>
+      <maml:para>Use this command to import extended type definitions from a JSON or XML file that was created with Export-PSTypeExtension.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Import-PSTypeExtension</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="fullname">
           <maml:name>Path</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>The name of the imported file. The extension must be .xml or .json.</maml:para>
-          </maml:Description>
+          </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
@@ -835,9 +892,9 @@ __NounName     Noteproperty   Process</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
           <maml:name>Confirm</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -846,9 +903,9 @@ __NounName     Noteproperty   Process</dev:code>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
           <maml:name>WhatIf</maml:name>
-          <maml:Description>
+          <maml:description>
             <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-          </maml:Description>
+          </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
@@ -860,9 +917,9 @@ __NounName     Noteproperty   Process</dev:code>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="fullname">
         <maml:name>Path</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>The name of the imported file. The extension must be .xml or .json.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
@@ -872,9 +929,9 @@ __NounName     Noteproperty   Process</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
         <maml:name>Confirm</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -884,9 +941,9 @@ __NounName     Noteproperty   Process</dev:code>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
         <maml:name>WhatIf</maml:name>
-        <maml:Description>
+        <maml:description>
           <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
-        </maml:Description>
+        </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -917,7 +974,7 @@ __NounName     Noteproperty   Process</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell:  http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -925,14 +982,14 @@ __NounName     Noteproperty   Process</dev:code>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Import-PSTypeExtension -Path C:\work\stringtypes.json</dev:code>
         <dev:remarks>
-          <maml:para>Import definitions from a json file.</maml:para>
+          <maml:para>Import definitions from a JSON file.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; dir c:\scripts\mytypes | Import-PSTypeExtension</dev:code>
         <dev:remarks>
-          <maml:para>Import definitions from files in C:\Scripts\MyTypes. Presumably, these are xml or json files created with Export-PSTypeExtension.</maml:para>
+          <maml:para>Import definitions from files in C:\Scripts\MyTypes. Presumably, these are XML or JSON files created with Export-PSTypeExtension.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -951,6 +1008,350 @@ __NounName     Noteproperty   Process</dev:code>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSTypeExtension</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-PSPropertySet</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>PSPropertySet</command:noun>
+      <maml:description>
+        <maml:para>Create a new property set ps1xml file.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>PowerShell has a concept of property sets. A property set allows you to reference a collection of properties with a single name. Property set definitions have to be stored in a .ps1xml file. This command will create the file for you. You also have the option to append to an existing file.</maml:para>
+      <maml:para>Use Update-TypeData to append the file. If you import your file more than once in the same session, you might see a warning about existing property names. Existing entries won't be overwritten.</maml:para>
+      <maml:para>Property set updates are not persistent. You will need to import your ps1xml, ideally in your PowerShell profile script.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-PSPropertySet</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Typename</maml:name>
+          <maml:description>
+            <maml:para>Enter the object typename. This is the value you would see in Get-Member.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Append</maml:name>
+          <maml:description>
+            <maml:para>Append to an existing file.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FilePath</maml:name>
+          <maml:description>
+            <maml:para>Enter the name of the .ps1xml file to create. It must have a .ps1xml file extension and ideally should take the format &lt;typename&gt;.types.ps1xml.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>Enter the new property set name. It should be alphanumeric.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Properties</maml:name>
+          <maml:description>
+            <maml:para>Enter the existing property names or aliases to belong to this property set. If using aliases, they must be defined in your PowerShell session before you can use the custom property set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-PSPropertySet</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Typename</maml:name>
+          <maml:description>
+            <maml:para>Enter the object typename. This is the value you would see in Get-Member.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FilePath</maml:name>
+          <maml:description>
+            <maml:para>Enter the name of the .ps1xml file to create. It must have a .ps1xml file extension and ideally should take the format &lt;typename&gt;.types.ps1xml.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>Enter the new property set name. It should be alphanumeric.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoClobber</maml:name>
+          <maml:description>
+            <maml:para>Don't overwrite an existing file.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Properties</maml:name>
+          <maml:description>
+            <maml:para>Enter the existing property names or aliases to belong to this property set. If using aliases, they must be defined in your PowerShell session before you can use the custom property set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Append</maml:name>
+        <maml:description>
+          <maml:para>Append to an existing file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>FilePath</maml:name>
+        <maml:description>
+          <maml:para>Enter the name of the .ps1xml file to create. It must have a .ps1xml file extension and ideally should take the format &lt;typename&gt;.types.ps1xml.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>Enter the new property set name. It should be alphanumeric.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoClobber</maml:name>
+        <maml:description>
+          <maml:para>Don't overwrite an existing file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Properties</maml:name>
+        <maml:description>
+          <maml:para>Enter the existing property names or aliases to belong to this property set. If using aliases, they must be defined in your PowerShell session before you can use the custom property set.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Typename</maml:name>
+        <maml:description>
+          <maml:para>Enter the object typename. This is the value you would see in Get-Member.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.IO.FileInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myfileinfo.types.ps1xml
+PS C:\&gt; Update-TypeData C:\work\myfileinfo.types.ps1xml
+PS C:\&gt; dir c:\work -file | select info
+
+FullName                     IsReadOnly CreationTime           LastWriteTime
+--------                     ---------- ------------           -------------
+C:\work\a.csv                False 12/1/2020 11:30:55 AM  12/1/2020 11:30:55 AM
+C:\work\a.dat                False 2/12/2021 5:36:55 PM   2/12/2021 5:36:55 PM
+C:\work\a.md                 False 11/6/2020 9:50:19 AM   12/1/2020 12:40:03 PM
+C:\work\a.txt                False 12/31/2020 9:10:15 AM  12/31/2020 9:10:15 AM
+C:\work\a.xml                False 12/31/2020 12:15:44 PM 12/31/2020 12:15:44 PM
+C:\work\aa.ps1               False 12/31/2020 9:13:16 AM  12/31/2020 9:13:16 AM
+C:\work\aa.txt               False 12/31/2020 9:11:18 AM  12/31/2020 9:11:18 AM
+...</dev:code>
+        <dev:remarks>
+          <maml:para>The first command creates the property set definition file. The second command loads it into PowerShell. The last command uses the custom property set.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/jdhitsolutions/PSTypeExtensionTools/blob/master/docs/New-PSPropertySet.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Update-TypeData</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Add-PSTypeExtension</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
