@@ -294,10 +294,10 @@ Count   SumGB
 
 This project was first described at <http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions>
 
-There is also an about topic you can read:
+There is an about help topic you can read:
 
 ```powershell
 help about_PSTypeExtensionTools
 ```
 
-Last Updated 22021-03-09 20:48:48Z
+Last Updated 2021-03-09 21:03:55Z
