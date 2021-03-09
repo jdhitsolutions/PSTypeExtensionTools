@@ -1,5 +1,12 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.7.1
+
++ Fixed bug in `New-PSPropertySet` that failed to correct typename case.  ([Issue #19](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/19))
++ Updated online help link for `New-PSPropertySet`.
++ Added sample file `process.types.ps1xml`.
++ Updated `README.md`.
+
 ## v1.7.0
 
 + Added `services.types.ps1xml` to samples folder.

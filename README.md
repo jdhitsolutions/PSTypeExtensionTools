@@ -155,6 +155,97 @@ The `Export-PSTypeExtension` command will also export extensions to a properly f
 
 When exporting to .ps1xml file, `Export-PSTypeExtension` has a dynamic parameter, `Append`. This allows you to combine multiple type extensions into a single file. If you intend to use a property set, create that file first. Then append your custom type extensions to that file.
 
+Here's how this might look.
+
+First, create a property set file.
+
+```powershell
+New-PSPropertySet -Typename system.io.fileinfo -Name TimeSet -Properties "Name","Length","CreationTime","LastWriteTime" -FilePath c:\work\file.types.ps1xml
+```
+
+I'll define a few type extensions.
+
+```powershell
+Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -Value Length
+Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType ScriptProperty -MemberName ModifiedAge -Value {New-TimeSpan -Start $this.lastwritetime -End (Get-Date)}
+```
+
+I'll even add a second property set to the same file using these new extensions.
+
+```powershell
+Export-PSTypeExtension -TypeName system.io.fileinfo -MemberName Size,ModifiedAge -Path c:\work\file.types.ps1xml -append
+```
+
+I'll end up with this file:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file was created with New-PSPropertySet from the
+PSTypeExtensionTools module which you can install from
+the PowerShell Gallery.
+
+Use Update-TypeData to append this file in your PowerShell session.
+
+Created 03/09/2021 15:27:56
+-->
+<Types>
+  <Type>
+    <Name>System.IO.FileInfo</Name>
+    <Members>
+      <PropertySet>
+        <Name>TimeSet</Name>
+        <ReferencedProperties>
+          <Name>Name</Name>
+          <Name>Length</Name>
+          <Name>CreationTime</Name>
+          <Name>LastWriteTime</Name>
+        </ReferencedProperties>
+      </PropertySet>
+      <PropertySet>
+        <Name>Age</Name>
+        <ReferencedProperties>
+          <Name>Name</Name>
+          <Name>Size</Name>
+          <Name>LastWriteTime</Name>
+          <Name>ModifiedAge</Name>
+        </ReferencedProperties>
+      </PropertySet>
+      <AliasProperty>
+        <Name>Size</Name>
+        <ReferencedMemberName>Length</ReferencedMemberName>
+      </AliasProperty>
+      <ScriptProperty>
+        <Name>ModifiedAge</Name>
+        <GetScriptBlock>New-TimeSpan -Start $this.lastwritetime -End (Get-Date)</GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+</Types>
+```
+
+In PowerShell, I can load this file and use it.
+
+```powershell
+PS C:\> Update-Typedata c:\work\file.types.ps1xml
+PS C:\> dir c:\work\*.csv | Sort size -Descending | Select Age
+
+Name              Size LastWriteTime          ModifiedAge
+----              ---- -------------          -----------
+updates.csv    4021821 11/14/2020 9:00:48 AM  115.06:45:35.2595780
+part5.csv         7332 2/27/2021 6:10:11 PM   9.21:36:12.4672428
+ipperf.csv        5008 11/4/2020 11:36:20 AM  125.04:10:03.4641251
+localusers.csv    1480 2/27/2021 4:39:32 PM   9.23:06:51.7431393
+b.csv             1273 11/13/2020 12:11:35 PM 116.03:34:48.0298279
+foo.csv           1077 11/13/2020 12:40:04 PM 116.03:06:19.3069112
+y.csv              524 11/19/2020 2:11:44 PM  110.01:34:39.0826388
+yy.csv             524 12/1/2020 11:28:03 AM  98.04:18:20.7080948
+c.csv              334 11/13/2020 11:58:15 AM 116.03:48:08.3898463
+a.csv                0 12/1/2020 11:30:55 AM  98.04:15:27.9106911
+```
+
+I can put the `Update-TypeData` command in my PowerShell profile to always have these extensions. Or I could share the file.
+
 ## I Want to Try
 
 You can find sample and demonstration type extension exports in the [Samples](./samples) folder. When you import the module, this location is saved to a global variable, `$PSTypeSamples`.
@@ -209,4 +300,4 @@ There is also an about topic you can read:
 help about_PSTypeExtensionTools
 ```
 
-Last Updated 2021-03-09 16:42:02Z
+Last Updated 22021-03-09 20:48:48Z

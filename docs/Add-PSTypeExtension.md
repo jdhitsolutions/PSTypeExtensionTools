@@ -19,7 +19,7 @@ Add-PSTypeExtension [-TypeName] <String> -MemberType <String> -MemberName <Strin
 
 ## DESCRIPTION
 
-Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten, so you can also use this as a "Set" command.
+Use this command to define a new type extension for a given object type. Existing members with the same name will be overwritten, so you can also use this as a "Set" command.
 
 ## EXAMPLES
 

@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: https://github.com/jdhitsolutions/PSTypeExtensionTools/blob/master/docs/New-PSPropertySet.md
+online version: http://bit.ly/3rz1fHU
 schema: 2.0.0
 ---
 

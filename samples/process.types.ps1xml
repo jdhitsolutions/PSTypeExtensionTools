@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file was created with New-PSPropertySet from the
+PSTypeExtensionTools module which you can install from
+the PowerShell Gallery.
+
+Use Update-TypeData to append this file in your PowerShell session.
+
+Created 03/09/2021 15:56:03
+-->
+<Types>
+  <Type>
+    <Name>System.Diagnostics.Process</Name>
+    <Members>
+      <PropertySet>
+        <Name>PSRun</Name>
+        <ReferencedProperties>
+          <Name>ID</Name>
+          <Name>Name</Name>
+          <Name>WS</Name>
+          <Name>StartTime</Name>
+          <Name>RunTime</Name>
+        </ReferencedProperties>
+      </PropertySet>
+      <ScriptProperty>
+        <Name>RunTime</Name>
+        <GetScriptBlock>(Get-Date) - $this.starttime</GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+</Types>

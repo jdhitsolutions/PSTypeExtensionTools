@@ -583,6 +583,10 @@ Function New-PSPropertySet {
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+
+        #set typename to proper case
+        $TypeName = _convertTypeName $TypeName
+
         $settings = [System.Xml.XmlWriterSettings]::new()
         $settings.Indent = $True
 
