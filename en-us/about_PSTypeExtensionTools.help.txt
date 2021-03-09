@@ -90,8 +90,13 @@ LONG DESCRIPTION
     The Export-PSTypeExtension command will also export extensions to a
     properly formatted .ps1xml file. This can be useful when building type
     extension files for a module where you want to use the traditional ps1xml
-    form. You can also import these types of files with Update-TypeData with the
-    -AppendPath or -PrependPath parameters.
+    form. You can also import these types of files with Update-TypeData with
+    the -AppendPath or -PrependPath parameters.
+
+    When exporting to .ps1xml file, Export-PSTypeExtension has a dynamic
+    parameter, Append. Tis allows you to combine multiple type extensions into
+    a single file. If you intend to use a property set, create that file first.
+    Then append your custom type extensions to that file.
 
 NOTE
     PowerShell type extensions only last for the duration of your PowerShell

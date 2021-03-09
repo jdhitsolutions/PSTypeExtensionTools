@@ -262,7 +262,8 @@ True</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>This command can be used in 2 ways. First, you can export custom type information to a JSON or XML file to make it easier to recreate them in another PowerShell session. Or you can export the type extensions to a properly formatted ps1xml file which you can use with Update-TypeData. The command will create the appropriate file based on the extension in the specified path.</maml:para>
+      <maml:para>You can use this command in two ways. First, you can export custom type information to a JSON or XML file to import in another PowerShell session using Import-PSTypeExtension. Or you can export the type extensions to a properly formatted ps1xml file, which you can import using Update-TypeData. Export-PSTypeExtension will create the appropriate file based on the extension in the specified path.</maml:para>
+      <maml:para>If you are exporting to a .ps1xml file, you can use a dynamic parameter called Append. You might want to do this if you have created a property set using New-PSPropertySet, and want to include additional type extensions in the same file.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -325,6 +326,28 @@ True</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Passthru</maml:name>
+          <maml:description>
+            <maml:para>Display the new file object.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Append</maml:name>
+          <maml:description>
+            <maml:para>If you are exporting to a .ps1xml file, you can append to it. You might want to do this if you have created a property set using New-PSPropertySet and want to export your type extensions to the same file. Or you might want to export all of your type extensions to a single .ps1xml file so that anyone can import it using Update-TypeData. See examples.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Export-PSTypeExtension</maml:name>
@@ -373,6 +396,28 @@ True</dev:code>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Passthru</maml:name>
+          <maml:description>
+            <maml:para>Display the new file object.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Append</maml:name>
+          <maml:description>
+            <maml:para>If you are exporting to a .ps1xml file, you can append to it. You might want to do this if you have created a property set using New-PSPropertySet and want to export your type extensions to the same file. Or you might want to export all of your type extensions to a single .ps1xml file so that anyone can import it using Update-TypeData. See examples.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -449,6 +494,30 @@ True</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Passthru</maml:name>
+        <maml:description>
+          <maml:para>Display the new file object.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Append</maml:name>
+        <maml:description>
+          <maml:para>If you are exporting to a .ps1xml file, you can append to it. You might want to do this if you have created a property set using New-PSPropertySet and want to export your type extensions to the same file. Or you might want to export all of your type extensions to a single .ps1xml file so that anyone can import it using Update-TypeData. See examples.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -464,6 +533,14 @@ True</dev:code>
       <command:returnValue>
         <dev:type>
           <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Sytstem.IO.File</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -492,9 +569,27 @@ True</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -members "IsIpAddress","Size","Randomize" | Export-PSTypeExtension -path c:\work\mystring.type.ps1xml</dev:code>
+        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -members "IsIpAddress","Size","Randomize" | Export-PSTypeExtension -path c:\work\mystring.type.ps1xml -passthru
+
+    Directory: C:\work
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          3/9/2021  11:15 AM            858 mystring.type.ps1xml</dev:code>
         <dev:remarks>
-          <maml:para>Export the selected members to a properly formatted ps1xml file.</maml:para>
+          <maml:para>Export the selected members to a ps1xml file and pass the file object to the pipeline.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+        <dev:code>PS C:\work&gt; Get-PSTypeExtension system.string |
+Export-PSTypeExtension -Path .\all.ps1xml
+PS C:\work&gt; Get-PSTypeExtension system.io.fileinfo |
+Export-PSTypeExtension -Path .\all.ps1xml -append
+PS C:\work&gt;  Get-PSTypeExtension system.serviceprocess.servicecontroller -Members State | Export-PSTypeExtension -Path .\all.ps1xml -append</dev:code>
+        <dev:remarks>
+          <maml:para>Export multiple type extensions to the same .ps1xml file. You can use Update-TypeData to load this file in another PowerShell session. Although, you might see errors if there is an existing type extension with the same name.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -1003,11 +1098,11 @@ SizeMB              ScriptProperty</dev:code>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>Update-TypeData</maml:linkText>
+        <maml:linkText>Get-PSTypeExtension</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>Get-PSTypeExtension</maml:linkText>
+        <maml:linkText>Update-TypeData</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

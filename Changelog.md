@@ -1,5 +1,16 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.7.0
+
++ Added `services.types.ps1xml` to samples folder.
++ Updated `README.md`.
++ Updates `README.md` in Samples folder.
++ Changed statements using `Out-Null` to use `[void]`.
++ Modified `Export-PSTypeExtension` to support appending in a very specific use-case. ([Issue #16](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/16))
++ Added a private function, `_convertTypeName` to convert typename values to properly cased names.
++ Modified `Export-PSTypeExtension` to add a `-Passthru` parameter. ([Issue #18](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/18))
++ Updated help.
+
 ## v1.6.0
 
 + Re-organized module structure.
@@ -8,7 +19,6 @@
 + Modified `Get-PSTypeExtension` to display results sorted by member type and name.
 
 ## v1.5.1
-
 
 + Fixed error in exporting aliases.
 + Updated license file.

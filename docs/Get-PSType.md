@@ -104,8 +104,8 @@ http://jdhitsolutions.com/blog/essential-powershell-resources/
 
 ## RELATED LINKS
 
-[Get-PSTypeExtension]()
+[Get-PSTypeExtension](Get-PSTypeExtension.md)
 
-[Add-PSTypeExtension]()
+[Add-PSTypeExtension](Add-PSTypeExtension.md)
 
 [Get-TypeData]()

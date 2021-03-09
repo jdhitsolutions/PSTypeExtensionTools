@@ -108,8 +108,8 @@ Learn more about PowerShell:
 
 ## RELATED LINKS
 
-[Export-PSTypeExtension]()
+[Export-PSTypeExtension](Export-PSTypeExtension.md)
+
+[Get-PSTypeExtension](Get-PSTypeExtension.md)
 
 [Update-TypeData]()
-
-[Get-PSTypeExtension]()
