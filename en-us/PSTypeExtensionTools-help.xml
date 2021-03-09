@@ -10,7 +10,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Use this command to easily define a new type extension for a given object type. Existing members with the same name will be overwritten, so you can also use this as a "Set" command.</maml:para>
+      <maml:para>Use this command to define a new type extension for a given object type. Existing members with the same name will be overwritten, so you can also use this as a "Set" command.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1439,7 +1439,7 @@ C:\work\aa.txt               False 12/31/2020 9:11:18 AM  12/31/2020 9:11:18 AM
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/jdhitsolutions/PSTypeExtensionTools/blob/master/docs/New-PSPropertySet.md</maml:uri>
+        <maml:uri>http://bit.ly/3rz1fHU</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Update-TypeData</maml:linkText>
