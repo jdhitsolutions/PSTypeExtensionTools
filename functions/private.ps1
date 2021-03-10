@@ -6,7 +6,6 @@ Function _convertTypeName {
         ($Typename -as [type]).fullname
     }
     Catch {
-        $Typename
+       $typename
     }
-
 }

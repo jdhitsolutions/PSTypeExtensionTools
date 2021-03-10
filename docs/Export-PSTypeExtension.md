@@ -16,14 +16,13 @@ Export type extensions to a file.
 ### Object (Default)
 
 ```yaml
-Export-PSTypeExtension -Path <String> [-InputObject <Object>] [-Passthru] [Append] [-WhatIf] [-Confirm] [<CommonParameters>]
+Export-PSTypeExtension -Path <String> [-InputObject <Object>] [-Force] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Name
 
 ```yaml
-Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]>
--Path <String> [-Passthru] [Append] [-WhatIf] [-Confirm] [<CommonParameters>]
+Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]> -Path <String> [-Force] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -191,9 +190,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Append
+### -Force
 
-If you are exporting to a .ps1xml file, you can append to it. You might want to do this if you have created a property set using New-PSPropertySet and want to export your type extensions to the same file. Or you might want to export all of your type extensions to a single .ps1xml file so that anyone can import it using Update-TypeData. See examples.
+Force the command to accept the name as a type.
 
 ```yaml
 Type: SwitchParameter
@@ -208,7 +207,6 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

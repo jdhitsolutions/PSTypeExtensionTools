@@ -17,7 +17,7 @@ Install-Module PSTypeExtensionTools
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module, you could run a PowerShell command like this:
 
 ```powershell
-123 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot -Value { [math]::Sqrt($this)}
+123 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot -Value {[math]::Sqrt($this)}
 ```
 
 Use `$this` to reference the object instead of `$_`.  Now you can get the new property.
@@ -54,6 +54,26 @@ PS C:\> $x.GetPercent(100)
 PS C:\> $x.GetPercent(110,4)
 34.5455
 ```
+
+### Go GUI
+
+As an alternative to the command-line, you can use the native `Show-Command` cmdlet to display a graphical interface.
+
+```powershell
+Show-Command Add-PSTypeExtension
+```
+
+![Add via GUI](images/show-add.png)
+
+Clicking Run will insert this code at your prompt.
+
+```powershell
+Add-PSTypeExtension -MemberName ToTitleCase -MemberType ScriptMethod -TypeName System.String -Value { (Get-Culture).TextInfo.ToTitleCase($this.tolower())}
+```
+
+If you like this extension, you can export it and re-import it later.
+
+## Get Type Extensions
 
 To see current type extensions, you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name. CodeProperty extensions are hidden by default.
 
@@ -300,4 +320,4 @@ There is an about help topic you can read:
 help about_PSTypeExtensionTools
 ```
 
-Last Updated 2021-03-09 21:03:55Z
+Last Updated 2021-03-10 21:49:24Z

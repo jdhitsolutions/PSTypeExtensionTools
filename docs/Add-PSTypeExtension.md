@@ -50,6 +50,14 @@ PS C:\ Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasPropert
 
 Create an alias called Size using the Length property on file objects. This expression will also create it for the deserialized version of the type so that you can use it with remoting results.
 
+### EXAMPLE 4
+
+```powershell
+PS C:\> Show-Command Add-PSTypeExtension
+```
+
+Here is an easy way to get a GUI to create a new type extension.
+
 ## PARAMETERS
 
 ### -MemberName

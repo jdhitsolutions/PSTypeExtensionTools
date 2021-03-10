@@ -1,8 +1,14 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.8.0
+
++ Fixed bugs in `Get-PSTypeExtension` and `Export-PSTypeExtension` where I needed to let the user force recognizing a type name. ([Issue #20](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/20))
++ Help updates.
++ Updated `README.md`.
+
 ## v1.7.1
 
-+ Fixed bug in `New-PSPropertySet` that failed to correct typename case.  ([Issue #19](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/19))
++ Fixed bug in `New-PSPropertySet` that failed to correct typename case. ([Issue #19](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/19))
 + Updated online help link for `New-PSPropertySet`.
 + Added sample file `process.types.ps1xml`.
 + Updated `README.md`.

@@ -11,19 +11,6 @@ Function Get-PSTypeExtension {
             ValueFromPipeline
         )]
         [ValidateNotNullorEmpty()]
-        [ValidateScript( {
-                #check if typename can be found with Get-TypeData
-                if ((Get-TypeData).typename -contains "$_") {
-                    $True
-                }
-                elseif ($_ -as [type]) {
-                    #test if string resolves as a typename
-                    $True
-                }
-                else {
-                    Throw "$_ does not appear to be a valid type."
-                }
-            })]
         [string]$TypeName,
         [Parameter(
             HelpMessage = "Enter a comma separated list of member names",
@@ -31,23 +18,41 @@ Function Get-PSTypeExtension {
         )]
         [string[]]$Members,
         [Parameter(HelpMessage = "Show CodeProperty custom properties")]
-        [switch]$CodeProperty
+        [switch]$CodeProperty,
+        [parameter(HelpMessage="Force the command to accept the name as a type.")]
+        [switch]$Force
     )
 
     Begin {
         Write-Verbose "Starting: $($MyInvocation.Mycommand)"
         $typedata = @()
-        $TypeName=_convertTypeName $TypeName
+
     } #begin
     Process {
+        if ($force) {
+            Write-Verbose "Using typename AS-IS."
+        }
+        else {
+            $TypeName=_convertTypeName $TypeName
+        }
+
         Write-Verbose "Analyzing $typename"
-        $typedata += Get-TypeData -TypeName $typename
+        if ($TypeName) {
+            Write-Verbose "Getting type data"
+            $typedata += Get-TypeData -TypeName $typename
+        }
+        else {
+            Write-Warning "Failed to get a typename"
+            #bail out
+            $typedata = $False
+            return
+        }
 
     } #process
     End {
-        $typedata = $typedata | Select-Object -Unique
 
         if ($typedata) {
+            $typedata = $typedata | Select-Object -Unique
             $out = [System.Collections.Generic.List[object]]::new()
             if (-Not $Members) {
                 Write-Verbose "Getting all member names"
@@ -214,6 +219,9 @@ Function Export-PSTypeExtension {
         [Parameter(ParameterSetName = "Object", ValueFromPipeline)]
         [object]$InputObject,
 
+        [parameter(HelpMessage="Force the command to accept the name as a type.")]
+        [switch]$Force,
+
         [switch]$Passthru
     )
     DynamicParam {
@@ -267,17 +275,28 @@ Function Export-PSTypeExtension {
 
         if ($TypeName) {
             #convert typename to a properly cased name
-            Write-Verbose "Converting $typename to properly cased type name."
-            $TypeName=_convertTypeName $TypeName
-        }
+            if ($force) {
+                Write-Verbose "Using typename $typename AS-IS."
+            }
+            else {
+                Write-Verbose "Converting $typename to properly cased type name."
+                $TypeName=_convertTypeName $TypeName
+            }
+       }
     }
     Process {
         #test if parent path exists
         If ($validPath) {
             if ($Inputobject) {
                 Write-Verbose "Processing input type: $($InputObject.TypeName)"
-                #convert the type name just in case
-                $typeName = _convertTypeName $InputObject.TypeName
+                if ($force) {
+                    Write-Verbose "Using typename AS-IS."
+                    $typename = $InputObject.typename
+                }
+                else {
+                    Write-Verbose "Converting $typename to properly cased type name."
+                    $TypeName=_convertTypeName $TypeName
+                }
                 $data.Add($InputObject)
             }
             else {
