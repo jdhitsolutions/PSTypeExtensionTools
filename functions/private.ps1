@@ -3,7 +3,15 @@ Function _convertTypeName {
     Param([string]$Typename)
 
     Try {
-        ($Typename -as [type]).fullname
+        #this code should never really throw an exception
+        $ErrorActionPreference = "Stop"
+        $tn = $Typename -as [type]
+        if ($tn) {
+            $tn.Fullname
+        }
+        else {
+            $Typename
+        }
     }
     Catch {
        $typename

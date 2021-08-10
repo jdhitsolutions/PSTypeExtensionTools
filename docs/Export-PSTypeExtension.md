@@ -16,13 +16,14 @@ Export type extensions to a file.
 ### Object (Default)
 
 ```yaml
-Export-PSTypeExtension -Path <String> [-InputObject <Object>] [-Force] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
+Export-PSTypeExtension -Path <String> [-InputObject <Object>] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Name
 
 ```yaml
-Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]> -Path <String> [-Force] [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
+Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]>
+-Path <String> [-Passthru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -190,23 +191,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Force
-
-Force the command to accept the name as a type.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

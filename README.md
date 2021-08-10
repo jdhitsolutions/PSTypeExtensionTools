@@ -22,7 +22,7 @@ Let's say you want to update a number object, but you have no idea what the type
 
 Use `$this` to reference the object instead of `$_`.  Now you can get the new property.
 
-```powershell
+```dos
 PS C:\> $x = 123
 PS C:\> $x.SquareRoot
 11.0905365064094
@@ -39,7 +39,7 @@ Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptMethod -MemberName 
 
 Here's how it might look:
 
-```powershell
+```dos
 PS C:\> $x = 38
 PS C:\> $x | select *
 
@@ -77,7 +77,7 @@ If you like this extension, you can export it and re-import it later.
 
 To see current type extensions, you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name. CodeProperty extensions are hidden by default.
 
-```powershell
+```dos
 PS C:\> Get-PSTypeExtension system.int32
 
    TypeName: System.Int32
@@ -94,7 +94,7 @@ GetPercent ScriptMethod   Param([int32]$Total,[int32]$Round=2) [math]::Round(($t
 If you always want these extensions, you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a JSON or XML file. You can either export all members or selected ones, which is helpful if you are extending a type that already has type extensions from PowerShell.
 
 ```powershell
-PS C:\> Get-PSTypeExtension system.int32 |
+Get-PSTypeExtension system.int32 |
 Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 ```
 
@@ -150,7 +150,7 @@ New-PSPropertySet -Typename System.IO.FileInfo -Name FileAge -Properties Name,Si
 
 I've included the file in the Samples folder.
 
-```powershell
+```dos
 PS C:\> Update-TypeData $PSTypeSamples\fileinfo.types.ps1xml
 PS C:\> dir c:\work -file | Select-Object fileage
 
@@ -320,4 +320,4 @@ There is an about help topic you can read:
 help about_PSTypeExtensionTools
 ```
 
-Last Updated 2021-03-10 21:49:24Z
+Last Updated 2021-08-10 22:10:21Z

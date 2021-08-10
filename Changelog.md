@@ -1,5 +1,12 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.9.0
+
++ Fixed bug in `New-PSPropertySet` that failed to recognize a custom type. ([Issue #21](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/21))
++ Re-organized module layout.
++ Help updates.
++ Updated `README.md`.
+
 ## v1.8.0
 
 + Fixed bugs in `Get-PSTypeExtension` and `Export-PSTypeExtension` where I needed to let the user force recognizing a type name. ([Issue #20](https://github.com/jdhitsolutions/PSTypeExtensionTools/issues/20))

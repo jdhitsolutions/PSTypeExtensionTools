@@ -14,12 +14,12 @@ Get selected type extensions.
 ## SYNTAX
 
 ```yaml
-Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [-CodeProperty] [-Force] [<CommonParameters>]
+Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [-CodeProperty]  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData, except that it makes it easier to see the extension value. If you are specifying a custom type name, you may need to use -Force for the command to accept it as written.
+Use this command to list defined type extensions. You can either select individual ones or all of them. Do not specify any members to retrieve all of them. This command is very similar to Get-TypeData, except that it makes it easier to see the extension value.
 
 By default, CodeProperty members are not displayed because they can't be exported.
 
@@ -149,22 +149,6 @@ Accept wildcard characters: False
 ### -CodeProperty
 
 Show CodeProperty custom properties
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Force
-
-Force the command to accept the name as a type.
 
 ```yaml
 Type: SwitchParameter
