@@ -2,7 +2,7 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSTypeExtensionTools.png?style=for-the-badge&logo=powershell&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSTypeExtensionTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/)
 
-This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871). This module should work in Windows PowerShell and PowerShell 7.x.
+This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871). This module should work in Windows PowerShell 5.1 and PowerShell 7.x.
 
 ## Release
 
@@ -20,7 +20,7 @@ Let's say you want to update a number object, but you have no idea what the type
 123 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName SquareRoot -Value {[math]::Sqrt($this)}
 ```
 
-Use `$this` to reference the object instead of `$_`.  Now you can get the new property.
+Use `$this` to reference the object instead of `$_`. Now you can get the new property.
 
 ```dos
 PS C:\> $x = 123
@@ -248,7 +248,7 @@ In PowerShell, I can load this file and use it.
 
 ```powershell
 PS C:\> Update-Typedata c:\work\file.types.ps1xml
-PS C:\> dir c:\work\*.csv | Sort size -Descending | Select Age
+PS C:\> Get-Childitem -path c:\work\*.csv | Sort-Object -property size -Descending | Select Age
 
 Name              Size LastWriteTime          ModifiedAge
 ----              ---- -------------          -----------
@@ -271,7 +271,7 @@ I can put the `Update-TypeData` command in my PowerShell profile to always have 
 You can find sample and demonstration type extension exports in the [Samples](./samples) folder. When you import the module, this location is saved to a global variable, `$PSTypeSamples`.
 
 ```powershell
-PS C:\> dir $PSTypeSamples
+PS C:\> Get-ChildItem $PSTypeSamples
 
 
     Directory: C:\scripts\PSTypeExtensionTools\samples
@@ -304,7 +304,7 @@ VERBOSE: Creating scriptblock from value
 VERBOSE: Performing the operation "Adding ScriptProperty SumGB" on target "Microsoft.PowerShell.Commands.GenericMeasureInfo".
 VERBOSE: Ending: Import-PSTypeExtension
 
-PS C:\> dir D:\VMDisks\ -file -recurse | measure length -sum |
+PS C:\> Get-ChildItem D:\VMDisks\ -file -recurse | Measure-Object -property length -sum |
 select Count,SumGB
 
 Count   SumGB
@@ -319,5 +319,3 @@ There is an about help topic you can read:
 ```powershell
 help about_PSTypeExtensionTools
 ```
-
-Last Updated 2021-08-10 22:10:21Z
