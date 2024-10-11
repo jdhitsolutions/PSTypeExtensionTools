@@ -1,110 +1,109 @@
 Function Get-PSTypeExtension {
-    [cmdletbinding()]
-    [outputtype("PSTypeExtension")]
+    [CmdletBinding()]
+    [OutputType('PSTypeExtension')]
     Param(
         [Parameter(
             Position = 0,
             Mandatory,
-            HelpMessage = "Enter the name of type like System.IO.FileInfo",
+            HelpMessage = 'Enter the name of type like System.IO.FileInfo',
             ValueFromPipelineByPropertyName,
             ValueFromPipeline
         )]
-        [ValidateNotNullorEmpty()]
-        [string]$TypeName,
+        [ValidateNotNullOrEmpty()]
+        [String]$TypeName,
         [Parameter(
-            HelpMessage = "Enter a comma separated list of member names",
-            ParameterSetName = "members"
+            HelpMessage = 'Enter a comma separated list of member names',
+            ParameterSetName = 'members'
         )]
         [string[]]$Members,
-        [Parameter(HelpMessage = "Show CodeProperty custom properties")]
-        [switch]$CodeProperty
-
+        [Parameter(HelpMessage = 'Show CodeProperty custom properties')]
+        [Switch]$CodeProperty
     )
 
     Begin {
-        Write-Verbose "Starting: $($MyInvocation.Mycommand)"
-        $typedata = @()
+        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
+        $TypeData = @()
 
     } #begin
     Process {
 
-        Write-Verbose "Converting typename to proper type"
+        Write-Verbose 'Converting TypeName to proper type'
         $TypeName = _convertTypeName $TypeName
 
 
-        Write-Verbose "Analyzing $typename"
+        Write-Verbose "Analyzing $TypeName"
         if ($TypeName) {
-            Write-Verbose "Getting type data"
-            $typedata += Get-TypeData -TypeName $typename
+            Write-Verbose 'Getting type data'
+            $TypeData += Get-TypeData -TypeName $TypeName
         }
         else {
-            Write-Warning "Failed to get a typename"
+            Write-Warning 'Failed to get a TypeName'
             #bail out
-            $typedata = $False
+            $TypeData = $False
             return
         }
 
     } #process
     End {
 
-        if ($typedata) {
-            $typedata = $typedata | Select-Object -Unique
+        if ($TypeData) {
+            $TypeData = $TypeData | Select-Object -Unique
             $out = [System.Collections.Generic.List[object]]::new()
             if (-Not $Members) {
-                Write-Verbose "Getting all member names"
-                $Members = $typedata.members.keys
+                Write-Verbose 'Getting all member names'
+                $Members = $TypeData.members.keys
             }
             foreach ($name in $Members) {
                 Try {
                     Write-Verbose "Analyzing member $name"
-                    $member = $typedata.members[$name]
-                    $datatype = $member.gettype().name
+                    $member = $TypeData.members[$name]
+                    $datatype = $member.GetType().name
 
                     Write-Verbose "Processing type $datatype"
                     Switch ($datatype) {
-                        "AliasPropertyData" {
-                            $def = [pscustomobject]@{
-                                PSTypename = 'PSTypeExtension'
-                                MemberType = "AliasProperty"
+                        'AliasPropertyData' {
+                            $def = [PSCustomObject]@{
+                                PSTypeName = 'PSTypeExtension'
+                                MemberType = 'AliasProperty'
                                 MemberName = $member.name
                                 Value      = $member.ReferencedMemberName
-                                Typename   = $TypeName
+                                TypeName   = $TypeName
                             }
                         } #alias
-                        "ScriptpropertyData" {
+                        'ScriptPropertyData' {
                             if ($member.GetScriptBlock) {
                                 $code = $member.GetScriptBlock.ToString()
                             }
                             else {
                                 $code = $member.SetScriptBlock.ToString()
                             }
-                            $def = [pscustomobject]@{
-                                PSTypename = 'PSTypeExtension'
-                                MemberType = "ScriptProperty"
+                            $def = [PSCustomObject]@{
+                                PSTypeName = 'PSTypeExtension'
+                                MemberType = 'ScriptProperty'
                                 MemberName = $member.name
                                 Value      = $code
-                                Typename   = $TypeName
+                                TypeName   = $TypeName
                             }
                         } #scriptproperty
-                        "ScriptMethodData" {
-                            $def = [pscustomobject]@{
-                                PSTypename = 'PSTypeExtension'
-                                MemberType = "ScriptMethod"
+                        'ScriptMethodData' {
+                            $def = [PSCustomObject]@{
+                                PSTypeName = 'PSTypeExtension'
+                                MemberType = 'ScriptMethod'
                                 MemberName = $member.name
                                 Value      = $member.script.ToString().trim()
-                                Typename   = $TypeName
+                                TypeName   = $TypeName
                             }
                         } #scriptmethod
-                        "NotePropertyData" {
-                            $def = [pscustomobject]@{
-                                PSTypename = 'PSTypeExtension'
-                                MemberType = "Noteproperty"
+                        'NotePropertyData' {
+                            $def = [PSCustomObject]@{
+                                PSTypeName = 'PSTypeExtension'
+                                MemberType = 'NoteProperty'
                                 MemberName = $member.name
                                 Value      = $member.Value
-                                Typename   = $TypeName
+                                TypeName   = $TypeName
                             }
-                        } #noteproperty
-                        "CodePropertyData" {
+                        } #NoteProperty
+                        'CodePropertyData' {
                             #only show these if requested with -CodeProperty
                             if ($CodeProperty) {
                                 if ($member.GetCodeReference) {
@@ -113,12 +112,12 @@ Function Get-PSTypeExtension {
                                 else {
                                     $code = $member.SetCodeReference.ToString()
                                 }
-                                $def = [pscustomobject]@{
-                                    PSTypename = 'PSTypeExtension'
-                                    MemberType = "CodeProperty"
+                                $def = [PSCustomObject]@{
+                                    PSTypeName = 'PSTypeExtension'
+                                    MemberType = 'CodeProperty'
                                     MemberName = $member.name
                                     Value      = $code
-                                    Typename   = $TypeName
+                                    TypeName   = $TypeName
                                 }
                             }
                             else {
@@ -126,13 +125,13 @@ Function Get-PSTypeExtension {
                             }
                         } #codeproperty
                         Default {
-                            Write-Warning "Cannot process $datatype type for $($typedata.typename)."
-                            $def = [pscustomobject]@{
-                                PSTypename = 'PSTypeExtension'
+                            Write-Warning "Cannot process $datatype type for $($TypeData.TypeName)."
+                            $def = [PSCustomObject]@{
+                                PSTypeName = 'PSTypeExtension'
                                 MemberType = $datatype
                                 MemberName = $member.name
                                 Value      = $member.Value
-                                Typename   = $TypeName
+                                TypeName   = $TypeName
                             }
                         }
                     }
@@ -151,9 +150,9 @@ Function Get-PSTypeExtension {
             $out | Sort-Object -Property MemberType, Name
         }
         else {
-            Write-Warning "Failed to find any type extensions for [$Typename]."
+            Write-Warning "Failed to find any type extensions for [$TypeName]."
         }
-        Write-Verbose "Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
     }
 
 } #end Get-PSTypeExtension

@@ -45,7 +45,7 @@ Define a script property called IsIPAddress which will return True if the string
 ### EXAMPLE 3
 
 ```powershell
-PS C:\ Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized
+PS C:\ Add-PSTypeExtension -TypeName System.IO.FileInfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized
 ```
 
 Create an alias called Size using the Length property on file objects. This expression will also create it for the deserialized version of the type so that you can use it with remoting results.

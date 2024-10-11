@@ -1,26 +1,26 @@
 Function Get-PSType {
-    [cmdletbinding()]
-    [outputtype("System.String")]
+    [CmdletBinding()]
+    [OutputType("System.String")]
     Param(
         [Parameter(
             Position = 0,
             Mandatory,
             ValueFromPipeline
         )]
-        [object]$Inputobject
+        [object]$InputObject
     )
 
     Begin {
-        Write-Verbose "Starting: $($MyInvocation.Mycommand)"
+        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
         $data = @()
     }
     Process {
         #get the type of each pipelined object
-        $data += ($Inputobject | Get-Member | Select-Object -First 1).typename
+        $data += ($InputObject | Get-Member | Select-Object -First 1).TypeName
     }
     End {
         #write unique values to the pipeline
         $data | Get-Unique
-        Write-Verbose "Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
     }
 } #end Get-PSType

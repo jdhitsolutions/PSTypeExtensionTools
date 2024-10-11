@@ -1,19 +1,19 @@
 Function _convertTypeName {
     [CmdletBinding()]
-    Param([string]$Typename)
+    Param([String]$TypeName)
 
     Try {
         #this code should never really throw an exception
         $ErrorActionPreference = "Stop"
-        $tn = $Typename -as [type]
+        $tn = $TypeName -as [type]
         if ($tn) {
-            $tn.Fullname
+            $tn.FullName
         }
         else {
-            $Typename
+            $TypeName
         }
     }
     Catch {
-       $typename
+       $TypeName
     }
 }

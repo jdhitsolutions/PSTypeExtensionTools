@@ -235,7 +235,7 @@ True</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\ Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized</dev:code>
+        <dev:code>PS C:\ Add-PSTypeExtension -TypeName System.IO.FileInfo -MemberType AliasProperty -MemberName Size -value Length -IncludeDeserialized</dev:code>
         <dev:remarks>
           <maml:para>Create an alias called Size using the Length property on file objects. This expression will also create it for the deserialized version of the type so that you can use it with remoting results.</maml:para>
         </dev:remarks>
@@ -558,7 +558,7 @@ Mode                 LastWriteTime         Length Name
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
         <dev:code>PS C:\work&gt; Get-PSTypeExtension system.string |
 Export-PSTypeExtension -Path .\all.ps1xml
-PS C:\work&gt; Get-PSTypeExtension system.io.fileinfo |
+PS C:\work&gt; Get-PSTypeExtension System.IO.FileInfo |
 Export-PSTypeExtension -Path .\all.ps1xml -append
 PS C:\work&gt;  Get-PSTypeExtension system.serviceprocess.servicecontroller -Members State | Export-PSTypeExtension -Path .\all.ps1xml -append</dev:code>
         <dev:remarks>
@@ -597,7 +597,7 @@ PS C:\work&gt;  Get-PSTypeExtension system.serviceprocess.servicecontroller -Mem
       <command:syntaxItem>
         <maml:name>Get-PSType</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Inputobject</maml:name>
+          <maml:name>InputObject</maml:name>
           <maml:description>
             <maml:para>Any object from PowerShell.</maml:para>
           </maml:description>
@@ -612,7 +612,7 @@ PS C:\work&gt;  Get-PSTypeExtension system.serviceprocess.servicecontroller -Mem
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Inputobject</maml:name>
+        <maml:name>InputObject</maml:name>
         <maml:description>
           <maml:para>Any object from PowerShell.</maml:para>
         </maml:description>
@@ -674,19 +674,19 @@ IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"</
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime}
-PS C:\&gt; get-vm | sort VMAge -descending | select Name,Creationtime,VMAge
+        <dev:code>PS C:\&gt; get-vm win10 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.CreationTime}
+PS C:\&gt; get-vm | sort VMAge -descending | select Name,CreationTime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
-UbuntuDesk 8/7/2020 1:53:47 PM   94.20:26:57.4237225
-CentOS     8/7/2020 3:43:50 PM   94.18:36:54.3394091
-DOM1       9/28/2020 9:31:34 AM  43.00:49:10.4396803
-SRV1       9/28/2020 9:31:50 AM  43.00:48:54.3284313
-SRV2       9/28/2020 9:32:01 AM  43.00:48:43.2135084
-SRV3       9/28/2020 9:32:11 AM  43.00:48:33.4681374
-WIN10      9/28/2020 9:32:21 AM  43.00:48:23.1610914
-Win10Ent   10/16/2020 9:30:46 AM 25.00:49:58.1206825</dev:code>
+UbuntuDesk 8/7/2023 1:53:47 PM   94.20:26:57.4237225
+CentOS     8/7/2023 3:43:50 PM   94.18:36:54.3394091
+DOM1       9/28/2023 9:31:34 AM  43.00:49:10.4396803
+SRV1       9/28/2023 9:31:50 AM  43.00:48:54.3284313
+SRV2       9/28/2023 9:32:01 AM  43.00:48:43.2135084
+SRV3       9/28/2023 9:32:11 AM  43.00:48:33.4681374
+WIN10      9/28/2023 9:32:21 AM  43.00:48:23.1610914
+Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <dev:remarks>
           <maml:para>Get the type for a Hyper-V Virtual Machine and add a new ScriptProperty, which can then be used in a PowerShell expression.</maml:para>
         </dev:remarks>
@@ -874,13 +874,13 @@ VM             AliasProperty  VirtualMemorySize64
 WS             AliasProperty  WorkingSet64
 PM             AliasProperty  PagedMemorySize64
 NPM            AliasProperty  NonpagedSystemMemorySize64
-Path           ScriptProperty $this.Mainmodule.FileName
-Company        ScriptProperty $this.Mainmodule.FileVersionInfo.CompanyName
+Path           ScriptProperty $this.MainModule.FileName
+Company        ScriptProperty $this.MainModule.FileVersionInfo.CompanyName
 CPU            ScriptProperty $this.TotalProcessorTime.TotalSeconds
-FileVersion    ScriptProperty $this.Mainmodule.FileVersionInfo.FileVersion
-ProductVersion ScriptProperty $this.Mainmodule.FileVersionInfo.ProductVersion
-Description    ScriptProperty $this.Mainmodule.FileVersionInfo.FileDescription
-Product        ScriptProperty $this.Mainmodule.FileVersionInfo.ProductName
+FileVersion    ScriptProperty $this.MainModule.FileVersionInfo.FileVersion
+ProductVersion ScriptProperty $this.MainModule.FileVersionInfo.ProductVersion
+Description    ScriptProperty $this.MainModule.FileVersionInfo.FileDescription
+Product        ScriptProperty $this.MainModule.FileVersionInfo.ProductName
 __NounName     Noteproperty   Process</dev:code>
         <dev:remarks>
           <maml:para>Discover type extensions for a given type of object.</maml:para>
@@ -888,8 +888,8 @@ __NounName     Noteproperty   Process</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt;  Get-PSTypeExtension system.io.fileinfo  -CodeProperty |
-Select-Object membername,membertype
+        <dev:code>PS C:\&gt;  Get-PSTypeExtension System.IO.FileInfo  -CodeProperty |
+Select-Object MemberName,MemberType
 
 MemberName          MemberType
 ----------          ----------
@@ -946,7 +946,7 @@ SizeMB              ScriptProperty</dev:code>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Import-PSTypeExtension</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="fullname">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="FullName">
           <maml:name>Path</maml:name>
           <maml:description>
             <maml:para>The name of the imported file. The extension must be .xml or .json.</maml:para>
@@ -983,7 +983,7 @@ SizeMB              ScriptProperty</dev:code>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="fullname">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="FullName">
         <maml:name>Path</maml:name>
         <maml:description>
           <maml:para>The name of the imported file. The extension must be .xml or .json.</maml:para>
@@ -1396,13 +1396,13 @@ PS C:\&gt; dir c:\work -file | select info
 
 FullName                     IsReadOnly CreationTime           LastWriteTime
 --------                     ---------- ------------           -------------
-C:\work\a.csv                False 12/1/2020 11:30:55 AM  12/1/2020 11:30:55 AM
-C:\work\a.dat                False 2/12/2021 5:36:55 PM   2/12/2021 5:36:55 PM
-C:\work\a.md                 False 11/6/2020 9:50:19 AM   12/1/2020 12:40:03 PM
-C:\work\a.txt                False 12/31/2020 9:10:15 AM  12/31/2020 9:10:15 AM
-C:\work\a.xml                False 12/31/2020 12:15:44 PM 12/31/2020 12:15:44 PM
-C:\work\aa.ps1               False 12/31/2020 9:13:16 AM  12/31/2020 9:13:16 AM
-C:\work\aa.txt               False 12/31/2020 9:11:18 AM  12/31/2020 9:11:18 AM
+C:\work\a.csv                False 12/1/2023 11:30:55 AM  12/1/2023 11:30:55 AM
+C:\work\a.dat                False 2/12/2024 5:36:55 PM   2/12/2024 5:36:55 PM
+C:\work\a.md                 False 11/6/2023 9:50:19 AM   12/1/2023 12:40:03 PM
+C:\work\a.txt                False 12/31/2023 9:10:15 AM  12/31/2023 9:10:15 AM
+C:\work\a.xml                False 12/31/2023 12:15:44 PM 12/31/2023 12:15:44 PM
+C:\work\aa.ps1               False 12/31/2023 9:13:16 AM  12/31/2023 9:13:16 AM
+C:\work\aa.txt               False 12/31/2023 9:11:18 AM  12/31/2023 9:11:18 AM
 ...</dev:code>
         <dev:remarks>
           <maml:para>The first command creates the property set definition file. The second command loads it into PowerShell. The last command uses the custom property set.</maml:para>

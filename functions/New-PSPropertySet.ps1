@@ -1,27 +1,27 @@
 Function New-PSPropertySet {
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = "new")]
+    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "new")]
     Param(
-        [Parameter(Position = 0, Mandatory, HelpMessage = "Enter the object typename.")]
+        [Parameter(Position = 0, Mandatory, HelpMessage = "Enter the object TypeName.")]
         [ValidateNotNullOrEmpty()]
-        [string]$Typename,
+        [String]$TypeName,
         [Parameter(Mandatory, HelpMessage = "Enter the new property set name. It should be alphanumeric.")]
         [ValidatePattern("^\w+$")]
-        [string]$Name,
+        [String]$Name,
         [Parameter(Mandatory, HelpMessage = "Enter the existing property names or aliases to belong to this property set.")]
         [ValidateNotNullOrEmpty()]
         [string[]]$Properties,
         [Parameter(Mandatory, HelpMessage = "Enter the name of the .ps1xml file to create.")]
         [ValidatePattern("\.ps1xml$")]
-        [string]$FilePath,
+        [String]$FilePath,
         [Parameter(HelpMessage = "Append to an existing file.", ParameterSetName = "append")]
-        [switch]$Append,
+        [Switch]$Append,
         [Parameter(HelpMessage = "Don't overwrite an existing file.", ParameterSetName = "new")]
-        [switch]$NoClobber
+        [Switch]$NoClobber
     )
     Begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
 
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Set typename $typename to proper case"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Set TypeName $TypeName to proper case"
         $TypeName = _convertTypeName $TypeName
 
         $settings = [System.Xml.XmlWriterSettings]::new()
@@ -41,29 +41,29 @@ Created $(Get-Date)
     } #begin
 
     Process {
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Creating a property set called $Name for $Typename"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Creating a property set called $Name for $TypeName"
         #convert file path to a true file system path.
         $cPath = Join-Path -Path (Convert-Path (Split-Path $filepath)) -ChildPath (Split-Path $FilePath -Leaf)
         if ($Append -AND (-Not (Test-Path $FilePath))) {
             Write-Warning "Failed to find $Filepath for appending."
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Ending $($myinvocation.mycommand)"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Ending $($MyInvocation.MyCommand)"
             #bail out
             return
         }
         elseif ($Append) {
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Appending to $filepath"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Appending to $filepath"
             [xml]$doc = Get-Content $cPath
-            $members = $doc.types.SelectNodes("Type[Name='$typeName']").Members
+            $members = $doc.types.SelectNodes("Type[Name='$TypeName']").Members
 
             if ($members) {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Appending to existing typename entry"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Appending to existing TypeName entry"
             }
             else {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Creating a new typename entry"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Creating a new TypeName entry"
                 $newType = $doc.CreateNode("element", "Type", $null)
                 $tName = $doc.CreateElement("Name")
-                $tName.InnerText = $typename
-                [void]($newType.AppendChild($tname))
+                $tName.InnerText = $TypeName
+                [void]($newType.AppendChild($tName))
                 $members = $doc.CreateNode("element", "Members", $null)
                 $IsNewType = $True
             }
@@ -71,26 +71,26 @@ Created $(Get-Date)
             $propSet = $doc.CreateNode("element", "PropertySet", $null)
             $eName = $doc.CreateElement("Name")
             $eName.InnerText = $Name
-            [void]($propset.AppendChild($eName))
+            [void]($propSet.AppendChild($eName))
             $ref = $doc.CreateNode("element", "ReferencedProperties", $null)
             foreach ($item in $properties) {
                 $prop = $doc.CreateElement("Name")
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding property $item"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Adding property $item"
                 $prop.InnerText = $item
                 [void]($ref.AppendChild($prop))
             }
-            [void]($propset.AppendChild($ref))
-            [void]($members.AppendChild($propset))
+            [void]($propSet.AppendChild($ref))
+            [void]($members.AppendChild($propSet))
 
-            if ($IsnewType) {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Appending new type"
+            if ($IsNewType) {
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Appending new type"
                 [void]($newType.AppendChild($members))
-                [void]($doc.types.AppendChild($newtype))
+                [void]($doc.types.AppendChild($newType))
             }
 
         } #else append
         else {
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Creating a new XML document"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Creating a new XML document"
             <#
             use a random temp name to create the xml file. At the end of the process copy the temp file
             to the specified file path. This makes it possible to use -WhatIf
@@ -104,52 +104,52 @@ Created $(Get-Date)
             $doc.WriteStartElement("Types")
 
             $doc.WriteStartElement("Type")
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Defining type as $Typename"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Defining type as $TypeName"
             $doc.WriteElementString("Name", $TypeName)
 
             $doc.WriteStartElement("Members")
             $doc.WriteStartElement("PropertySet")
             #the property set name
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Defining property set name $Name"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Defining property set name $Name"
             $doc.WriteElementString("Name", $Name)
 
             $doc.WriteStartElement("ReferencedProperties")
             foreach ($item in $properties) {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding property $item"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Adding property $item"
                 $doc.WriteElementString("Name", $item)
             }
 
             #end type
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Closing and saving file."
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Closing and saving file."
             $doc.WriteEndElement()
             $doc.WriteEndDocument()
             $doc.Close()
             $doc.Dispose()
         }
 
-        if ($PSCmdlet.ShouldProcess($cpath)) {
+        if ($PSCmdlet.ShouldProcess($cPath)) {
             if ((-Not $Append) -AND (Test-Path $tmpFile)) {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Copying temp file to $cpath"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Copying temp file to $cPath"
 
-                if ($NoClobber -AND (Test-Path $cpath)) {
-                    Write-Warning "The file $cpath exists and NoClobber was specified."
+                if ($NoClobber -AND (Test-Path $cPath)) {
+                    Write-Warning "The file $cPath exists and NoClobber was specified."
                 }
                 else {
-                    Copy-Item -Path $tmpFile -Destination $cpath
+                    Copy-Item -Path $tmpFile -Destination $cPath
                 }
 
                 #always clean up the temp file
                 Remove-Item -Path $tmpFile -WhatIf:$false -ErrorAction SilentlyContinue
             }
             else {
-                Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Saving to $cpath"
-                $doc.Save($cpath)
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Saving to $cPath"
+                $doc.Save($cPath)
             }
         }
     } #process
 
     End {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
     } #end
 
 } #close New-PSPropertySet

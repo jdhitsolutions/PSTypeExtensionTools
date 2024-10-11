@@ -68,7 +68,7 @@ Show-Command Add-PSTypeExtension
 Clicking Run will insert this code at your prompt.
 
 ```powershell
-Add-PSTypeExtension -MemberName ToTitleCase -MemberType ScriptMethod -TypeName System.String -Value { (Get-Culture).TextInfo.ToTitleCase($this.tolower())}
+Add-PSTypeExtension -MemberName ToTitleCase -MemberType ScriptMethod -TypeName System.String -Value { (Get-Culture).TextInfo.ToTitleCase($this.ToLower())}
 ```
 
 If you like this extension, you can export it and re-import it later.
@@ -134,7 +134,7 @@ Let's say you have loaded the sample 'System.IO.FileInfo` type extensions from t
 
 ```powershell
 Import-PSTypeExtension -Path $PSTypeSamples\fileinfo-extensions.json
-```powershell
+```
 
 You could write a command like this:
 
@@ -145,25 +145,25 @@ dir c:\work -file | Select-Object Name,Size,LastWriteTime,Age
 Or you could create a custom property set. These have to be defined in `ps1xml` files. The `New-PSPropertySet` simplifies this process.
 
 ```powershell
-New-PSPropertySet -Typename System.IO.FileInfo -Name FileAge -Properties Name,Size,LastWriteTime,Age -FilePath d:\temp\Fileinfo.types.ps1xml
+New-PSPropertySet -Typename System.IO.FileInfo -Name FileAge -Properties Name,Size,LastWriteTime,Age -FilePath d:\temp\FileInfo.types.ps1xml
 ```
 
 I've included the file in the Samples folder.
 
 ```dos
-PS C:\> Update-TypeData $PSTypeSamples\fileinfo.types.ps1xml
-PS C:\> dir c:\work -file | Select-Object fileage
+PS C:\> Update-TypeData $PSTypeSamples\FileInfo.types.ps1xml
+PS C:\> dir c:\work -file | Select-Object FileAge
 
 Name                          Size    LastWriteTime            Age
 ----                          ---- -  -----------              ---
-a.dat                            42   2/12/2021 5:36:55 PM     23.17:27:21
-a.txt                         14346   12/31/2020 9:10:15 AM    67.01:54:00
-a.xml                        171394   12/31/2020 12:15:44 PM   66.22:48:32
-aa.ps1                        28866   12/31/2020 9:13:16 AM    67.01:51:00
-aa.txt                        28866   12/31/2020 9:11:18 AM    67.01:52:58
-about.json                    16455   2/27/2021 10:11:03 AM    09.00:53:12
-about_ADReportingTools         1688   3/4/2021 7:37:01 PM      03.15:27:14
-b.csv                          1273   11/13/2020 12:11:35 PM   114.22:52:40
+a.dat                            42   2/12/2024 5:36:55 PM     23.17:27:21
+a.txt                         14346   12/31/2023 9:10:15 AM    67.01:54:00
+a.xml                        171394   12/31/2023 12:15:44 PM   66.22:48:32
+aa.ps1                        28866   12/31/2023 9:13:16 AM    67.01:51:00
+aa.txt                        28866   12/31/2023 9:11:18 AM    67.01:52:58
+about.json                    16455   2/27/2024 10:11:03 AM    09.00:53:12
+about_ADReportingTools         1688   3/4/2024 7:37:01 PM      03.15:27:14
+b.csv                          1273   11/13/2023 12:11:35 PM   114.22:52:40
 ...
 ```
 
@@ -180,20 +180,20 @@ Here's how this might look.
 First, create a property set file.
 
 ```powershell
-New-PSPropertySet -Typename system.io.fileinfo -Name TimeSet -Properties "Name","Length","CreationTime","LastWriteTime" -FilePath c:\work\file.types.ps1xml
+New-PSPropertySet -Typename System.IO.FileInfo -Name TimeSet -Properties "Name","Length","CreationTime","LastWriteTime" -FilePath c:\work\file.types.ps1xml
 ```
 
 I'll define a few type extensions.
 
 ```powershell
-Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType AliasProperty -MemberName Size -Value Length
-Add-PSTypeExtension -TypeName system.io.fileinfo -MemberType ScriptProperty -MemberName ModifiedAge -Value {New-TimeSpan -Start $this.lastwritetime -End (Get-Date)}
+Add-PSTypeExtension -TypeName System.IO.FileInfo -MemberType AliasProperty -MemberName Size -Value Length
+Add-PSTypeExtension -TypeName System.IO.FileInfo -MemberType ScriptProperty -MemberName ModifiedAge -Value {New-TimeSpan -Start $this.LastWriteTime -End (Get-Date)}
 ```
 
 I'll even add a second property set to the same file using these new extensions.
 
 ```powershell
-Export-PSTypeExtension -TypeName system.io.fileinfo -MemberName Size,ModifiedAge -Path c:\work\file.types.ps1xml -append
+Export-PSTypeExtension -TypeName System.IO.FileInfo -MemberName Size,ModifiedAge -Path c:\work\file.types.ps1xml -append
 ```
 
 I'll end up with this file:
@@ -207,7 +207,7 @@ the PowerShell Gallery.
 
 Use Update-TypeData to append this file in your PowerShell session.
 
-Created 03/09/2021 15:27:56
+Created 03/09/2024 15:27:56
 -->
 <Types>
   <Type>
@@ -247,21 +247,22 @@ Created 03/09/2021 15:27:56
 In PowerShell, I can load this file and use it.
 
 ```powershell
-PS C:\> Update-Typedata c:\work\file.types.ps1xml
-PS C:\> Get-Childitem -path c:\work\*.csv | Sort-Object -property size -Descending | Select Age
+PS C:\> Update-TypeData c:\work\file.types.ps1xml
+PS C:\> Get-ChildItem -path c:\work\*.csv |
+Sort-Object -property size -Descending | Select Age
 
 Name              Size LastWriteTime          ModifiedAge
 ----              ---- -------------          -----------
-updates.csv    4021821 11/14/2020 9:00:48 AM  115.06:45:35.2595780
-part5.csv         7332 2/27/2021 6:10:11 PM   9.21:36:12.4672428
-ipperf.csv        5008 11/4/2020 11:36:20 AM  125.04:10:03.4641251
-localusers.csv    1480 2/27/2021 4:39:32 PM   9.23:06:51.7431393
-b.csv             1273 11/13/2020 12:11:35 PM 116.03:34:48.0298279
-foo.csv           1077 11/13/2020 12:40:04 PM 116.03:06:19.3069112
-y.csv              524 11/19/2020 2:11:44 PM  110.01:34:39.0826388
-yy.csv             524 12/1/2020 11:28:03 AM  98.04:18:20.7080948
-c.csv              334 11/13/2020 11:58:15 AM 116.03:48:08.3898463
-a.csv                0 12/1/2020 11:30:55 AM  98.04:15:27.9106911
+updates.csv    4021821 11/14/2023 9:00:48 AM  115.06:45:35.2595780
+part5.csv         7332 2/27/2024 6:10:11 PM   9.21:36:12.4672428
+ipperf.csv        5008 11/4/2023 11:36:20 AM  125.04:10:03.4641251
+localusers.csv    1480 2/27/2024 4:39:32 PM   9.23:06:51.7431393
+b.csv             1273 11/13/2023 12:11:35 PM 116.03:34:48.0298279
+foo.csv           1077 11/13/2023 12:40:04 PM 116.03:06:19.3069112
+y.csv              524 11/19/2023 2:11:44 PM  110.01:34:39.0826388
+yy.csv             524 12/1/2023 11:28:03 AM  98.04:18:20.7080948
+c.csv              334 11/13/2023 11:58:15 AM 116.03:48:08.3898463
+a.csv                0 12/1/2023 11:30:55 AM  98.04:15:27.9106911
 ```
 
 I can put the `Update-TypeData` command in my PowerShell profile to always have these extensions. Or I could share the file.
@@ -279,16 +280,16 @@ PS C:\> Get-ChildItem $PSTypeSamples
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
--a----       12/15/2017   2:25 PM            766 cimlogicaldisk-extensions.json
--a----        9/28/2018   9:48 AM            265 datetime-extensions.json
--a----       12/15/2017   5:09 PM            232 eventlog-type.json
--a----        2/18/2019   1:18 PM           1266 fileinfo-extensions.json
--a----       11/13/2017   8:37 AM            901 int32-types.json
--a----        11/1/2017   6:18 PM            653 measure-extensions.json
--a----       11/13/2017   8:49 AM            890 process-types.xml
--a----       12/15/2017   6:09 PM            628 README.md
--a----       12/15/2017   2:09 PM           1246 stringtypes.json
--a----        11/9/2017  12:08 PM           3024 vm-extensions.json
+-a----       12/15/2023   2:25 PM            766 cimlogicaldisk-extensions.json
+-a----        9/28/2024   9:48 AM            265 datetime-extensions.json
+-a----       12/15/2023   5:09 PM            232 eventlog-type.json
+-a----        2/18/2024   1:18 PM           1266 fileinfo-extensions.json
+-a----       11/13/2023   8:37 AM            901 int32-types.json
+-a----        11/1/2023   6:18 PM            653 measure-extensions.json
+-a----       11/13/2023   8:49 AM            890 process-types.xml
+-a----       12/15/2023   6:09 PM            628 README.md
+-a----       12/15/2023   2:09 PM           1246 stringtypes.json
+-a----        11/9/2023  12:08 PM           3024 vm-extensions.json
 
 PS C:\> Import-PSTypeExtension $PSTypeSamples\measure-extensions.json -Verbose
 VERBOSE: Starting: Import-PSTypeExtension

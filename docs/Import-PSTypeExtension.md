@@ -48,7 +48,7 @@ The name of the imported file. The extension must be .xml or .json.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: fullname
+Aliases: FullName
 
 Required: True
 Position: 0

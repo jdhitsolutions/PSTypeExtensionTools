@@ -16,5 +16,5 @@
         "MemberName":  "PctFree",
         "Value":  "[math]::round(($this.freespace/$this.size)*100,2)",
         "TypeName":  "Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_LogicalDisk"
-    }    
+    }
 ]

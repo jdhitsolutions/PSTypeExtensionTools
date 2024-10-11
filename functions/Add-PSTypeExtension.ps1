@@ -1,5 +1,5 @@
 Function Add-PSTypeExtension {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     [Alias('Set-PSTypeExtension')]
 
     Param(
@@ -7,22 +7,22 @@ Function Add-PSTypeExtension {
             Position = 0,
             Mandatory,
             ValueFromPipeline,
-            HelpMessage = "Enter the name of a type like system.io.fileinfo")]
-        [string]$TypeName,
+            HelpMessage = "Enter the name of a type like System.IO.FileInfo")]
+        [String]$TypeName,
         [Parameter(
             Mandatory,
             HelpMessage = "The member type"
         )]
-        [ValidateSet("AliasProperty", "Noteproperty", "ScriptProperty", "ScriptMethod")]
+        [ValidateSet("AliasProperty", "NoteProperty", "ScriptProperty", "ScriptMethod")]
         [alias("Type")]
-        [string]$MemberType,
+        [String]$MemberType,
         [Parameter(
             Mandatory,
             HelpMessage = "The name of your type extension"
         )]
         [ValidateNotNullOrEmpty()]
         [alias("Name")]
-        [string]$MemberName,
+        [String]$MemberName,
         [Parameter(
             Mandatory,
             HelpMessage = "The value for your type extension. Remember to enclose scriptblocks in {} and use `$this"
@@ -30,10 +30,10 @@ Function Add-PSTypeExtension {
         [ValidateNotNullOrEmpty()]
         [Object]$Value,
         [Parameter(HelpMessage = "Create the extension in the deserialized version of the specified type including the original type.")]
-        [switch]$IncludeDeserialized
+        [Switch]$IncludeDeserialized
     )
     Begin {
-        Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
 
     } #begin
 
@@ -42,17 +42,17 @@ Function Add-PSTypeExtension {
         $PSBoundParameters.Add("Force", $True)
         if ($PSBoundParameters.ContainsKey("IncludeDeserialized")) {
             [void]$PSBoundParameters.Remove("IncludeDeserialized")
-            $PSBoundParameters.Typename = "deserialized.$Typename"
-            Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $($psboundparameters.TypeName)"
+            $PSBoundParameters.TypeName = "deserialized.$TypeName"
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Adding $MemberType $MemberName to $($PSBoundParameters.TypeName)"
             Update-TypeData @PSBoundParameters
-            $PSBoundParameters.Typename = $Typename
+            $PSBoundParameters.TypeName = $TypeName
         }
-        Write-Verbose "[$((Get-Date).TimeofDay) PROCESS] Adding $MemberType $Membername to $($psboundparameters.TypeName)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Adding $MemberType $MemberName to $($PSBoundParameters.TypeName)"
         Update-TypeData @PSBoundParameters
     } #process
 
     End {
-        Write-Verbose "[$((Get-Date).TimeofDay) END    ] Ending $($myinvocation.mycommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
 
     } #end
 

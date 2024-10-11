@@ -90,7 +90,7 @@ You can also import a directory of type extensions with a single command.
 dir c:\scripts\mytypes | Import-PSTypeExtension
 ```
 
-A number of sample files with type extensions can be found in this module's Samples folder or GitHub repository at https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples.  When you have imported the module, you can access the samples folder using the `$PSTypeSamples` variable.
+A number of sample files with type extensions can be found in this module's Samples folder or GitHub repository at [https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples](https://github.com/jdhitsolutions/PSTypeExtensionTools/tree/master/samples). When you have imported the module, you can access the samples folder using the `$PSTypeSamples` variable.
 
 ```powershell
 Import-PSTypeExtension $PSTypeSamples\measure-extensions.json
@@ -100,7 +100,7 @@ Import-PSTypeExtension $PSTypeSamples\measure-extensions.json
 
 The `Export-PSTypeExtension` command will also export extensions to a properly formatted .ps1xml file. This can be useful when building type extension files for a module where you want to use the traditional ps1xml form. You can also import these types of files with `Update-TypeData` with the -AppendPath or -PrependPath parameters.
 
-When exporting to .ps1xml file, `Export-PSTypeExtension` has a dynamic parameter, `Append`. Tis allows you to combine multiple type extensions into a single file. If you intend to use a property set, create that file first. Then append your custom type extensions to that file.
+When exporting to .ps1xml file, `Export-PSTypeExtension` has a dynamic parameter, `Append`. This allows you to combine multiple type extensions into a single file. If you intend to use a property set, create that file first. Then append your custom type extensions to that file.
 
 ## NOTE
 
@@ -116,20 +116,18 @@ Remember to enclose scriptblocks in {}.
 
 ## SEE ALSO
 
-+ [Add-PSTypeExtension](Add-PSTypeExtension.md)
-+ [Export-PSTypeExtension](Export-PSTypeExtension.md)
-+ [Get-PSType](Get-PSType.md)
-+ [Get-PSTypeExtension](Get-PSTypeExtension.md)
-+ [Import-PSTypeExtension](Import-PSTypeExtension.md)
-+ [Update-TypeData](Update-TypeData.md)
-+ [New-PSPropertySet](New-PSPropertySet.md)
+- [Add-PSTypeExtension](Add-PSTypeExtension.md)
+- [Export-PSTypeExtension](Export-PSTypeExtension.md)
+- [Get-PSType](Get-PSType.md)
+- [Get-PSTypeExtension](Get-PSTypeExtension.md)
+- [Import-PSTypeExtension](Import-PSTypeExtension.md)
+- [Update-TypeData](Update-TypeData.md)
+- [New-PSPropertySet](New-PSPropertySet.md)
 
 This project was first described at http://jdhitsolutions.com/blog/powershell/5777/a-powershell-module-for-your-type-extensions
 
 ## KEYWORDS
 
-- typedata
-
-- typeextension
-
-- propertyset
+- TypeData
+- TypeExtension
+- PropertySet

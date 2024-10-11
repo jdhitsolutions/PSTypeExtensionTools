@@ -1,6 +1,5 @@
-
 Get-ChildItem $PSScriptRoot\Functions\*.ps1 |
-Foreach-object { . $_.fullname}
+Foreach-object { . $_.FullName}
 
 #Export the Samples folder location as a variable
 $PSTypeSamples = Join-Path $PSScriptRoot -ChildPath samples

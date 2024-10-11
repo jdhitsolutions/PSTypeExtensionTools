@@ -14,7 +14,7 @@ Get selected type extensions.
 ## SYNTAX
 
 ```yaml
-Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [-CodeProperty]  [<CommonParameters>]
+Get-PSTypeExtension [-TypeName] <String> [-Members <String[]>] [-CodeProperty] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,13 +74,13 @@ VM             AliasProperty  VirtualMemorySize64
 WS             AliasProperty  WorkingSet64
 PM             AliasProperty  PagedMemorySize64
 NPM            AliasProperty  NonpagedSystemMemorySize64
-Path           ScriptProperty $this.Mainmodule.FileName
-Company        ScriptProperty $this.Mainmodule.FileVersionInfo.CompanyName
+Path           ScriptProperty $this.MainModule.FileName
+Company        ScriptProperty $this.MainModule.FileVersionInfo.CompanyName
 CPU            ScriptProperty $this.TotalProcessorTime.TotalSeconds
-FileVersion    ScriptProperty $this.Mainmodule.FileVersionInfo.FileVersion
-ProductVersion ScriptProperty $this.Mainmodule.FileVersionInfo.ProductVersion
-Description    ScriptProperty $this.Mainmodule.FileVersionInfo.FileDescription
-Product        ScriptProperty $this.Mainmodule.FileVersionInfo.ProductName
+FileVersion    ScriptProperty $this.MainModule.FileVersionInfo.FileVersion
+ProductVersion ScriptProperty $this.MainModule.FileVersionInfo.ProductVersion
+Description    ScriptProperty $this.MainModule.FileVersionInfo.FileDescription
+Product        ScriptProperty $this.MainModule.FileVersionInfo.ProductName
 __NounName     Noteproperty   Process
 ```
 
@@ -89,8 +89,8 @@ Discover type extensions for a given type of object.
 ### Example 4
 
 ```powershell
-PS C:\>  Get-PSTypeExtension system.io.fileinfo  -CodeProperty |
-Select-Object membername,membertype
+PS C:\>  Get-PSTypeExtension System.IO.FileInfo  -CodeProperty |
+Select-Object MemberName,MemberType
 
 MemberName          MemberType
 ----------          ----------

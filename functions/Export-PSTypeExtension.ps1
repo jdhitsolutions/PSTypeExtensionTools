@@ -1,5 +1,5 @@
 Function Export-PSTypeExtension {
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = "Object")]
+    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "Object")]
     Param(
         [Parameter(
             Position = 0,
@@ -8,7 +8,7 @@ Function Export-PSTypeExtension {
             ParameterSetName = "Name"
         )]
         [ValidateNotNullOrEmpty()]
-        [string]$TypeName,
+        [String]$TypeName,
 
         [Parameter(
             Mandatory,
@@ -23,12 +23,12 @@ Function Export-PSTypeExtension {
             HelpMessage = "The name of the export file. The extension must be .json,.xml or .ps1xml"
         )]
         [ValidatePattern("\.(xml|json|ps1xml)$")]
-        [string]$Path,
+        [String]$Path,
 
         [Parameter(ParameterSetName = "Object", ValueFromPipeline)]
         [object]$InputObject,
 
-        [switch]$Passthru
+        [Switch]$PassThru
     )
     DynamicParam {
         #create a dynamic parameter to append to .ps1xml files.
@@ -55,8 +55,8 @@ Function Export-PSTypeExtension {
     } #dynamic parameter
 
     Begin {
-        Write-Verbose "Starting: $($MyInvocation.Mycommand)"
-        Write-Verbose "Detected parameter set $($pscmdlet.ParameterSetName)"
+        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "Detected parameter set $($PSCmdlet.ParameterSetName)"
         $PathParent = Split-Path -Path $Path
 
         if (Test-Path -Path $PathParent) {
@@ -80,26 +80,26 @@ Function Export-PSTypeExtension {
         $data = [System.Collections.Generic.list[object]]::new()
 
         if ($TypeName) {
-            Write-Verbose "Converting $typename to properly cased type name."
+            Write-Verbose "Converting $TypeName to properly cased type name."
             $TypeName = _convertTypeName $TypeName
         }
     }
     Process {
         #test if parent path exists
         If ($validPath) {
-            if ($Inputobject) {
+            if ($InputObject) {
                 Write-Verbose "Processing input type: $($InputObject.TypeName)"
 
-                Write-Verbose "Converting $($InputObject.typename) to properly cased type name."
+                Write-Verbose "Converting $($InputObject.TypeName) to properly cased type name."
                 $TypeName = _convertTypeName $InputObject.TypeName
 
                 $data.Add($InputObject)
             }
             else {
                 Write-Verbose "Processing type: $TypeName"
-                foreach ($member in $membername) {
-                    $typemember = Get-PSTypeExtension -TypeName $Typename -Members $Member
-                    $data.Add($typemember)
+                foreach ($member in $MemberName) {
+                    $TypeMember = Get-PSTypeExtension -TypeName $TypeName -Members $Member
+                    $data.Add($TypeMember)
                 }
             }
         } #test path parent
@@ -109,56 +109,55 @@ Function Export-PSTypeExtension {
             Write-Verbose "Exporting data to $path"
 
             if ($Path -match "\.ps1xml$") {
-
                 if ($PSBoundParameters["Append"]) {
-                    $cpath = Convert-Path $path
-                    Write-Verbose "Appending to $cpath"
+                    $cPath = Convert-Path $path
+                    Write-Verbose "Appending to $cPath"
 
                     [xml]$doc = Get-Content $cPath
-                    $members = $doc.types.SelectNodes("Type[Name='$typeName']").Members
+                    $members = $doc.types.SelectNodes("Type[Name='$TypeName']").Members
 
                     if ($members) {
-                        Write-Verbose "Appending to existing typename entry"
+                        Write-Verbose "Appending to existing TypeName entry"
                     }
                     else {
-                        Write-Verbose "Creating a new typename entry for $TypeName"
+                        Write-Verbose "Creating a new TypeName entry for $TypeName"
                         $main = $doc.CreateNode("element", "Type", $null)
                         $tName = $doc.CreateElement("Name")
-                        $tName.InnerText = $typename
-                        [void]($main.AppendChild($tname))
+                        $tName.InnerText = $TypeName
+                        [void]($main.AppendChild($tName))
                         $members = $doc.CreateNode("element", "Members", $null)
                         $IsNewType = $True
                     }
 
                     foreach ($extension in $data) {
-                        Write-Verbose "Exporting $($extension.membername)"
-                        $membertype = $doc.createNode("element", $extension.memberType, $null)
-                        $membernameEL = $doc.CreateElement("Name")
+                        Write-Verbose "Exporting $($extension.MemberName)"
+                        $MemberType = $doc.createNode("element", $extension.MemberType, $null)
+                        $MemberNameEL = $doc.CreateElement("Name")
 
-                        $membernameEL.innertext = $extension.memberName
-                        [void]($membertype.AppendChild($membernameEL))
+                        $MemberNameEL.InnerText = $extension.MemberName
+                        [void]($MemberType.AppendChild($MemberNameEL))
 
-                        Switch ($extension.Membertype) {
+                        Switch ($extension.MemberType) {
                             "ScriptMethod" {
-                                $memberdef = $doc.createelement("Script")
+                                $MemberDef = $doc.CreateElement("Script")
                             }
                             "ScriptProperty" {
-                                $memberdef = $doc.createelement("GetScriptBlock")
+                                $MemberDef = $doc.CreateElement("GetScriptBlock")
                             }
                             "AliasProperty" {
-                                $memberdef = $doc.createelement("ReferencedMemberName")
+                                $MemberDef = $doc.CreateElement("ReferencedMemberName")
                             }
                             "NoteProperty" {
-                                $memberdef = $doc.createelement("Value")
+                                $MemberDef = $doc.CreateElement("Value")
                             }
                             Default {
                                 Throw "Can't process a type of $($extension.MemberType)"
                             }
-                        } #switch membertype
+                        } #switch MemberType
 
-                        $memberdef.InnerText = $extension.value
-                        [void]($membertype.AppendChild($memberdef))
-                        [void]($members.AppendChild($membertype))
+                        $MemberDef.InnerText = $extension.value
+                        [void]($MemberType.AppendChild($MemberDef))
+                        [void]($members.AppendChild($MemberType))
 
                     } #foreach extension
 
@@ -168,9 +167,9 @@ Function Export-PSTypeExtension {
                         [void]($doc.types.AppendChild($main))
                     }
 
-                    if ($PSCmdlet.ShouldProcess($cpath)) {
-                        $doc.save($cpath)
-                    } #end Whatif
+                    if ($PSCmdlet.ShouldProcess($cPath)) {
+                        $doc.save($cPath)
+                    } #end WhatIf
 
                 } #if append
 
@@ -203,37 +202,37 @@ Created $(Get-Date)
                     $root = $doc.CreateNode("element", "Types", $null)
                     $main = $doc.CreateNode("element", "Type", $null)
                     $name = $doc.CreateElement("Name")
-                    $name.innerText = $data[0].TypeName
+                    $name.InnerText = $data[0].TypeName
                     [void]($main.AppendChild($name))
                     $members = $doc.CreateNode("element", "Members", $null)
                     foreach ($extension in $data) {
-                        Write-Verbose "Exporting $($extension.membername)"
-                        $membertype = $doc.createNode("element", $extension.memberType, $null)
-                        $membernameEL = $doc.CreateElement("Name")
+                        Write-Verbose "Exporting $($extension.MemberName)"
+                        $MemberType = $doc.createNode("element", $extension.MemberType, $null)
+                        $MemberNameEL = $doc.CreateElement("Name")
 
-                        $membernameEL.innertext = $extension.memberName
-                        [void]($membertype.AppendChild($membernameEL))
+                        $MemberNameEL.InnerText = $extension.MemberName
+                        [void]($MemberType.AppendChild($MemberNameEL))
 
-                        Switch ($extension.Membertype) {
+                        Switch ($extension.MemberType) {
                             "ScriptMethod" {
-                                $memberdef = $doc.createelement("Script")
+                                $MemberDef = $doc.CreateElement("Script")
                             }
                             "ScriptProperty" {
-                                $memberdef = $doc.createelement("GetScriptBlock")
+                                $MemberDef = $doc.CreateElement("GetScriptBlock")
                             }
                             "AliasProperty" {
-                                $memberdef = $doc.createelement("ReferencedMemberName")
+                                $MemberDef = $doc.CreateElement("ReferencedMemberName")
                             }
                             "NoteProperty" {
-                                $memberdef = $doc.createelement("Value")
+                                $MemberDef = $doc.CreateElement("Value")
                             }
                             Default {
                                 Throw "Can't process a type of $($extension.MemberType)"
                             }
                         }
-                        $memberdef.InnerText = $extension.value
-                        [void]($membertype.AppendChild($memberdef))
-                        [void]($members.AppendChild($membertype))
+                        $MemberDef.InnerText = $extension.value
+                        [void]($MemberType.AppendChild($MemberDef))
+                        [void]($members.AppendChild($MemberType))
 
                     } #foreach extension
                     [void]($main.AppendChild($members))
@@ -242,7 +241,7 @@ Created $(Get-Date)
                     $out = Convert-Path $path
                     if ($PSCmdlet.ShouldProcess($out)) {
                         $doc.save($out)
-                    } #end Whatif
+                    } #end WhatIf
                 } #else
             } #if ps1xml
             elseif ($path -match "\.xml$") {
@@ -255,10 +254,10 @@ Created $(Get-Date)
             }
         } #if valid path
 
-        if ($Passthru) {
+        if ($PassThru) {
             Get-Item -Path $Path
         }
-        Write-Verbose "Ending: $($MyInvocation.Mycommand)"
+        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
     }
 
 } #end Export-PSTypeExtension

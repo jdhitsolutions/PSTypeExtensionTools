@@ -14,7 +14,7 @@ Get the type name for a given object.
 ## SYNTAX
 
 ```yaml
-Get-PSType [-Inputobject] <Object> [<CommonParameters>]
+Get-PSType [-InputObject] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,26 +50,26 @@ Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to
 ### EXAMPLE 3
 
 ```powershell
-PS C:\> get-vm win10 | get-pstype | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.Creationtime}
-PS C:\> get-vm | sort VMAge -descending | select Name,Creationtime,VMAge
+PS C:\> get-vm win10 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.CreationTime}
+PS C:\> get-vm | sort VMAge -descending | select Name,CreationTime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
-UbuntuDesk 8/7/2020 1:53:47 PM   94.20:26:57.4237225
-CentOS     8/7/2020 3:43:50 PM   94.18:36:54.3394091
-DOM1       9/28/2020 9:31:34 AM  43.00:49:10.4396803
-SRV1       9/28/2020 9:31:50 AM  43.00:48:54.3284313
-SRV2       9/28/2020 9:32:01 AM  43.00:48:43.2135084
-SRV3       9/28/2020 9:32:11 AM  43.00:48:33.4681374
-WIN10      9/28/2020 9:32:21 AM  43.00:48:23.1610914
-Win10Ent   10/16/2020 9:30:46 AM 25.00:49:58.1206825
+UbuntuDesk 8/7/2023 1:53:47 PM   94.20:26:57.4237225
+CentOS     8/7/2023 3:43:50 PM   94.18:36:54.3394091
+DOM1       9/28/2023 9:31:34 AM  43.00:49:10.4396803
+SRV1       9/28/2023 9:31:50 AM  43.00:48:54.3284313
+SRV2       9/28/2023 9:32:01 AM  43.00:48:43.2135084
+SRV3       9/28/2023 9:32:11 AM  43.00:48:33.4681374
+WIN10      9/28/2023 9:32:21 AM  43.00:48:23.1610914
+Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825
 ```
 
 Get the type for a Hyper-V Virtual Machine and add a new ScriptProperty, which can then be used in a PowerShell expression.
 
 ## PARAMETERS
 
-### -Inputobject
+### -InputObject
 
 Any object from PowerShell.
 

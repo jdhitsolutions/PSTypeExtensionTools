@@ -70,7 +70,7 @@ Export the selected members to a ps1xml file and pass the file object to the pip
 ```powershell
 PS C:\work> Get-PSTypeExtension system.string |
 Export-PSTypeExtension -Path .\all.ps1xml
-PS C:\work> Get-PSTypeExtension system.io.fileinfo |
+PS C:\work> Get-PSTypeExtension System.IO.FileInfo |
 Export-PSTypeExtension -Path .\all.ps1xml -append
 PS C:\work>  Get-PSTypeExtension system.serviceprocess.servicecontroller -Members State | Export-PSTypeExtension -Path .\all.ps1xml -append
 ```

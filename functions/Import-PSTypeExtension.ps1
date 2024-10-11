@@ -8,12 +8,12 @@ Function Import-PSTypeExtension {
             HelpMessage = "The name of the imported file. The extension must be .xml or .json")]
         [ValidatePattern("\.(xml|json)$")]
         [ValidateScript( { Test-Path $(Convert-Path $_) })]
-        [alias("fullname")]
-        [string]$Path
+        [alias("FullName")]
+        [String]$Path
     )
 
     Begin {
-        Write-Verbose "Starting: $($myInvocation.mycommand)"
+        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
     }
     Process {
         Write-Verbose "Importing file $(Convert-Path $Path)"
@@ -38,14 +38,14 @@ Function Import-PSTypeExtension {
                 $value = $item.Value
             }
             #add a custom -WhatIf message
-            if ($PSCmdlet.ShouldProcess($Item.typename, "Adding $($item.membertype) $($item.MemberName)")) {
+            if ($PSCmdlet.ShouldProcess($Item.TypeName, "Adding $($item.MemberType) $($item.MemberName)")) {
                 #implement the change
-                Update-TypeData -TypeName $item.Typename -MemberType $item.MemberType -MemberName $item.MemberName -Value $value -Force
+                Update-TypeData -TypeName $item.TypeName -MemberType $item.MemberType -MemberName $item.MemberName -Value $value -Force
             }
         } #foreach
     }
     End {
-        Write-Verbose "Ending: $($myInvocation.mycommand)"
+        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
     }
 
 } #end Import-PSTypeExtension

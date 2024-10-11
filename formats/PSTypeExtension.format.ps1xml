@@ -7,7 +7,7 @@
                 <TypeName>PSTypeExtension</TypeName>
             </ViewSelectedBy>
             <GroupBy>
-                <PropertyName>TypeName</PropertyName> 
+                <PropertyName>TypeName</PropertyName>
             </GroupBy>
             <TableControl>
                 <Autosize/>
