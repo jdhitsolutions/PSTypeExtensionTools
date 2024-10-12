@@ -4,7 +4,7 @@
 
 @{
     RootModule           = 'PSTypeExtensionTools.psm1'
-    ModuleVersion        = '1.10.0'
+    ModuleVersion        = '1.10.1'
     CompatiblePSEditions = @("Desktop", "Core")
     GUID                 = 'f509035e-cb36-4d2f-b2c8-f4a60fb06d56'
     Author               = 'Jeff Hicks'
@@ -23,5 +23,5 @@
             ProjectUri = 'https://github.com/jdhitsolutions/PSTypeExtensionTools'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
-    DefaultCommandPrefix = 'Corp'
+    DefaultCommandPrefix = ''
 }

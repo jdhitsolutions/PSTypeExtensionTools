@@ -1,5 +1,9 @@
 # Change Log for PSTypeExtensionTools
 
+## v1.10.1
+
+- Removed default command prefix in the module manifest, accidentally left in from a demonstration.
+
 ## v1.10.0
 
 - Code cleanup and re-formatting.
