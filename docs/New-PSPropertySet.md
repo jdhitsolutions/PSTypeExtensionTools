@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: http://bit.ly/3rz1fHU
+online version: https://jdhitsolutions.com/yourls/0beb9d
 schema: 2.0.0
 ---
 
@@ -38,8 +38,8 @@ Property set updates are not persistent. You will need to import your ps1xml, id
 ### Example 1
 
 ```powershell
-PS C:\> New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myfileinfo.types.ps1xml
-PS C:\> Update-TypeData C:\work\myfileinfo.types.ps1xml
+PS C:\> New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myFileInfo.types.ps1xml
+PS C:\> Update-TypeData C:\work\myFileInfo.types.ps1xml
 PS C:\> dir c:\work -file | select info
 
 FullName                     IsReadOnly CreationTime           LastWriteTime
@@ -201,8 +201,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

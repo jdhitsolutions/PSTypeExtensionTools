@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Types>
   <Type>
     <Name>System.IO.FileInfo</Name>
@@ -8,10 +8,20 @@
         <ReferencedProperties>
           <Name>Name</Name>
           <Name>Size</Name>
-          <Name>LastWritetime</Name>
+          <Name>LastWriteTime</Name>
           <Name>Age</Name>
         </ReferencedProperties>
       </PropertySet>
+      <AliasProperty>
+        <Name>Size</Name>
+        <ReferencedMemberName>Length</ReferencedMemberName>
+     </AliasProperty>
+     <ScriptProperty>
+      <Name>Age</Name>
+      <GetScriptBlock>
+        New-TimeSpan -Start $this.LastWriteTime -end (Get-Date)
+      </GetScriptBlock>
+     </ScriptProperty>
     </Members>
   </Type>
 </Types>

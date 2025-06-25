@@ -10,7 +10,7 @@
                 <PropertyName>TypeName</PropertyName>
             </GroupBy>
             <TableControl>
-                <Autosize/>
+                <AutoSize/>
                 <TableHeaders>
                     <TableColumnHeader>
                         <Label>Name</Label>

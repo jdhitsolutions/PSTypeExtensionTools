@@ -1,0 +1,59 @@
+<!--
+Format type data generated 06/24/2025 12:27:00 by Cadenza\jeff
+
+This file was created using the New-PSFormatXML command that is part
+of the PSScriptTools module.
+
+https://github.com/jdhitsolutions/PSScriptTools
+-->
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <!--Created 06/24/2025 12:27:00 by Cadenza\jeff-->
+      <Name>default</Name>
+      <ViewSelectedBy>
+        <TypeName>PSTypeExtensionPreview</TypeName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>TypeName</PropertyName>
+        <Label>TypeName</Label>
+      </GroupBy>
+      <TableControl>
+        <!--Delete the AutoSize node if you want to use the defined widths.-->
+        <AutoSize />
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>MemberType</Label>
+            <Width>16</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>MemberName</Label>
+            <Width>13</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Value</Label>
+            <Width>15</Width>
+            <Alignment>left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>MemberType</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>MemberName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Value</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

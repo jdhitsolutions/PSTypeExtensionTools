@@ -1,0 +1,106 @@
+<Configuration>
+    <ViewDefinitions>
+        <View>
+            <Name>default</Name>
+            <ViewSelectedBy>
+                <TypeName>PSTypeUpdatePreview</TypeName>
+            </ViewSelectedBy>
+            <CustomControl>
+                <CustomEntries>
+                    <CustomEntry>
+                        <CustomItem>
+                            <ExpressionBinding>
+                                <ScriptBlock>
+                                    "TypeName: $([char]27)[1;3;38;5;159m{0}$([char]27)[0m" -f $_.TypeName
+                                </ScriptBlock>
+                            </ExpressionBinding>
+                            <NewLine />
+                            <Frame>
+                                <LeftIndent>4</LeftIndent>
+                                <CustomItem>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                    <ScriptBlock>"$([char]27)[92mAliasProperty:$([char]27)[0m"</ScriptBlock>
+                                    </ExpressionBinding>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                        <ScriptBlock>
+                                        if ($_.AliasProperty) {
+                                            $out = $_.AliasProperty | Format-Table -AutoSize | Out-String
+                                            "$([char]27)[92m{0}$([char]27)[0m`n" -f (($out.split("`n").Foreach({"  $_"})) | Out-String).TrimEnd()
+                                            }
+                                        </ScriptBlock>
+                                    </ExpressionBinding>
+                                </CustomItem>
+                            </Frame>
+                            <Frame>
+                                <LeftIndent>4</LeftIndent>
+                                <CustomItem>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                    <ScriptBlock>"$([char]27)[96mNoteProperty:$([char]27)[0m"</ScriptBlock>
+                                    </ExpressionBinding>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                        <ScriptBlock>
+                                          if ($_.NoteProperty) {
+                                            $out = $_.NoteProperty | Format-Table -AutoSize | Out-String
+                                            "$([char]27)[96m{0}$([char]27)[0m`n" -f (($out.split("`n").Foreach({"  $_"})) | Out-String).TrimEnd()
+                                            }
+                                        </ScriptBlock>
+                                    </ExpressionBinding>
+                                </CustomItem>
+                            </Frame>
+                            <Frame>
+                                <LeftIndent>4</LeftIndent>
+                                <CustomItem>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                    <ScriptBlock>"$([char]27)[93mScriptProperty:$([char]27)[0m"</ScriptBlock>
+                                    </ExpressionBinding>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                        <ScriptBlock>
+                                           if ($_.ScriptProperty) {
+                                            If ($_.ScriptProperty.Set) {
+                                              $out = $_.ScriptProperty | Format-List | Out-String
+                                            }
+                                            else {
+                                                $out = $_.ScriptProperty | Format-List -Property Name,Get | Out-String
+                                            }
+                                            "$([char]27)[93m`n  {0}$([char]27)[0m`n" -f (($out.split("`n").Foreach({"  $_"})) | Out-String).Trim()
+                                            }
+                                        </ScriptBlock>
+                                    </ExpressionBinding>
+                                </CustomItem>
+                            </Frame>
+                            <Frame>
+                                <LeftIndent>4</LeftIndent>
+                                <CustomItem>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                    <ScriptBlock>"$([char]27)[38;5;208mPropertySet:$([char]27)[0m"</ScriptBlock>
+                                    </ExpressionBinding>
+                                    <NewLine/>
+                                    <ExpressionBinding>
+                                        <ScriptBlock>
+                                        If ($_.PropertySet) {
+                                            $a = @("`r")
+                                            foreach ($item in $_.PropertySet) {
+                                                $a += "       {0} = {1}`r" -f $item.Name,($item.Properties -join ',')
+                                             }
+                                            "$([char]27)[38;5;208m{0}$([char]27)[0m" -f ($a -join "`n" | Out-String)
+
+                                        }
+                                        </ScriptBlock>
+                                    </ExpressionBinding>
+
+                                </CustomItem>
+                            </Frame>
+                        </CustomItem>
+                    </CustomEntry>
+                </CustomEntries>
+            </CustomControl>
+        </View>
+    </ViewDefinitions>
+</Configuration>

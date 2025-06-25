@@ -1,6 +1,7 @@
 Function Get-PSTypeExtension {
     [CmdletBinding()]
     [OutputType('PSTypeExtension')]
+    [Alias('gtex')]
     Param(
         [Parameter(
             Position = 0,
@@ -11,29 +12,27 @@ Function Get-PSTypeExtension {
         )]
         [ValidateNotNullOrEmpty()]
         [String]$TypeName,
+
         [Parameter(
-            HelpMessage = 'Enter a comma separated list of member names',
-            ParameterSetName = 'members'
+            HelpMessage = 'Enter a comma separated list of member names'
         )]
         [string[]]$Members,
+
         [Parameter(HelpMessage = 'Show CodeProperty custom properties')]
         [Switch]$CodeProperty
     )
 
     Begin {
-        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
         $TypeData = @()
-
     } #begin
     Process {
-
-        Write-Verbose 'Converting TypeName to proper type'
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Converting TypeName to proper type"
         $TypeName = _convertTypeName $TypeName
 
-
-        Write-Verbose "Analyzing $TypeName"
+        Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Analyzing $TypeName"
         if ($TypeName) {
-            Write-Verbose 'Getting type data'
+            Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Getting type data"
             $TypeData += Get-TypeData -TypeName $TypeName
         }
         else {
@@ -42,10 +41,8 @@ Function Get-PSTypeExtension {
             $TypeData = $False
             return
         }
-
     } #process
     End {
-
         if ($TypeData) {
             $TypeData = $TypeData | Select-Object -Unique
             $out = [System.Collections.Generic.List[object]]::new()
@@ -152,7 +149,7 @@ Function Get-PSTypeExtension {
         else {
             Write-Warning "Failed to find any type extensions for [$TypeName]."
         }
-        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending: $($MyInvocation.MyCommand)"
     }
 
 } #end Get-PSTypeExtension

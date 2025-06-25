@@ -2,17 +2,29 @@
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/PSTypeExtensionTools.png?style=for-the-badge&logo=powershell&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSTypeExtensionTools.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSTypeExtensionTools/)
 
-This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871). This module should work in Windows PowerShell 5.1 and PowerShell 7.x.
+This PowerShell module contains commands that make it easier to work with type extensions. Many of these commands are wrappers for built-in tools like [Get-TypeData](http://go.microsoft.com/fwlink/?LinkId=821805) or [Update-TypeData](http://go.microsoft.com/fwlink/?LinkId=821871). This module should work in Windows PowerShell 5.1 and PowerShell 7.x. Although some of the sample type extensions require a Windows platform.
 
-## Release
+## Installation
 
 You can install the current release from the PowerShell Gallery:
 
 ```powershell
-Install-Module PSTypeExtensionTools
+Install-PSResource PSTypeExtensionTools
 ```
 
-## Why You Want to Use This
+The module contains these commands.
+
+| Name | Alias | Synopsis |
+|------|-------|----------|
+| [Add-PSTypeExtension](docs/Add-PSTypeExtension.md) | *Set-PSTypeExtension*,*atex* | Add a new type extension. |
+| [Export-PSTypeExtension](docs/Export-PSTypeExtension.md) | *etex* | Export type extensions to a file. |
+| [Get-PSType](docs/Get-PSType.md) |  | Get the type name for a given object. |
+| [Get-PSTypeDataPreview](docs/Get-PSTypeDataPreview.md) |  | Preview the type extension settings in a ps1xml file. |
+| [Get-PSTypeExtension](docs/Get-PSTypeExtension.md) | *gtex* | Get selected type extensions. |
+| [Import-PSTypeExtension](docs/Import-PSTypeExtension.md) | *itex* | Import type extension definitions. |
+| [New-PSPropertySet](docs/New-PSPropertySet.md) |  | Create a new property set ps1xml file. |
+
+## Why You Want to Use This Module
 
 Let's say you want to update a number object, but you have no idea what the type name is. Once you have read help for the commands in this module, you could run a PowerShell command like this:
 
@@ -22,7 +34,7 @@ Let's say you want to update a number object, but you have no idea what the type
 
 Use `$this` to reference the object instead of `$_`. Now you can get the new property.
 
-```dos
+```powershell
 PS C:\> $x = 123
 PS C:\> $x.SquareRoot
 11.0905365064094
@@ -39,7 +51,7 @@ Add-PSTypeExtension -TypeName system.int32 -MemberType ScriptMethod -MemberName 
 
 Here's how it might look:
 
-```dos
+```powershell
 PS C:\> $x = 38
 PS C:\> $x | select *
 
@@ -65,7 +77,7 @@ Show-Command Add-PSTypeExtension
 
 ![Add via GUI](images/show-add.png)
 
-Clicking Run will insert this code at your prompt.
+Clicking `Run` will insert this code at your prompt.
 
 ```powershell
 Add-PSTypeExtension -MemberName ToTitleCase -MemberType ScriptMethod -TypeName System.String -Value { (Get-Culture).TextInfo.ToTitleCase($this.ToLower())}
@@ -77,7 +89,7 @@ If you like this extension, you can export it and re-import it later.
 
 To see current type extensions, you can use `Get-PSTypeExtension`. You can choose to see all extensions or selected ones by member name. CodeProperty extensions are hidden by default.
 
-```dos
+```powershell
 PS C:\> Get-PSTypeExtension system.int32
 
    TypeName: System.Int32
@@ -104,27 +116,7 @@ In your PowerShell profile scrip,t you can then re-import the type extension def
 Import-PSTypeExtension -Path C:\work\int32-types.json
 ```
 
-## PSTypeExtensionTools Cmdlets
-
-### [Add-PSTypeExtension](docs/Add-PSTypeExtension.md)
-
-Add a new type extension such as an `Alias` or `ScriptProperty`.
-
-### [Export-PSTypeExtension](docs/Export-PSTypeExtension.md)
-
-Export type extensions to a json, xml or ps1xml file.
-
-### [Get-PSType](docs/Get-PSType.md)
-
-Get the type name of an object.
-
-### [Get-PSTypeExtension](docs/Get-PSTypeExtension.md)
-
-Get type extensions for a given type.
-
-### [Import-PSTypeExtension](docs/Import-PSTypeExtension.md)
-
-Import type extension definitions from a JSON file or XML.
+## Property Sets
 
 ### [New-PSPropertySet](docs/New-PSPropertySet.md)
 
@@ -150,7 +142,7 @@ New-PSPropertySet -Typename System.IO.FileInfo -Name FileAge -Properties Name,Si
 
 I've included the file in the Samples folder.
 
-```dos
+```powershell
 PS C:\> Update-TypeData $PSTypeSamples\FileInfo.types.ps1xml
 PS C:\> dir c:\work -file | Select-Object FileAge
 
@@ -267,29 +259,88 @@ a.csv                0 12/1/2023 11:30:55 AM  98.04:15:27.9106911
 
 I can put the `Update-TypeData` command in my PowerShell profile to always have these extensions. Or I could share the file.
 
+## Previewing Type Extensions
+
+Depending on the file you are using to update type data, there are a few options to preview the type extensions before you import them. If you have exported settings to a JSON or XML file using `Export-PSTypeExtension`, you can use the `Preview` parameter of `Import-PSTypeExtension` command to see the type extensions before they are applied.
+
+```powershell
+PS C:\> Import-PSTypeExtension $PSTypeSamples\stringtypes.json -Preview
+
+   TypeName: System.String
+
+MemberType     MemberName  Value
+----------     ----------  -----
+AliasProperty  Size        Length
+ScriptMethod   IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
+ScriptMethod   Randomize   ($this.ToCharArray() | get-random -Count $this.length) -join ""
+ScriptMethod   Reverse     for ($i=$this.length;$i -ge 0;$i--) {…
+ScriptMethod   Reverse     ($this.ToCharArray())[-1..-$this.length] -join ""
+ScriptProperty IsEmail     $this -match '^\S+@([\w-]+)\.(com|edu|org|net)$'
+
+PS C:\> Import-PSTypeExtension $PSTypeSamples\measureinfo.xml -Preview
+
+   TypeName: Microsoft.PowerShell.Commands.GenericMeasureInfo
+
+MemberType     MemberName Value
+----------     ---------- -----
+ScriptProperty SumGB      [math]::Round($this.sum/1gb,4)
+ScriptProperty SumKB      [math]::Round($this.sum/1kb,4)
+ScriptProperty SumMB      [math]::Round($this.sum/1mb,4)
+```
+
+The `Get-PSTypeDataPreview` command will display the type extensions in a ps1xml file. This is useful if you want to see what type extensions are defined in a file before you import them.
+
+If you have a ps1xml file, you can use the `Get-PSTypeDataPreview` command to see the type extensions.
+
+![GetPSTypeDataPreview](images/Get-PSTypeDataPreview.png)
+
+The default output uses custom formatting to display type extensions using ANSI color sequences. Or you can use the object directly.
+
+```powershell
+PS C:\> $a = Get-PStypeDataPreview $PSTypeSamples\process.types.ps1xml
+PS C:\> $a | Select-Object *
+
+TypeName       : System.Diagnostics.Process
+AliasProperty  : {@{Name=Computername; Reference=MachineName}, @{Name=Started; Reference=StartTime}}
+NoteProperty   : @{Name=Comment; Value=Type extended with PSTypeExtensionTools}
+ScriptProperty : @{Name=RunTime; Get=(Get-Date) - $this.StartTime; Set=}
+PropertySet    : {@{Name=PSRun; Properties=System.Object[]}, @{Name=RunInfo; Properties=System.Object[]}}
+Path           : C:\scripts\PSTypeExtensionTools\samples\process.types.ps1xml
+
+PS C:\> $a.PropertySet
+
+Name    Properties
+----    ----------
+PSRun   {ID, Name, WS, StartTime...}
+RunInfo {ID, Name, StartTime, RunTime...}
+```
+
 ## I Want to Try
 
-You can find sample and demonstration type extension exports in the [Samples](./samples) folder. When you import the module, this location is saved to a global variable, `$PSTypeSamples`.
+You can find sample and demonstration type extension exports in the [Samples](samples) folder. When you import the module, this location is saved to a global variable, `$PSTypeSamples`.
 
 ```powershell
 PS C:\> Get-ChildItem $PSTypeSamples
 
-
     Directory: C:\scripts\PSTypeExtensionTools\samples
-
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
--a----       12/15/2023   2:25 PM            766 cimlogicaldisk-extensions.json
--a----        9/28/2024   9:48 AM            265 datetime-extensions.json
--a----       12/15/2023   5:09 PM            232 eventlog-type.json
--a----        2/18/2024   1:18 PM           1266 fileinfo-extensions.json
--a----       11/13/2023   8:37 AM            901 int32-types.json
--a----        11/1/2023   6:18 PM            653 measure-extensions.json
--a----       11/13/2023   8:49 AM            890 process-types.xml
--a----       12/15/2023   6:09 PM            628 README.md
--a----       12/15/2023   2:09 PM           1246 stringtypes.json
--a----        11/9/2023  12:08 PM           3024 vm-extensions.json
+a---          10/11/2024  4:52 PM            762 cimlogicaldisk-extensions.json
+a---          10/11/2024  4:32 PM            265 datetime-extensions.json
+a---          10/11/2024  4:32 PM            490 eventlog-type.json
+a---           6/24/2025 12:02 PM           2608 fileinfo-extensions.json
+a---           6/24/2025  4:44 PM            728 fileinfo.types.ps1xml
+a---          10/11/2024  4:32 PM            901 int32-types.json
+a---          10/11/2024  4:32 PM           1318 measure-extensions.json
+a---           6/24/2025 11:48 AM           1066 measureinfo.xml
+a---           6/24/2025 11:33 AM           1176 msft_volume-extensions.json
+a---           6/24/2025  1:56 PM            656 mydatetime.types.ps1xml
+a---           6/24/2025  1:56 PM            444 process-types.xml
+a---           6/24/2025  2:14 PM           1555 process.types.ps1xml
+a---          10/11/2024  4:33 PM            944 README.md
+a---          10/11/2024  4:32 PM           1246 stringtypes.json
+a---           6/24/2025 11:30 AM           3024 vm-extensions.json
 
 PS C:\> Import-PSTypeExtension $PSTypeSamples\measure-extensions.json -Verbose
 VERBOSE: Starting: Import-PSTypeExtension
@@ -306,7 +357,7 @@ VERBOSE: Performing the operation "Adding ScriptProperty SumGB" on target "Micro
 VERBOSE: Ending: Import-PSTypeExtension
 
 PS C:\> Get-ChildItem D:\VMDisks\ -file -recurse | Measure-Object -property length -sum |
-select Count,SumGB
+Select-Object Count,SumGB
 
 Count   SumGB
 -----   -----

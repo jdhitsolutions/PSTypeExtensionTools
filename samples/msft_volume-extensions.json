@@ -2,7 +2,7 @@
   {
     "MemberType": "ScriptProperty",
     "MemberName": "PercentFree",
-    "Value": "($this.sizeremaining/$this.size)*100 -as [int]",
+    "Value": "($this.SizeRemaining/$this.size)*100 -as [int]",
     "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
   },
   {
@@ -14,7 +14,7 @@
   {
     "MemberType": "ScriptProperty",
     "MemberName": "FreeGB",
-    "Value": "($this.sizeremaining/1GB)",
+    "Value": "($this.SizeRemaining/1GB)",
     "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
   },
   {
@@ -26,7 +26,7 @@
   {
     "MemberType": "ScriptProperty",
     "MemberName": "Computername",
-    "Value": "$this.pscomputername.toUpper()",
+    "Value": "$this.PSComputername.toUpper()",
     "TypeName": "Microsoft.Management.Infrastructure.CimInstance#ROOT/Microsoft/Windows/Storage/MSFT_Volume"
   }
 ]

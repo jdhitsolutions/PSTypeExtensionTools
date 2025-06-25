@@ -1,5 +1,6 @@
 Function Export-PSTypeExtension {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "Object")]
+    [alias('etex')]
     Param(
         [Parameter(
             Position = 0,
@@ -55,8 +56,8 @@ Function Export-PSTypeExtension {
     } #dynamic parameter
 
     Begin {
-        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
-        Write-Verbose "Detected parameter set $($PSCmdlet.ParameterSetName)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Detected parameter set $($PSCmdlet.ParameterSetName)"
         $PathParent = Split-Path -Path $Path
 
         if (Test-Path -Path $PathParent) {
@@ -80,7 +81,7 @@ Function Export-PSTypeExtension {
         $data = [System.Collections.Generic.list[object]]::new()
 
         if ($TypeName) {
-            Write-Verbose "Converting $TypeName to properly cased type name."
+            Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Converting $TypeName to properly cased type name."
             $TypeName = _convertTypeName $TypeName
         }
     }
@@ -88,15 +89,15 @@ Function Export-PSTypeExtension {
         #test if parent path exists
         If ($validPath) {
             if ($InputObject) {
-                Write-Verbose "Processing input type: $($InputObject.TypeName)"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Processing input type: $($InputObject.TypeName)"
 
-                Write-Verbose "Converting $($InputObject.TypeName) to properly cased type name."
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Converting $($InputObject.TypeName) to properly cased type name."
                 $TypeName = _convertTypeName $InputObject.TypeName
 
                 $data.Add($InputObject)
             }
             else {
-                Write-Verbose "Processing type: $TypeName"
+                Write-Verbose "[$((Get-Date).TimeOfDay) PROCESS] Processing type: $TypeName"
                 foreach ($member in $MemberName) {
                     $TypeMember = Get-PSTypeExtension -TypeName $TypeName -Members $Member
                     $data.Add($TypeMember)
@@ -106,21 +107,21 @@ Function Export-PSTypeExtension {
     }
     End {
         if ($validPath) {
-            Write-Verbose "Exporting data to $path"
+            Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Exporting data to $path"
 
             if ($Path -match "\.ps1xml$") {
                 if ($PSBoundParameters["Append"]) {
                     $cPath = Convert-Path $path
-                    Write-Verbose "Appending to $cPath"
+                    Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Appending to $cPath"
 
                     [xml]$doc = Get-Content $cPath
                     $members = $doc.types.SelectNodes("Type[Name='$TypeName']").Members
 
                     if ($members) {
-                        Write-Verbose "Appending to existing TypeName entry"
+                        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Appending to existing TypeName entry"
                     }
                     else {
-                        Write-Verbose "Creating a new TypeName entry for $TypeName"
+                        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Creating a new TypeName entry for $TypeName"
                         $main = $doc.CreateNode("element", "Type", $null)
                         $tName = $doc.CreateElement("Name")
                         $tName.InnerText = $TypeName
@@ -130,7 +131,7 @@ Function Export-PSTypeExtension {
                     }
 
                     foreach ($extension in $data) {
-                        Write-Verbose "Exporting $($extension.MemberName)"
+                        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Exporting $($extension.MemberName)"
                         $MemberType = $doc.createNode("element", $extension.MemberType, $null)
                         $MemberNameEL = $doc.CreateElement("Name")
 
@@ -161,8 +162,8 @@ Function Export-PSTypeExtension {
 
                     } #foreach extension
 
-                    if ($IsnewType) {
-                        Write-Verbose "Appending new type"
+                    if ($IsNewType) {
+                        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Appending new type"
                         [void]($main.AppendChild($members))
                         [void]($doc.types.AppendChild($main))
                     }
@@ -174,20 +175,20 @@ Function Export-PSTypeExtension {
                 } #if append
 
                 else {
-                    Write-Verbose "Saving as new PS1XML"
+                    Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Saving as new PS1XML"
                     #create a placeholder file so that I can later convert the path
                     [void](New-Item -Path $path -Force)
-                    [xml]$Doc = New-Object System.Xml.XmlDocument
+                    [xml]$doc = New-Object System.Xml.XmlDocument
 
                     #create declaration
-                    $dec = $Doc.CreateXmlDeclaration("1.0", "UTF-8", $null)
+                    $dec = $doc.CreateXmlDeclaration("1.0", "UTF-8", $null)
                     #append to document
                     [void]($doc.AppendChild($dec))
 
                     #create a comment and append it in one line
                     $text = @"
 
-This file was created with Export-PSTypeExtenstion from the
+This file was created with Export-PSTypeExtension from the
 PSTypeExtensionTools module which you can install from
 the PowerShell Gallery.
 
@@ -206,7 +207,7 @@ Created $(Get-Date)
                     [void]($main.AppendChild($name))
                     $members = $doc.CreateNode("element", "Members", $null)
                     foreach ($extension in $data) {
-                        Write-Verbose "Exporting $($extension.MemberName)"
+                        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Exporting $($extension.MemberName)"
                         $MemberType = $doc.createNode("element", $extension.MemberType, $null)
                         $MemberNameEL = $doc.CreateElement("Name")
 
@@ -245,11 +246,11 @@ Created $(Get-Date)
                 } #else
             } #if ps1xml
             elseif ($path -match "\.xml$") {
-                Write-Verbose "Saving as XML"
+                Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Saving as XML"
                 $data | Export-Clixml -Path $path
             }
             else {
-                Write-Verbose "Saving as JSON"
+                Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Saving as JSON"
                 $data | ConvertTo-Json | Set-Content -Path $Path
             }
         } #if valid path
@@ -257,7 +258,7 @@ Created $(Get-Date)
         if ($PassThru) {
             Get-Item -Path $Path
         }
-        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending: $($MyInvocation.MyCommand)"
     }
 
 } #end Export-PSTypeExtension

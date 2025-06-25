@@ -75,7 +75,8 @@ GetPercent ScriptMethod    Param([int32]$Total,[int32]$Round=2) [math]::Round(($
 If you always want these extensions, you would have to put the commands into your PowerShell profile script. Or you can export the extensions to a JSON or XML file. You can either export all members or selected ones which is helpful if you are extending a type that already has type extensions from PowerShell.
 
 ```powershell
-PS C:\> Get-PSTypeExtension system.int32 -all | Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
+PS C:\> Get-PSTypeExtension system.int32 -all |
+Export-PSTypeExtension -TypeName system.int32 -Path c:\work\int32-types.json
 ```
 
 In your PowerShell profile script, you can then re-import the type extension definitions.
@@ -112,7 +113,7 @@ Don't try to append or manually update an export file. If you have changes, re-r
 
 Remember to use `$this` to reference the object and NOT `$_`.
 
-Remember to enclose scriptblocks in {}.
+Don't forget to enclose scriptblocks in {}.
 
 ## SEE ALSO
 

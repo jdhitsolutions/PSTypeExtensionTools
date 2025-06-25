@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: http://bit.ly/30FkCRj
+online version: https://jdhitsolutions.com/yourls/00312e
 schema: 2.0.0
 ---
 
@@ -30,7 +30,7 @@ Export-PSTypeExtension [-TypeName] <String> -MemberName <String[]>
 
 You can use this command in two ways. First, you can export custom type information to a JSON or XML file to import in another PowerShell session using Import-PSTypeExtension. Or you can export the type extensions to a properly formatted ps1xml file, which you can import using Update-TypeData. Export-PSTypeExtension will create the appropriate file based on the extension in the specified path.
 
-If you are exporting to a .ps1xml file, you can use a dynamic parameter called Append. You might want to do this if you have created a property set using New-PSPropertySet, and want to include additional type extensions in the same file.
+If you are exporting to a .ps1xml file, you can use a dynamic parameter Append. Use this if you have created a property set using New-PSPropertySet, and want to include additional type extensions to the same file.
 
 ## EXAMPLES
 
@@ -203,12 +203,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### None
 
-### Sytstem.IO.File
+### System.IO.File
 
 ## NOTES
 
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+This command has an alias of etex.
+
+Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

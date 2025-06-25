@@ -212,7 +212,8 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>This command has aliases of atex and Set-PSTypeExtension.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -251,7 +252,7 @@ True</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/30FkoJX</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/0f26dc</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSTypeExtension</maml:linkText>
@@ -270,7 +271,7 @@ True</dev:code>
     </command:details>
     <maml:description>
       <maml:para>You can use this command in two ways. First, you can export custom type information to a JSON or XML file to import in another PowerShell session using Import-PSTypeExtension. Or you can export the type extensions to a properly formatted ps1xml file, which you can import using Update-TypeData. Export-PSTypeExtension will create the appropriate file based on the extension in the specified path.</maml:para>
-      <maml:para>If you are exporting to a .ps1xml file, you can use a dynamic parameter called Append. You might want to do this if you have created a property set using New-PSPropertySet, and want to include additional type extensions in the same file.</maml:para>
+      <maml:para>If you are exporting to a .ps1xml file, you can use a dynamic parameter Append. Use this if you have created a property set using New-PSPropertySet, and want to include additional type extensions to the same file.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -513,7 +514,7 @@ True</dev:code>
       </command:returnValue>
       <command:returnValue>
         <dev:type>
-          <maml:name>Sytstem.IO.File</maml:name>
+          <maml:name>System.IO.File</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -522,7 +523,8 @@ True</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>This command has an alias of etex.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -569,7 +571,7 @@ PS C:\work&gt;  Get-PSTypeExtension system.serviceprocess.servicecontroller -Mem
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/30FkCRj</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/00312e</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Import-PSTypeExtension</maml:linkText>
@@ -646,7 +648,7 @@ PS C:\work&gt;  Get-PSTypeExtension system.serviceprocess.servicecontroller -Mem
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -674,8 +676,8 @@ IsIPAddress ScriptMethod   $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"</
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; get-vm win10 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.CreationTime}
-PS C:\&gt; get-vm | sort VMAge -descending | select Name,CreationTime,VMAge
+        <dev:code>PS C:\&gt; Get-VM win10 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.CreationTime}
+PS C:\&gt; Get-VM | Sort-Object VMAge -descending | select-Object Name,CreationTime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
@@ -695,7 +697,7 @@ Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/30FkNvX</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/cd6178</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSTypeExtension</maml:linkText>
@@ -703,6 +705,124 @@ Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825</dev:code>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Add-PSTypeExtension</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-TypeData</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-PSTypeDataPreview</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>PSTypeDataPreview</command:noun>
+      <maml:description>
+        <maml:para>Preview the type extension settings in a ps1xml file.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>You can use Update-TypeData to import type extension settings from a ps1xml file. This command allows you to preview the type extension settings in a ps1xml file before importing them. The output is a custom object that contains the type name, member name, and other details.</maml:para>
+      <maml:para>CodeProperty members are not displayed.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-PSTypeDataPreview</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Specify the path to the ps1xml file containing the type extension setting you will import using Update-TypeData.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>Specify the path to the ps1xml file containing the type extension setting you will import using Update-TypeData.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PSTypeUpdatePreview</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt;  Get-PStypeDataPreview $PSTypeSamples\process.types.ps1xml
+
+TypeName: System.Diagnostics.Process
+
+    AliasProperty:
+
+      Name         Reference
+      ----         ---------
+      Computername MachineName
+      Started      StartTime
+
+    NoteProperty:
+
+      Name    Value
+      ----    -----
+      Comment Type extended with PSTypeExtensionTools
+
+    ScriptProperty:
+
+      Name : RunTime
+      Get  : (Get-Date) - $this.StartTime
+
+    PropertySet:
+
+       PSRun = ID,Name,WS,StartTime,RunTime
+       RunInfo = ID,Name,StartTime,RunTime,Path</dev:code>
+        <dev:remarks>
+          <maml:para>The output will styled with ANSI color sequences. This example is examining one of the sample ps1xml files included with the module.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://jdhitsolutions.com/yourls/61129b</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Import-PSTypeExtension</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
@@ -730,7 +850,7 @@ Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
           <maml:name>TypeName</maml:name>
           <maml:description>
-            <maml:para>Enter the name of a type like System.IO.FileInfo.</maml:para>
+            <maml:para>Enter the name of a type like System.IO.FileInfo. You should have tab-completion for types found with Get-TypeData.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -780,7 +900,7 @@ Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>TypeName</maml:name>
         <maml:description>
-          <maml:para>Enter the name of a type like System.IO.FileInfo.</maml:para>
+          <maml:para>Enter the name of a type like System.IO.FileInfo. You should have tab-completion for types found with Get-TypeData.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -824,7 +944,8 @@ Win10Ent   10/16/2023 9:30:46 AM 25.00:49:58.1206825</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>This command has an alias of gtex.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -847,7 +968,7 @@ Randomize   ScriptMethod   ($this.ToCharArray() | get-random -Count $this.length
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-PSTypeExtension system.string -members size
+        <dev:code>PS C:\&gt; Get-PSTypeExtension System.String -members size
 
    TypeName: System.String
 
@@ -881,7 +1002,7 @@ FileVersion    ScriptProperty $this.MainModule.FileVersionInfo.FileVersion
 ProductVersion ScriptProperty $this.MainModule.FileVersionInfo.ProductVersion
 Description    ScriptProperty $this.MainModule.FileVersionInfo.FileDescription
 Product        ScriptProperty $this.MainModule.FileVersionInfo.ProductName
-__NounName     Noteproperty   Process</dev:code>
+__NounName     NoteProperty   Process</dev:code>
         <dev:remarks>
           <maml:para>Discover type extensions for a given type of object.</maml:para>
         </dev:remarks>
@@ -915,7 +1036,7 @@ SizeMB              ScriptProperty</dev:code>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/30FkW2t</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/414a1c</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSType</maml:linkText>
@@ -980,6 +1101,17 @@ SizeMB              ScriptProperty</dev:code>
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Preview</maml:name>
+          <maml:description>
+            <maml:para>Preview the type extensions without applying them. This will not modify the type data.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -1019,6 +1151,18 @@ SizeMB              ScriptProperty</dev:code>
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Preview</maml:name>
+        <maml:description>
+          <maml:para>Preview the type extensions without applying them. This will not modify the type data.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
@@ -1039,10 +1183,19 @@ SizeMB              ScriptProperty</dev:code>
           <maml:para></maml:para>
         </maml:description>
       </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PSTypeExtensionPreview</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell:  http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>This command has an alias of itex.</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -1060,11 +1213,29 @@ SizeMB              ScriptProperty</dev:code>
           <maml:para>Import definitions from files in C:\Scripts\MyTypes. Presumably, these are XML or JSON files created with Export-PSTypeExtension.</maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+        <dev:code>PS C:\ Import-PSTypeExtension $PSTypeSamples\stringtypes.json -Preview
+
+   TypeName: System.String
+
+MemberType     MemberName  Value
+----------     ----------  -----
+AliasProperty  Size        Length
+ScriptMethod   IsIPAddress $this -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$"
+ScriptMethod   Randomize   ($this.ToCharArray() | get-random -Count $this.length) -join ""
+ScriptMethod   Reverse     ($this.ToCharArray())[-1..-$this.length] -join ""
+ScriptMethod   Reverse     for ($i=$this.length;$i -ge 0;$i--) {...
+ScriptProperty IsEmail     $this -match '^\S+@([\w-]+)\.(com|edu|org|net)$'</dev:code>
+        <dev:remarks>
+          <maml:para>Preview the type extensions in the projects samples folder. This will not modify the type data.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/30GCsUp</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/344618</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Export-PSTypeExtension</maml:linkText>
@@ -1072,6 +1243,10 @@ SizeMB              ScriptProperty</dev:code>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Get-PSTypeExtension</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Import-PSTypeExtension</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
@@ -1384,14 +1559,14 @@ SizeMB              ScriptProperty</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</maml:para>
+        <maml:para>Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myfileinfo.types.ps1xml
-PS C:\&gt; Update-TypeData C:\work\myfileinfo.types.ps1xml
+        <dev:code>PS C:\&gt; New-PSPropertySet -typename System.IO.FileInfo -name info -properties Fullname,IsReadOnly,CreationTime,LastWriteTime -filepath c:\work\myFileInfo.types.ps1xml
+PS C:\&gt; Update-TypeData C:\work\myFileInfo.types.ps1xml
 PS C:\&gt; dir c:\work -file | select info
 
 FullName                     IsReadOnly CreationTime           LastWriteTime
@@ -1412,7 +1587,7 @@ C:\work\aa.txt               False 12/31/2023 9:11:18 AM  12/31/2023 9:11:18 AM
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>http://bit.ly/3rz1fHU</maml:uri>
+        <maml:uri>https://jdhitsolutions.com/yourls/0beb9d</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Update-TypeData</maml:linkText>

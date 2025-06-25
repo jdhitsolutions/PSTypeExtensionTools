@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 This file was created with New-PSPropertySet from the
 PSTypeExtensionTools module which you can install from
@@ -22,9 +22,31 @@ Created 03/09/2021 15:56:03
           <Name>RunTime</Name>
         </ReferencedProperties>
       </PropertySet>
+      <PropertySet>
+        <Name>RunInfo</Name>
+        <ReferencedProperties>
+          <Name>ID</Name>
+          <Name>Name</Name>
+          <Name>StartTime</Name>
+          <Name>RunTime</Name>
+          <Name>Path</Name>
+        </ReferencedProperties>
+      </PropertySet>
+      <AliasProperty>
+        <Name>Computername</Name>
+        <ReferencedMemberName>MachineName</ReferencedMemberName>
+      </AliasProperty>
+      <AliasProperty>
+        <Name>Started</Name>
+        <ReferencedMemberName>StartTime</ReferencedMemberName>
+      </AliasProperty>
+      <NoteProperty>
+        <Name>Comment</Name>
+        <Value>Type extended with PSTypeExtensionTools</Value>
+      </NoteProperty>
       <ScriptProperty>
         <Name>RunTime</Name>
-        <GetScriptBlock>(Get-Date) - $this.starttime</GetScriptBlock>
+        <GetScriptBlock>(Get-Date) - $this.StartTime</GetScriptBlock>
       </ScriptProperty>
     </Members>
   </Type>

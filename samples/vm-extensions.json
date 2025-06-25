@@ -14,7 +14,7 @@
     {
         "MemberType":  "ScriptProperty",
         "MemberName":  "DiskPath",
-        "Value":  "$this.Harddrives.path",
+        "Value":  "$this.HardDrives.path",
         "TypeName":  "Microsoft.HyperV.PowerShell.VirtualMachine"
     },
     {

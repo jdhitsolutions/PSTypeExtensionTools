@@ -1,0 +1,33 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>PSTypeExtension</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="MemberType">ScriptProperty</S>
+      <S N="MemberName">SumKB</S>
+      <S N="Value">[math]::Round($this.sum/1kb,4)</S>
+      <S N="TypeName">Microsoft.PowerShell.Commands.GenericMeasureInfo</S>
+    </MS>
+  </Obj>
+  <Obj RefId="1">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="MemberType">ScriptProperty</S>
+      <S N="MemberName">SumMB</S>
+      <S N="Value">[math]::Round($this.sum/1mb,4)</S>
+      <S N="TypeName">Microsoft.PowerShell.Commands.GenericMeasureInfo</S>
+    </MS>
+  </Obj>
+  <Obj RefId="2">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="MemberType">ScriptProperty</S>
+      <S N="MemberName">SumGB</S>
+      <S N="Value">[math]::Round($this.sum/1gb,4)</S>
+      <S N="TypeName">Microsoft.PowerShell.Commands.GenericMeasureInfo</S>
+    </MS>
+  </Obj>
+</Objs>

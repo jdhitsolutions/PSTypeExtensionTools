@@ -11,7 +11,7 @@ Function Get-PSType {
     )
 
     Begin {
-        Write-Verbose "Starting: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting: $($MyInvocation.MyCommand)"
         $data = @()
     }
     Process {
@@ -21,6 +21,6 @@ Function Get-PSType {
     End {
         #write unique values to the pipeline
         $data | Get-Unique
-        Write-Verbose "Ending: $($MyInvocation.MyCommand)"
+        Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending: $($MyInvocation.MyCommand)"
     }
 } #end Get-PSType

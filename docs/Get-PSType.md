@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: http://bit.ly/30FkNvX
+online version: https://jdhitsolutions.com/yourls/cd6178
 schema: 2.0.0
 ---
 
@@ -50,8 +50,8 @@ Pipe an object to get its type and then pipe that name to Get-PSTypeExtension to
 ### EXAMPLE 3
 
 ```powershell
-PS C:\> get-vm win10 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.CreationTime}
-PS C:\> get-vm | sort VMAge -descending | select Name,CreationTime,VMAge
+PS C:\> Get-VM win10 | Get-PSType | Add-PSTypeExtension -MemberType ScriptProperty -MemberName VMAge -Value {(Get-Date)- $this.CreationTime}
+PS C:\> Get-VM | Sort-Object VMAge -descending | select-Object Name,CreationTime,VMAge
 
 Name       CreationTime          VMAge
 ----       ------------          -----
@@ -99,8 +99,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: http://bit.ly/30FkW2t
+online version: https://jdhitsolutions.com/yourls/414a1c
 schema: 2.0.0
 ---
 
@@ -46,7 +46,7 @@ Get all type extensions for System.String.
 ### EXAMPLE 2
 
 ```powershell
-PS C:\> Get-PSTypeExtension system.string -members size
+PS C:\> Get-PSTypeExtension System.String -members size
 
    TypeName: System.String
 
@@ -81,7 +81,7 @@ FileVersion    ScriptProperty $this.MainModule.FileVersionInfo.FileVersion
 ProductVersion ScriptProperty $this.MainModule.FileVersionInfo.ProductVersion
 Description    ScriptProperty $this.MainModule.FileVersionInfo.FileDescription
 Product        ScriptProperty $this.MainModule.FileVersionInfo.ProductName
-__NounName     Noteproperty   Process
+__NounName     NoteProperty   Process
 ```
 
 Discover type extensions for a given type of object.
@@ -132,7 +132,7 @@ Accept wildcard characters: False
 
 ### -TypeName
 
-Enter the name of a type like System.IO.FileInfo.
+Enter the name of a type like System.IO.FileInfo. You should have tab-completion for types found with Get-TypeData.
 
 ```yaml
 Type: String
@@ -176,8 +176,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+This command has an alias of gtex.
+
+Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

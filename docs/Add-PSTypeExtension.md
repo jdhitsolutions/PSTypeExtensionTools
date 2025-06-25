@@ -1,7 +1,7 @@
 ---
 external help file: PSTypeExtensionTools-help.xml
 Module Name: PSTypeExtensionTools
-online version: http://bit.ly/30FkoJX
+online version: https://jdhitsolutions.com/yourls/0f26dc
 schema: 2.0.0
 ---
 
@@ -187,8 +187,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Learn more about PowerShell:
-http://jdhitsolutions.com/blog/essential-powershell-resources/
+This command has aliases of atex and Set-PSTypeExtension.
+
+Learn more about PowerShell: http://jdhitsolutions.com/yourls/newsletter
 
 ## RELATED LINKS
 

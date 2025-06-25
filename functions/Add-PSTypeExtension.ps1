@@ -1,6 +1,6 @@
 Function Add-PSTypeExtension {
     [CmdletBinding(SupportsShouldProcess)]
-    [Alias('Set-PSTypeExtension')]
+    [Alias('Set-PSTypeExtension','atex')]
 
     Param(
         [Parameter(
@@ -9,6 +9,7 @@ Function Add-PSTypeExtension {
             ValueFromPipeline,
             HelpMessage = "Enter the name of a type like System.IO.FileInfo")]
         [String]$TypeName,
+
         [Parameter(
             Mandatory,
             HelpMessage = "The member type"
@@ -16,6 +17,7 @@ Function Add-PSTypeExtension {
         [ValidateSet("AliasProperty", "NoteProperty", "ScriptProperty", "ScriptMethod")]
         [alias("Type")]
         [String]$MemberType,
+
         [Parameter(
             Mandatory,
             HelpMessage = "The name of your type extension"
@@ -23,18 +25,19 @@ Function Add-PSTypeExtension {
         [ValidateNotNullOrEmpty()]
         [alias("Name")]
         [String]$MemberName,
+
         [Parameter(
             Mandatory,
             HelpMessage = "The value for your type extension. Remember to enclose scriptblocks in {} and use `$this"
         )]
         [ValidateNotNullOrEmpty()]
         [Object]$Value,
+
         [Parameter(HelpMessage = "Create the extension in the deserialized version of the specified type including the original type.")]
         [Switch]$IncludeDeserialized
     )
     Begin {
         Write-Verbose "[$((Get-Date).TimeOfDay) BEGIN  ] Starting $($MyInvocation.MyCommand)"
-
     } #begin
 
     Process {
@@ -53,7 +56,6 @@ Function Add-PSTypeExtension {
 
     End {
         Write-Verbose "[$((Get-Date).TimeOfDay) END    ] Ending $($MyInvocation.MyCommand)"
-
     } #end
 
 } #close Add-MyTypeExtension
